@@ -3,6 +3,13 @@
 
 \section*{Notes: Building a Simple Snake Game in Python}
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{screenshot_snake.png}
+\caption{Snake mid-game: the green snake has eaten four foods (length 5)
+and the next red food sits ahead of it. Score is rendered top-left.}
+\end{figure}
+
 This note explains a small Snake game written in Python using the
 \texttt{pygame} library. The source file is \texttt{snake.py} and lives
 outside the Overleaf repository (in the parent project folder).
@@ -114,6 +121,15 @@ keep a model of the world as plain data, advance it one tick at a time,
 and redraw from scratch each frame.
 
 \section*{Notes: A Mini Galaxy Game}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{screenshot_galaxy.png}
+\caption{Mini Galaxy at start: the red player stands on top of a green
+planet under radial gravity, with five yellow stars to collect and
+two purple enemies patrolling the surface. The background is a fixed
+starfield.}
+\end{figure}
 
 This chapter builds directly on the snake game. Same tools
 (\texttt{pygame}), same overall structure (one big game loop, plain
@@ -262,6 +278,16 @@ platformer, a top-down shooter, a small RPG --- can grow from exactly
 this template.
 
 \section*{Notes: An Explorable Mini Galaxy World}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\textwidth]{screenshot_galaxy2.png}
+\caption{Mini Galaxy 2: the green start planet (lower left), the brown
+target planet (upper right), three blue mini-platforms in between, a
+glowing cyan launch star above the start planet, and a purple warp tube
+connecting the target planet's left side back to the start planet's
+right side. Yellow stars are the collectible goals.}
+\end{figure}
 
 The previous chapter had one planet. This chapter extends it to a
 small \emph{world} you can traverse: a large starting planet, a
@@ -418,6 +444,16 @@ second launch star would each be a few lines of data --- the engine
 underneath does not need to know about them.
 
 \section*{Notes: An Energy Grid Mix Simulator}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{screenshot_energy_grid.png}
+\caption{Energy Grid Mix Simulator. Top: a 24-hour stacked-area chart
+of generation by source with the white demand curve overlaid. Bottom
+left: one slider per source setting installed capacity as a percentage
+of peak demand. Bottom right: daily totals plus an instantaneous
+``Right now'' readout for the simulated minute under the cursor.}
+\end{figure}
 
 This chapter changes register. Instead of another game, this is a
 small interactive science tool that uses the same building blocks
@@ -595,6 +631,19 @@ the same minimal toolkit that runs little games is enough to build
 a small interactive science visualisation.
 
 \section*{Notes: Energy Storage Technologies}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{screenshot_storage_compare.png}
+\caption{Energy Storage Comparison tool. The left panel plots
+round-trip efficiency against storage duration on a log-time axis
+(1\,minute to 10\,years) for all twelve technologies. The legend on
+the right reports each technology's efficiency at the time cursor
+position. The yellow ``operating state of charge'' slider varies the
+SoC, with each technology's curve responding by its own sensitivity.
+The bottom panel shows full details for the hovered or selected
+technology.}
+\end{figure}
 
 A natural follow-on to the grid mix simulator is the question of
 \emph{storage}: what soaks up the surplus when the chart goes above
