@@ -1,5 +1,114 @@
 % Dorian's notes and comments
-% Personal scratch file — not included in main.tex
+% Personal scratch file --- not included in main.tex
 
-\section*{Notes}
+\section*{Notes: Building a Simple Snake Game in Python}
 
+This note explains a small Snake game written in Python using the
+\texttt{pygame} library. The source file is \texttt{snake.py} and lives
+outside the Overleaf repository (in the parent project folder).
+
+\subsection*{What you need to run it}
+
+Python 3 and the \texttt{pygame} library. Install pygame once with:
+
+\begin{quote}
+\texttt{pip install pygame}
+\end{quote}
+
+Then launch the game with \texttt{python snake.py}. Steer the snake with
+the arrow keys or W/A/S/D. Eat the red squares to grow. Don't run into
+the walls or yourself. Press \texttt{R} after a game over to restart.
+
+\subsection*{The core idea: a grid of cells}
+
+Instead of moving the snake pixel by pixel, the playing field is treated
+as a grid of cells. Each cell is 20 pixels wide. The grid is 30 cells
+across and 20 cells tall, which gives a window of $600 \times 400$
+pixels. Everything in the game lives on this grid: the snake is a list
+of cell coordinates, and the food is a single cell coordinate. Thinking
+in grid units rather than pixels makes collision checks and movement
+simple integer comparisons.
+
+\subsection*{Representing the snake}
+
+The snake is stored as a Python list of \texttt{(x, y)} tuples. The
+first element is the head, the rest are the body, the last is the tail.
+A direction is also stored as a tuple, for example \texttt{(1, 0)} means
+``one cell to the right per step'' and \texttt{(0, -1)} means ``one cell
+up per step''.
+
+\subsection*{The game loop}
+
+The whole game runs inside one big \texttt{while True} loop. Each pass
+through the loop is one ``tick'' of the game and does four things in
+order:
+
+\begin{enumerate}
+    \item \textbf{Handle input.} Read all keyboard events since the last
+    tick. If the user pressed an arrow key, remember the new direction
+    in a separate variable called \texttt{pending}. The active direction
+    is only updated at the start of the next tick. This avoids a classic
+    bug where pressing two keys quickly (for example right then down
+    while moving right) could cause the snake to reverse into itself.
+    A guard also rejects any key that would directly reverse the current
+    direction.
+
+    \item \textbf{Move the snake.} Compute a new head position by adding
+    the direction vector to the current head. Then check for collisions
+    (described below). If the move is legal, insert the new head at the
+    front of the list. If the new head landed on the food, increase the
+    score and place new food; otherwise, remove the tail. Adding a head
+    and removing a tail makes the snake appear to slide forward one
+    cell without rebuilding the whole list.
+
+    \item \textbf{Draw.} Fill the screen black, then draw every snake
+    segment as a green square and the food as a red square. The head is
+    drawn slightly brighter than the body so you can see which way the
+    snake is facing. The score is drawn in the top-left corner. If the
+    game is over, a centred message is drawn over the field.
+
+    \item \textbf{Pace the loop.} Call \texttt{clock.tick(FPS)} with
+    \texttt{FPS = 10}, which forces the loop to run roughly ten times
+    per second. Without this the loop would run as fast as the CPU
+    allows and the snake would be uncontrollable.
+\end{enumerate}
+
+\subsection*{Collisions}
+
+Two kinds of collisions end the game:
+
+\begin{itemize}
+    \item \textbf{Wall:} the new head coordinate falls outside the grid,
+    that is its $x$ is not in $[0, 30)$ or its $y$ is not in $[0, 20)$.
+    \item \textbf{Self:} the new head coordinate appears anywhere else
+    in the snake's list of segments.
+\end{itemize}
+
+If either happens, a \texttt{game\_over} flag is set. The drawing code
+keeps running so the final frame stays visible, and a key handler waits
+for \texttt{R} to restart.
+
+\subsection*{Placing food}
+
+Food is placed by picking a random cell and checking it is not already
+occupied by the snake. If it is, another random cell is picked. For a
+small grid this rejection-sampling approach is fast enough and avoids
+having to track every free cell separately.
+
+\subsection*{Why this design}
+
+Snake is a good first game because every interesting concept stays
+simple:
+
+\begin{itemize}
+    \item State is just a list of tuples, an integer score, and a
+    direction vector --- no classes or inheritance needed.
+    \item Movement is one vector addition per tick.
+    \item Collision is one bounds check and one membership test.
+    \item The render step is a handful of coloured rectangles.
+\end{itemize}
+
+The whole game fits comfortably in around a hundred lines and is a
+useful template for any other grid-based game (Tetris, Pac-Man, etc.):
+keep a model of the world as plain data, advance it one tick at a time,
+and redraw from scratch each frame.
