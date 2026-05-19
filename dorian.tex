@@ -593,3 +593,291 @@ the chart is hand-drawn as a stack of polygons over a 24-hour axis,
 in the same way the snake game drew its squares. The point is that
 the same minimal toolkit that runs little games is enough to build
 a small interactive science visualisation.
+
+\section*{Notes: Energy Storage Technologies}
+
+A natural follow-on to the grid mix simulator is the question of
+\emph{storage}: what soaks up the surplus when the chart goes above
+the demand line, and what fills the gap when it goes below? This
+chapter inventories the main grid-scale storage technologies, lists
+the numbers that are reasonably well-established in the open
+literature, walks through how the efficiency-over-time figure was
+computed, and lists what I had to flag as unknown.
+
+The interactive tool that goes with this chapter is
+\texttt{storage\_compare.py}; it plots round-trip efficiency vs
+storage duration on a log-time axis, with togglable curves per
+technology.
+
+\subsection*{What I am and am not modelling}
+
+This chapter and the tool both isolate one effect:
+\textbf{self-discharge during idle storage}. The model is
+
+\[
+\eta(t) \;=\; \mathrm{RTE} \cdot (1 - r_{\mathrm{sd}})^{t / (1\ \text{day})}
+\]
+
+where:
+
+\begin{itemize}
+    \item $\mathrm{RTE}$ is the round-trip electrical efficiency at
+    $t=0$, combining charging and discharging losses.
+    \item $r_{\mathrm{sd}}$ is the equivalent exponential
+    self-discharge rate per day.
+\end{itemize}
+
+What this model leaves out, on purpose:
+
+\begin{itemize}
+    \item \textbf{Calendar degradation} --- the slow permanent loss
+    of capacity in a cell over years (typically $\sim$1--3 \%/yr for
+    Li-ion), even when idle.
+    \item \textbf{Cycle degradation} --- permanent capacity loss per
+    full charge/discharge cycle.
+    \item \textbf{Operational complications} --- ramp rates,
+    response times, partial-state-of-charge effects, thermal
+    management overhead, etc.
+    \item \textbf{Economic crossover} --- in practice the choice
+    between storage technologies at long durations is dominated by
+    \emph{capital cost per kWh of energy capacity}, not by
+    efficiency. A hydrogen salt cavern stores cheaply at scale even
+    though its round-trip efficiency is poor.
+\end{itemize}
+
+So $\eta(t)$ answers ``of the kilowatt-hour I put in today, how many
+do I get back out $t$ later?'' If you also need the answer to ``and
+how much did the storage system cost in capital and consumables to
+deliver that kWh?'', see the LCOS column of the table below.
+
+\subsection*{The data}
+
+The table below gives the values used by the tool, with their ranges
+where literature spread is significant. Confidence indicates whether
+the value comes from commercial deployments (high), demonstrators
+(moderate) or vendor claims only (low). All numbers are mid-range
+estimates from cited public reports; verify against the originals
+for application-critical use.
+
+\begin{footnotesize}
+\begin{tabular}{|l|c|c|l|l|l|l|}
+\hline
+\textbf{Technology} & \textbf{RTE} & \textbf{Self-d.}
+  & \textbf{Duration} & \textbf{Cost \$/kWh} & \textbf{Lifetime}
+  & \textbf{Confid.} \\
+\hline
+Li-ion (LFP)        & 90--95 \% & 2--3 \%/mo  & 1--8 h        & 150--300   & 10--15 yr / 3k--10k cyc & high \\
+Lead-acid           & 75--85 \% & 3--5 \%/mo  & 1--6 h        & 100--250   & 5--15 yr / 500--1.5k cyc & high \\
+Vanadium flow       & 65--75 \% & $<$2 \%/mo  & 4--12 h       & 300--700   & 20+ yr / 15k+ cyc      & high \\
+Pumped hydro (PHS)  & 70--85 \% & $\sim$0     & 4--24+ h      & 50--200    & 50--100+ yr            & high \\
+Diabatic CAES (gas) & 42--55 \% & $<$1 \%/mo  & 4--24 h       & 50--150    & 25+ yr                 & high\textsuperscript{a} \\
+Adiabatic CAES      & 60--70 \% & $\sim$5 \%/d & hours         & TBD        & 25+ yr (est.)          & low \\
+Flywheel            & 85--95 \% & 10 \%/hr   & sec--min      & 1k--5k     & 20+ yr / 100k+ cyc     & high \\
+Molten salt (P$\to$P)& 30--45 \%& 1--2 \%/d   & 4--12 h       & 30--80     & 30+ yr                 & high\textsuperscript{b} \\
+Supercapacitor      & 95--98 \% & 5--40 \%/d  & sec--hr       & 1k--10k    & 20+ yr / 1M+ cyc       & high \\
+Hydrogen (P$\to$H$_2\to$P) & 30--45 \% & $<$0.1 \%/d & d--mo & 5--30 (gas)/varies & varies & moderate \\
+Liquid air (LAES)   & 50--70 \% & $\sim$1 \%/d & h--d          & 200--500   & 25+ yr (est.)          & low \\
+Gravity (solid)     & 80--90 \% & $\sim$0     & h             & TBD        & TBD                    & low \\
+\hline
+\end{tabular}
+
+\medskip\noindent
+\textsuperscript{a}Two commercial plants operating since 1978 (Huntorf,
+Germany) and 1991 (McIntosh, USA). \\
+\textsuperscript{b}Demonstrated extensively as a thermal store in
+concentrated-solar-power plants. Round-trip to electricity requires
+pairing with a heat engine, which is where the efficiency loss sits.
+\end{footnotesize}
+
+\subsection*{Sources}
+
+The numeric ranges above are drawn from publicly available reports.
+The most directly useful, with the metrics they typically supply:
+
+\begin{itemize}
+    \item \textbf{IEA Energy Technology Perspectives} (latest 2024) ---
+    cross-technology storage cost and performance.
+    \item \textbf{IEA Batteries and Secure Energy Transitions} (2024)
+    --- battery RTE, cost trajectories.
+    \item \textbf{IRENA Electricity Storage and Renewables: Costs and
+    Markets to 2030} (2017) --- foundational cross-technology
+    reference.
+    \item \textbf{IRENA Innovation Outlook: Thermal Energy Storage}
+    (2020).
+    \item \textbf{NREL Annual Technology Baseline} (yearly; 2024
+    edition) --- utility-scale storage parameters.
+    \item \textbf{NREL Cost Projections for Utility-Scale Battery
+    Storage: 2023 Update} (Cole \& Karmakar).
+    \item \textbf{Lazard's Levelized Cost of Storage Analysis} v8
+    (2023) --- LCOS by duration and technology.
+    \item \textbf{US DOE Energy Storage Grand Challenge: Storage Market
+    Report 2022}.
+    \item \textbf{IEC White Paper: Electrical Energy Storage} (2011) ---
+    older, but still useful technology taxonomy.
+    \item \textbf{Sandia / DOE OE Global Energy Storage Database} ---
+    operational fleet data, useful for sanity-checking ranges.
+\end{itemize}
+
+I have \emph{not} retrieved these documents fresh while writing this
+chapter; the numbers are values I recognise from reading these
+reports historically. Treat the table as an at-a-glance summary
+suitable for orientation, and re-pull the exact figures from the
+above sources before relying on them.
+
+\subsection*{Where values are missing}
+
+Three rows have ``TBD'' or ``low confidence'' entries; these reflect
+genuine gaps in the public record at scale, not omissions:
+
+\begin{itemize}
+    \item \textbf{Adiabatic CAES} (e.g.\ ADELE, RICAS2020): no
+    full-scale commercial plant exists. Stated round-trip figures are
+    from demonstrators and design studies. Heat-store self-discharge
+    is the dominant practical loss and depends entirely on insulation
+    quality.
+    \item \textbf{Gravity storage} (e.g.\ Energy Vault, Gravitricity):
+    a small number of demonstrators have been built; published RTE
+    figures are vendor claims and have not, as far as I know, been
+    independently audited at grid scale.
+    \item \textbf{LAES}: only one commercial plant (Highview Power's
+    50 MW / 250 MWh CRYOBattery near Manchester, UK) is coming online
+    in 2024--2025. Lifetime and long-term cost data therefore do not
+    exist yet.
+\end{itemize}
+
+If the simulator shows a curve for one of these, treat it as
+``best public estimate'' rather than ``measured.''
+
+\subsection*{How the efficiency curves are computed}
+
+The curve for each technology is just the formula above, evaluated
+at $\sim$240 logarithmically-spaced time points between 1 minute and
+10 years. Two examples worked out:
+
+\paragraph{Lithium-ion (LFP) after one month.}
+$\mathrm{RTE} = 0.92$, $r_{\mathrm{sd}} = 0.025 / 30 \approx 8.3 \times 10^{-4}$
+per day. After 30 days,
+\[
+\eta(30\ \text{d}) = 0.92 \cdot (1 - 8.3\times 10^{-4})^{30}
+ = 0.92 \cdot 0.975 = 0.897.
+\]
+So you get back about 89.7 \% of what you put in after one month --- the
+round-trip dominates and the self-discharge is barely 2 \%.
+
+\paragraph{Lithium-ion (LFP) after one year.}
+\[
+\eta(365\ \text{d}) = 0.92 \cdot (1 - 8.3\times 10^{-4})^{365}
+ = 0.92 \cdot 0.739 = 0.680.
+\]
+At a year of idle storage, self-discharge has now eaten about a
+quarter of the stored energy, and only 68 \% of the input
+kilowatt-hour comes out.
+
+\paragraph{Flywheel after one day.}
+$\mathrm{RTE} = 0.88$, $r_{\mathrm{sd}} = 1 - (1 - 0.10)^{24} \approx 0.920$
+per day (10 \%/hour). After one day,
+\[
+\eta(1\ \text{d}) = 0.88 \cdot (1 - 0.920) = 0.88 \cdot 0.080 = 0.070.
+\]
+A flywheel left to idle for 24 hours returns 7 \% of what was put in:
+this is why flywheels are not used for daily storage even though their
+round-trip is excellent.
+
+\subsection*{Crossover points worth knowing}
+
+\paragraph{Lithium-ion vs pumped hydro.}
+PHS has a lower RTE (78 \% vs 92 \%) but essentially no
+self-discharge. Setting their efficiencies equal:
+\[
+0.92 \cdot (1 - 8.3\times 10^{-4})^d = 0.78,
+\]
+\[
+(0.99917)^d = 0.848, \quad d = \frac{\ln 0.848}{\ln 0.99917} \approx 199\ \text{days}.
+\]
+So Li-ion is more efficient than pumped hydro for storage durations
+\emph{below} about 6.5 months; PHS wins for longer storage. (In
+practice this comparison is rarely the binding one --- PHS sites are
+geographically constrained and Li-ion is rarely sized for
+month-long discharge.)
+
+\paragraph{Lithium-ion vs hydrogen.}
+$\mathrm{RTE}_{\mathrm{H}_2} = 0.35$, $r_{\mathrm{sd}} \approx 0.0005$/day.
+Setting equal:
+\[
+0.92 \cdot (0.99917)^d = 0.35 \cdot (0.9995)^d
+\]
+\[
+\left(\frac{0.99917}{0.9995}\right)^d = \frac{0.35}{0.92}
+\]
+\[
+(0.99967)^d = 0.380, \quad d = \frac{\ln 0.380}{\ln 0.99967} \approx 2929\ \text{days} \approx 8\ \text{years}.
+\]
+On efficiency alone, hydrogen never beats lithium for storage
+durations under about eight years. Yet hydrogen is the leading
+candidate for \emph{seasonal} energy storage, because its
+\textbf{capital cost per stored kWh} is one to two orders of
+magnitude lower than batteries at scale. The point is that for long
+durations, the right question is dollars per stored kWh, not
+percentage points of efficiency.
+
+\subsection*{Headline risks per technology}
+
+\begin{itemize}
+    \item \textbf{Li-ion}: thermal runaway and fire. NMC chemistries
+    are more prone than LFP; large-format installations have suffered
+    headline incidents (APS McMicken, AZ 2019; Beijing 2021;
+    Moss Landing, CA 2025). Fire mitigation engineering is now
+    standard.
+    \item \textbf{Lead-acid}: lead toxicity in manufacture and
+    end-of-life; sulfation when left discharged.
+    \item \textbf{Vanadium flow}: electrolyte handling; price
+    volatility of vanadium pentoxide.
+    \item \textbf{Pumped hydro}: geographic and ecological
+    constraints; long permitting timelines; dam-failure tail risk
+    (very small but high-consequence).
+    \item \textbf{Diabatic CAES}: burns natural gas to reheat
+    expanding air, so its full-chain greenhouse emissions are non-zero
+    even though its electricity input is clean.
+    \item \textbf{Flywheel}: catastrophic mechanical failure if the
+    rotor fails at speed (containment vessels are designed for this,
+    but the failure mode is real).
+    \item \textbf{Molten salt}: corrosion and freezing of the salt
+    medium; the heat engine paired with it carries its own risks.
+    \item \textbf{Supercapacitor}: very low energy density makes it
+    a poor primary store; usually paired with batteries.
+    \item \textbf{Hydrogen}: flammability and detonability;
+    embrittlement of containment; small molecules leak through
+    standard fittings; emerging research suggests leaked H$_2$ itself
+    has an indirect global-warming effect by extending methane's
+    lifetime.
+    \item \textbf{LAES}: nascent technology; long-term reliability
+    unknown.
+    \item \textbf{Gravity storage}: limited deployment evidence;
+    economics at grid scale unverified.
+\end{itemize}
+
+\subsection*{Reading the chart}
+
+In the tool, drag the white cursor along the time axis to see each
+technology's efficiency at any duration. Three regimes become
+visually obvious:
+
+\begin{itemize}
+    \item \textbf{Seconds to minutes:} supercapacitors and flywheels
+    are at their best; chemical batteries are also fine; thermal,
+    PHS and CAES are over-engineered for these timescales.
+    \item \textbf{Hours to one day:} Li-ion and flow batteries, PHS
+    and CAES, and thermal all sit in the same broad band. This is
+    where the most competitive market exists today.
+    \item \textbf{Weeks to months:} only PHS and hydrogen remain
+    competitive. Batteries' self-discharge eats them; flywheels and
+    supercapacitors are long gone; thermal has cooled off.
+\end{itemize}
+
+The crossover analysis above tells you exactly when in days each
+pair of curves meets. The economic case usually swings sooner than
+the efficiency case --- but if your application really is ``charge
+once, sit for months, discharge once'' (e.g.\ seasonal solar in a
+high-latitude country), efficiency does matter, and the chart
+shows why the long-duration question keeps coming back to chemical
+fuels and pumped hydro.
