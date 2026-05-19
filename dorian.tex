@@ -1142,3 +1142,83 @@ the Li-ion-vs-PHS crossover further still --- down into the
 weeks-to-month range. What it cannot answer is whether the storage
 project is worth building; the items in buckets 2 and 3 above are
 where that question actually lives.
+
+\subsection*{Revision 3: state-of-charge dependence}
+
+Real storage RTE is not flat across the full charge--discharge range.
+Most technologies have a ``sweet spot'' around 40--60 \% state of
+charge and lose efficiency as they approach 0 \% or 100 \%. The tool
+now has an ``Operating SoC'' slider that exposes this directly. The
+model is a simple U-shaped penalty:
+
+\[
+\mathrm{RTE}(\mathrm{SoC}) \;=\; \mathrm{RTE}_{\mathrm{nominal}}
+\cdot \bigl(1 \;-\; s \cdot (2 \cdot (\mathrm{SoC} - 0.5))^2 \bigr),
+\]
+
+where $s$ is a per-technology sensitivity. At $\mathrm{SoC} = 0.5$
+the penalty is zero (full nominal RTE); at $\mathrm{SoC} = 0$ or
+$\mathrm{SoC} = 1$ the RTE drops by $s$.
+
+\paragraph{Per-technology sensitivities.}
+Each $s$ value represents the round-trip efficiency drop, in
+percentage points, between mid-SoC operation and operation at SoC
+extremes:
+
+\begin{footnotesize}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Technology}   & \textbf{$s$ (pp)} & \textbf{Dominant physical cause} \\
+\hline
+Lithium-ion (LFP)     &  4 & Voltage taper at full SoC; rising impedance near empty \\
+Lead-acid             & 10 & Severe degradation below 50 \% SoC; gassing near full \\
+Vanadium flow         &  3 & Concentration polarisation at electrolyte extremes \\
+Pumped hydro          &  3 & Head pressure varies with reservoir fill level \\
+CAES diabatic         &  5 & Cavern pressure varies with stored air mass \\
+Adiabatic CAES        &  6 & Cavern pressure + heat reservoir temperature \\
+Flywheel              &  8 & Energy $\propto \omega^2$; motor/gen eff drops at low RPM \\
+Molten salt (P$\to$P) &  8 & Heat engine eff depends on tank top-temperature \\
+Supercapacitor        &  5 & Cell voltage drops linearly with energy ($V = \sqrt{2E/C}$) \\
+Hydrogen (P$\to$H$_2\to$P) & 4 & Compressor work scales with tank pressure \\
+LAES                  &  4 & Tank fill changes pressure and boil-off ratio \\
+Gravity (solid)       &  2 & Potential energy per block is state-independent \\
+\hline
+\end{tabular}
+\end{footnotesize}
+
+\paragraph{Reading the slider.}
+With the slider at 50 \% (the default) the chart shows the same
+curves as before. Pull it to 0 \% or 100 \% and the curves drop;
+some drop visibly (lead-acid, flywheel, molten salt), others barely
+move (gravity, hydro). The detail panel reports both the nominal RTE
+and the SoC-adjusted RTE for the currently selected technology.
+
+\paragraph{What the model leaves out.}
+This is still a deliberately simple model and is honest about it:
+
+\begin{itemize}
+    \item \textbf{Asymmetry.} Real cells are usually \emph{not}
+    symmetric around 50 \%. Li-ion suffers more at high SoC (calendar
+    aging, taper-charge inefficiency) than at low SoC; lead-acid
+    suffers far more at low SoC than at high. A symmetric U-shape
+    averages over both sides.
+    \item \textbf{Different effects on charge vs.\ discharge.}
+    Real RTE has separate charge-half and discharge-half curves
+    that depend on direction and current. A single ``RTE at this
+    SoC'' number folds them together.
+    \item \textbf{SoC-dependent self-discharge.} Li-ion at 100 \%
+    SoC self-discharges (and ages) faster than at 50 \% SoC. The
+    tool's $r_{\mathrm{sd}}$ does not vary with SoC; it uses a
+    representative average.
+    \item \textbf{Rate dependence.} The penalty changes at high
+    C-rates --- fast discharge at low SoC is much worse than slow
+    discharge at low SoC. The slider captures the operating point,
+    not the rate.
+\end{itemize}
+
+So the SoC slider is the right \emph{shape} of effect but a smooth
+average over what is actually a messier surface. The
+percentage-point spreads above are right within roughly a factor
+of two; the practical use of the slider is to see which
+technologies are SoC-sensitive (lead-acid, flywheel, molten salt)
+and which are not (gravity, hydro, hydrogen).
