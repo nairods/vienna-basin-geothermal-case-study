@@ -260,3 +260,159 @@ as plain data, advance it one tick at a time inside a single loop,
 and redraw the whole screen each frame. Any future games --- a longer
 platformer, a top-down shooter, a small RPG --- can grow from exactly
 this template.
+
+\section*{Notes: An Explorable Mini Galaxy World}
+
+The previous chapter had one planet. This chapter extends it to a
+small \emph{world} you can traverse: a large starting planet, a
+smaller target planet, three floating mini-platforms in between, a
+glowing launch star that flings you across open space, and a purple
+warp tube that takes you back. The source file is \texttt{galaxy2.py},
+again in the parent project folder.
+
+\subsection*{A note on scope, again}
+
+Mario Galaxy's traversal is gorgeous: launch stars warp Mario between
+planets, pull stars yank him along curved paths, pipes drop him onto
+new planetoids, gravity flips as the camera rotates. Replicating any
+of that in 3D is out of session scope. What this chapter keeps is the
+\emph{feeling} of those mechanics in flat 2D: multiple worlds with
+their own gravity, scripted impulses that move you between them, and
+warp pipes that connect distant points. Everything else is sketched
+in simple coloured circles.
+
+\subsection*{From one body to many}
+
+The Mini Galaxy game stored the player in polar coordinates
+$(\theta, r)$ centred on \emph{the} planet --- because there was only
+one. As soon as there are several round bodies of different sizes and
+positions, a single $(\theta, r)$ no longer makes sense. The new game
+stores the player in plain Cartesian coordinates $(x, y)$, and the
+``which body am I on'' question is answered by a separate field
+called \texttt{ground\_body} that names which planet or platform the
+player is currently standing on. While the player is on the ground,
+the game still tracks an angle $\theta$ for that body, so walking
+around a planet still works exactly as it did before --- just
+attached to whichever body \texttt{ground\_body} points to.
+
+\subsection*{Walking, jumping, falling}
+
+These three states stay structurally the same as in the previous
+chapter, just made body-agnostic:
+
+\begin{itemize}
+    \item \textbf{On the ground} on body $B$: arrow keys change
+    $\theta$ relative to $B$, and the player's $(x, y)$ is recomputed
+    each tick as $B.\text{centre} + (B.r + \text{playerSize}) \cdot
+    (\cos\theta, \sin\theta)$. The player's velocity is zero.
+    \item \textbf{Jumping}: the player's velocity becomes a vector
+    pointing radially outward from $B$, scaled by the jump speed. The
+    state flips to ``in air'' and $B$ is forgotten until the player
+    lands somewhere.
+    \item \textbf{In air}: gravity (described next) accelerates the
+    velocity, position advances by the velocity, and a landing check
+    looks for any body the player has touched. The first body whose
+    centre is within $B.r + \text{playerSize}$ of the player becomes
+    the new ground body and the player snaps to its surface.
+\end{itemize}
+
+\subsection*{Which body's gravity wins}
+
+This is the most interesting new question. The player is now somewhere
+in open space, and several bodies might be tugging at them. The game
+makes a simple choice: each tick it picks one body --- the dominant
+gravity source --- and uses that body's centre to compute the gravity
+direction. Two rules pick that body:
+
+\begin{enumerate}
+    \item Only bodies whose centre is within a generous influence
+    radius of the player (about $4.5$ times their own radius) are
+    considered at all. Anything farther exerts no pull.
+    \item Among those, the body whose \emph{surface} is closest to
+    the player wins.
+\end{enumerate}
+
+Using \emph{surface} distance instead of \emph{centre} distance is
+important. The big start planet has a much larger surface even though
+its centre may be farther from the player than some nearby platform's
+centre. Surface distance keeps the player feeling glued to the big
+planet while standing on it, and only hands gravity off to the small
+platform once the player is genuinely closer to that platform than to
+the planet's surface.
+
+\subsection*{Floating platforms}
+
+A mini-platform is just a body with a small radius. Everything that
+worked for a planet works for a platform with no extra code: the
+player walks around it the same way, gravity points to its centre,
+and landing snaps to its surface. This is the payoff of the
+``everything is a circular body'' design --- adding a new platform is
+one line of data.
+
+\subsection*{Air control}
+
+While in the air, the left/right keys nudge the player's velocity
+\emph{tangent} to gravity --- i.e.\ perpendicular to the line from
+the player to the current gravity source. The nudge is small and
+capped, so the player can steer their arc but can't accelerate
+forever. This is enough to make jumps between platforms feel
+controllable rather than ballistic.
+
+\subsection*{The launch star}
+
+A launch star is a single point in space with three pieces of state:
+its position, a target position, and a ``used'' flag. Touching it and
+pressing Space sets the player's velocity to a unit vector aimed at
+the target, multiplied by a high speed. The player then flies in a
+nearly straight line until gravity from a distant body bends them
+into a landing. A short cooldown after firing temporarily disables
+landing collisions, so the player doesn't accidentally clip into a
+platform that happens to lie on the launch line.
+
+In the world this game ships with, the launch star sits above the
+start planet and aims directly at the target planet, so a normal jump
+plus Space carries the player across the entire scene in one trip.
+
+\subsection*{The warp tube}
+
+A warp tube has two endpoints and a stored ``exit direction'' for
+each. The exit direction is the way the player flies out when they
+emerge at that endpoint. Touching either endpoint teleports the
+player to the other endpoint, places them just outside it along its
+exit direction, and gives them a small velocity in that same
+direction. A cooldown prevents the player from re-entering the tube
+immediately on exit and bouncing back and forth forever.
+
+In the world, the tube connects the left side of the target planet
+back to the right side of the start planet --- a one-step return
+journey, so the player can grab stars on the target side and then
+warp home rather than relaunching across the gap.
+
+\subsection*{Falling into space}
+
+If the player ever drifts off-screen --- usually by misfiring a jump
+or a launch --- they lose a life and respawn on top of the start
+planet. This is the simplest possible failsafe and avoids the need
+for a kill plane or background drag.
+
+\subsection*{What this adds on top of the single-planet game}
+
+Compared to Mini Galaxy 1, the additions are:
+
+\begin{itemize}
+    \item Player position becomes Cartesian, plus a separate ``which
+    body am I on'' field for ground state.
+    \item A new ``which body's gravity is active'' function based on
+    surface distance.
+    \item Landing logic that picks up any body the player has
+    touched, not just one fixed planet.
+    \item Two new world objects --- launch stars and warp tubes ---
+    each implemented as a handful of fields and a small block of
+    collision code.
+\end{itemize}
+
+What remains unchanged is the spine: state lives as plain data, one
+big game loop steps it forward each tick, and the screen is redrawn
+from that state every frame. Adding a third planet, a new pipe, or a
+second launch star would each be a few lines of data --- the engine
+underneath does not need to know about them.
