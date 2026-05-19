@@ -881,3 +881,105 @@ once, sit for months, discharge once'' (e.g.\ seasonal solar in a
 high-latitude country), efficiency does matter, and the chart
 shows why the long-duration question keeps coming back to chemical
 fuels and pumped hydro.
+
+\subsection*{Revision: efficiency values cross-checked against real installations}
+
+The first version of this chapter used cell-level or DC efficiencies
+for some technologies and omitted the parasitic loads that real
+grid-connected systems consume continuously. That overstated several
+technologies, most importantly lithium-ion at multi-month durations.
+The values used in the tool have been revised to be \emph{AC-to-AC,
+system-level, including parasitic loads}, anchored to specific
+real-world implementations. The changes:
+
+\begin{footnotesize}
+\begin{tabular}{|l|c|c|l|}
+\hline
+\textbf{Technology} & \textbf{RTE (was)} & \textbf{RTE (now)}
+  & \textbf{Anchor / reason} \\
+\hline
+Li-ion (LFP)        & 92 \% & 86 \% & NREL ATB 2024 / Lazard LCOS v9 utility-scale, AC-AC \\
+Lead-acid           & 80 \% & 78 \% & AC-AC system level; older spec sheets are DC \\
+Vanadium flow       & 70 \% & 68 \% & Pump parasitic during operation (3--5 \%) \\
+Pumped hydro        & 78 \% & 78 \% & Unchanged. Bath County $\sim$72 \%, Goldisthal $\sim$80 \% \\
+CAES diabatic       & 52 \% & 48 \% & Huntorf $\sim$42 \%, McIntosh $\sim$54 \% $\to$ mid $\sim$48 \% \\
+Adiabatic CAES      & 65 \% & 65 \% & Unchanged. No commercial plant; design estimate \\
+Flywheel            & 88 \% & 86 \% & Beacon Power / Amber Kinetics fleet \\
+Molten salt P$\to$P & 40 \% & 40 \% & Unchanged. Note: no commercial pure P$\to$P plant exists \\
+Supercapacitor      & 96 \% & 93 \% & DC cell $\sim$96 \%, AC-AC drops with inverters \\
+Hydrogen            & 35 \% & 35 \% & Unchanged. PEM 70 \% $\times$ compr.\ 90 \% $\times$ FC 55 \% \\
+LAES                & 60 \% & 52 \% & Highview pilot demonstrated $\sim$50 \%; 60--70 \% is design w/ waste heat \\
+Gravity (solid)     & 80 \% & 75 \% & Vendor claims 75--85 \%; no independently audited grid plant \\
+\hline
+\end{tabular}
+\end{footnotesize}
+
+The self-discharge values for battery technologies were also raised
+to include the BMS, cooling and (for flow batteries) pump parasitic
+loads that run continuously while the system sits idle:
+
+\begin{itemize}
+    \item Li-ion: $\sim$2.5 \%/mo (cell) $\to$ $\sim$4 \%/mo
+    (cell + BMS + thermal management).
+    \item Lead-acid: $\sim$4 \%/mo $\to$ $\sim$6 \%/mo
+    (cell + float charge maintenance).
+    \item Vanadium flow: $\sim$1 \%/mo $\to$ $\sim$3 \%/mo
+    (near-zero chemical + continuous pump parasitic).
+\end{itemize}
+
+\paragraph{Specific real-world anchors.}
+The most concrete data points behind the revised numbers:
+
+\begin{itemize}
+    \item \textbf{Huntorf CAES} (Germany, 290 MW, since 1978):
+    measured RTE around 42 \% when fairly accounting for the natural
+    gas combusted during expansion.
+    \item \textbf{McIntosh CAES} (Alabama, 110 MW, since 1991):
+    around 54 \% thanks to its recuperator. Average of the two
+    commercial CAES plants ever built sits near 48 \%.
+    \item \textbf{Bath County PHS} (Virginia, 3.0 GW, 1985): the
+    largest pumped-hydro plant in the world; reported round-trip
+    around 70--75 \%. Modern variable-speed PHS plants such as
+    \textbf{Goldisthal} (Germany, 2003) and \textbf{Linthal}
+    (Switzerland, 2017) reach 80 \%+. The fleet mid-range is therefore
+    $\sim$78 \%.
+    \item \textbf{Beacon Power Stephentown} (NY, 20 MW flywheel):
+    AC-AC RTE around 85 \% for fast frequency-regulation service.
+    \item \textbf{Highview Power Pilsworth/Bury} (UK, 5 MW LAES
+    pilot): demonstrated RTE in the 50 \% range. The follow-on
+    50 MW Carrington plant is designed for 60--70 \% \emph{but only
+    when waste heat from a neighbouring industrial site is
+    integrated}; standalone the design figure is closer to 50--55 \%.
+    \item \textbf{Energy Vault EVx Rudong} (China, 25 MW / 100 MWh
+    gravity, online 2024): vendor-stated round-trip in the 75--80 \%
+    range. No independent audit available yet at the time of writing.
+    \item \textbf{NREL Annual Technology Baseline 2024}: utility-scale
+    4-hour Li-ion at 85 \% AC-AC RTE.
+    \item \textbf{Lazard's LCOS v9 (2024)}: uses around 86 \% AC-AC
+    for utility-scale LFP, consistent with NREL.
+\end{itemize}
+
+\paragraph{What I am still uncertain about.}
+A few values remain noisier than the table suggests:
+
+\begin{itemize}
+    \item \textbf{Adiabatic CAES} is fundamentally an estimate.
+    Hydrostor's first commercial-scale plants (Australia, Canada)
+    are under construction but not yet operating, so the 65 \% figure
+    is from design studies, not from operating fleet.
+    \item \textbf{LAES} has exactly one commercial plant coming
+    online; the demonstrated 50 \% and designed 60--70 \% bracket the
+    real number, and where it lands depends on whether waste-heat
+    integration is available.
+    \item \textbf{Gravity storage} only has one nameplate-scale plant
+    operating, and only the vendor has published efficiency data
+    on it. Treat the 75 \% as ``vendor-claimed pending audit.''
+\end{itemize}
+
+\paragraph{What the revised chart now shows.}
+With Li-ion dropped from 92 \% to 86 \% and its self-discharge raised
+to include BMS parasitic, the multi-month region of the chart is
+much more honest. Pumped hydro now surpasses Li-ion for storage
+durations beyond roughly 60--70 days (versus the old $\sim$200 days),
+which matches operational reality: nobody actually uses Li-ion for
+month-scale storage, and the chart now shows why.
