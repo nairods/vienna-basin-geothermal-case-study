@@ -416,3 +416,180 @@ big game loop steps it forward each tick, and the screen is redrawn
 from that state every frame. Adding a third planet, a new pipe, or a
 second launch star would each be a few lines of data --- the engine
 underneath does not need to know about them.
+
+\section*{Notes: An Energy Grid Mix Simulator}
+
+This chapter changes register. Instead of another game, this is a
+small interactive science tool that uses the same building blocks
+(\texttt{pygame}, a single render loop, plain dictionaries for state)
+to play with a different question: what happens when you try to
+supply a country-sized electricity grid using different mixes of
+generating sources? The source file is \texttt{energy\_grid.py}, in
+the parent project folder.
+
+\subsection*{What you see}
+
+The window has three parts. At the top, a stacked-area chart spans a
+full 24-hour day. Each band is a different source --- yellow for
+solar, light blue for wind, dark blue for hydro, red for geothermal,
+green for nuclear, olive for biomass, orange for natural gas, brown
+for coal. A white line draws the grid's demand on top of the stack.
+A vertical white cursor sweeps through the day in real time; one
+simulated day takes about 45 seconds.
+
+Below the chart there is one slider per source, setting that
+source's installed capacity as a percentage of peak demand. Drag a
+slider and the chart updates immediately.
+
+To the right, a stats panel reports totals for the day --- total
+demand, total generation, reliability (the fraction of demand that
+was actually met), curtailment (the energy generated above demand
+that has to be thrown away), renewable share, average CO\textsubscript{2}
+intensity, and average cost --- as well as a live ``right now''
+readout for the current simulated minute.
+
+\subsection*{The model}
+
+The simulator is a deliberately simple physics-free model. Two
+things drive everything that's drawn:
+
+\begin{enumerate}
+    \item A \textbf{demand curve} $D(t)$, expressed as a fraction of
+    peak demand. It uses a constant base load of about 0.5, plus two
+    Gaussian bumps at 08:00 (morning peak) and 19:00 (evening peak)
+    --- the standard shape of a residential-plus-commercial load.
+    Multiplied by a chosen peak (50\,GW), this gives the demand in
+    gigawatts at each moment of the day.
+
+    \item A \textbf{capacity-factor profile} $f_s(t)$ for each
+    source $s$, returning the fraction of nameplate capacity that
+    that source actually delivers at time $t$. Each source has its
+    own characteristic shape, described below.
+\end{enumerate}
+
+The instantaneous generation from source $s$ is then just
+\[
+G_s(t) = C_s \cdot f_s(t),
+\]
+where $C_s$ is the installed capacity controlled by that source's
+slider. Total grid generation at time $t$ is the sum of all $G_s(t)$.
+
+\subsection*{Where each source's shape comes from}
+
+\begin{itemize}
+    \item \textbf{Solar PV} is a half-sine peaking at midday, zero
+    from sunset to sunrise. The peak amplitude is set so the daily
+    average capacity factor lands near 27\%, matching real
+    sunny-region utility-scale solar.
+    \item \textbf{Wind} is a sum of slowly-varying sines plus a
+    small diurnal bias, clamped to a realistic range. It averages
+    around 35\%, with bumpy hour-to-hour swings --- not real wind
+    data, but the right qualitative behaviour.
+    \item \textbf{Hydro} is roughly flat near 45\%, with small bumps
+    at the morning and evening demand peaks, representing
+    dispatchable peak-shaving.
+    \item \textbf{Geothermal} and \textbf{biomass} are flat baseload
+    near 78\% and 68\%.
+    \item \textbf{Nuclear} is a flat 92\% --- nuclear plants are
+    overwhelmingly run at full power because their fuel cost is
+    tiny compared to their capital cost.
+    \item \textbf{Natural gas} is shaped like a peaker: a base of
+    25\% with two Gaussian bumps following the morning and evening
+    demand peaks.
+    \item \textbf{Coal} is essentially baseload with a slow daily
+    swing.
+\end{itemize}
+
+\subsection*{Where the numbers in the stats panel come from}
+
+Each source carries two factual numbers used by the stats panel.
+
+\begin{itemize}
+    \item \textbf{Lifecycle CO\textsubscript{2} intensity}, in grams
+    of CO\textsubscript{2}-equivalent per kWh. These come from IPCC
+    AR5 (Working Group III, 2014) and IPCC AR6 (2022) lifecycle
+    medians: roughly 11 (wind), 12 (nuclear), 24 (hydro), 38
+    (geothermal), 48 (solar PV), 230 (biomass), 490 (natural gas
+    combined-cycle), 820 (coal).
+    \item \textbf{Levelized cost of electricity}, in USD per MWh.
+    Approximate mid-range values from Lazard's LCOE Analysis v16
+    (2023) and EIA AEO 2024: $\sim$35 (wind), $\sim$40 (solar PV),
+    $\sim$45 (hydro), $\sim$55 (natural gas), $\sim$75
+    (geothermal), $\sim$90 (biomass and coal), $\sim$165 (new-build
+    nuclear).
+\end{itemize}
+
+For each simulated day the panel computes a weighted average,
+weighted by energy delivered by each source. So the headline
+``g/kWh'' and ``\$/MWh'' figures are the daily averages your chosen
+mix would produce.
+
+\subsection*{What the simulator is good for}
+
+A few patterns become obvious within seconds:
+
+\begin{itemize}
+    \item Push solar to 150\% and you flood the grid at noon (huge
+    curtailment) but leave a yawning gap from sunset to sunrise.
+    \item Push wind alone to 100\% and watch the white demand line
+    cross repeatedly into the stacked area --- some hours met,
+    others underrun, none reliable.
+    \item Stack only baseload (nuclear, geothermal, biomass) and
+    reliability climbs near 100\% but cost rises and you can't
+    follow evening peaks well.
+    \item Switch between presets (keys 1, 2, 3) to compare a
+    coal-heavy mix, today's average mix, and a renewables-heavy mix
+    side by side --- watching CO\textsubscript{2} intensity drop and
+    average cost wobble.
+\end{itemize}
+
+\subsection*{What the simulator is \emph{not}}
+
+It is important to be honest about how stripped-down this is. The
+following are all missing on purpose to keep the model
+understandable:
+
+\begin{itemize}
+    \item \textbf{No storage}. Batteries, pumped hydro, hydrogen
+    --- nothing soaks up midday solar to spend it after dark. In
+    practice, storage radically changes how much solar and wind a
+    real grid can absorb.
+    \item \textbf{No transmission}. The grid is treated as one
+    bus. Real grids have geography, congestion, and losses.
+    \item \textbf{No reserves or ramp constraints}. Coal plants
+    can't actually swing on an hourly basis the way the chart
+    implies; gas peakers can but cost more on the margin.
+    \item \textbf{No weather or seasonality}. Solar and wind use a
+    single archetypal day; real output varies enormously with
+    season, latitude, and weather.
+    \item \textbf{No interactions on cost}. The displayed LCOEs are
+    flat averages, but the marginal cost of dispatching one more MWh
+    of a given source depends on the rest of the mix.
+\end{itemize}
+
+So the headline numbers should be read as ``roughly the right order
+of magnitude, with the right relative ranking,'' rather than as
+predictions.
+
+\subsection*{How it shares DNA with the games}
+
+Underneath the chart and sliders, the loop is identical to the games
+in earlier chapters:
+
+\begin{enumerate}
+    \item Read inputs (mouse drags on sliders; number keys to apply
+    presets; Space to pause the clock).
+    \item Update state (advance the simulated clock; recompute
+    generation from the current slider values).
+    \item Compute derived stats (totals, reliability, curtailment,
+    averages).
+    \item Draw everything from scratch.
+\end{enumerate}
+
+The state is just a list of source dictionaries with a
+\texttt{capacity\_pct} field and a callable \texttt{profile}. There
+is no scene graph, no widget framework, and no plotting library ---
+the chart is hand-drawn as a stack of polygons over a 24-hour axis,
+in the same way the snake game drew its squares. The point is that
+the same minimal toolkit that runs little games is enough to build
+a small interactive science visualisation.
