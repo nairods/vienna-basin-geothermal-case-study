@@ -1,0 +1,870 @@
+\documentclass[12pt, a4paper]{article}
+
+% ── PACKAGES ──────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.8cm, right=2.8cm]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{parskip}
+
+% Colours
+\usepackage[dvipsnames, table]{xcolor}
+\definecolor{forestgreen}{HTML}{2d6a4f}
+\definecolor{lightgreen}{HTML}{d8f3dc}
+\definecolor{midgreen}{HTML}{52b788}
+\definecolor{darkgreen}{HTML}{1a3a28}
+\definecolor{warnbg}{HTML}{fff3e0}
+\definecolor{warnborder}{HTML}{f57c00}
+\definecolor{bluebg}{HTML}{e3f2fd}
+\definecolor{blueborder}{HTML}{1565c0}
+\definecolor{rowshade}{HTML}{f0ede4}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+
+% Boxes / callouts
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins}
+
+% Headers / sections
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{fancyhdr}
+
+% Lists
+\usepackage{enumitem}
+
+% Links
+\usepackage[hidelinks, colorlinks=true, linkcolor=forestgreen,
+            urlcolor=forestgreen, citecolor=forestgreen]{hyperref}
+
+% Bibliography
+\usepackage[numbers, sort&compress]{natbib}
+
+% ── SECTION FORMATTING ────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\Large\bfseries\color{forestgreen}}
+  {\thesection.}{0.8em}{}[{\color{midgreen}\titlerule[1.5pt]}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{darkgreen}}
+  {\thesubsection.}{0.7em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{darkgreen}}
+  {\thesubsubsection.}{0.6em}{}
+
+\titlespacing{\section}{0pt}{24pt}{10pt}
+\titlespacing{\subsection}{0pt}{16pt}{6pt}
+
+% ── HEADER / FOOTER ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textcolor{forestgreen}{\small Soundscapes \& Biodiversity}}
+\lhead{\textcolor{gray}{\small\leftmark}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{midgreen}\hrule width\headwidth height\headrulewidth}
+
+% ── CALLOUT BOXES ─────────────────────────────────────────────────────────────
+\newtcolorbox{greenbox}[1][]{
+  breakable,
+  enhanced,
+  colback=lightgreen,
+  colframe=midgreen,
+  boxrule=0pt,
+  leftrule=4pt,
+  arc=3pt,
+  fonttitle=\bfseries\color{darkgreen},
+  coltitle=darkgreen,
+  #1
+}
+
+\newtcolorbox{warnbox}[1][]{
+  breakable,
+  enhanced,
+  colback=warnbg,
+  colframe=warnborder,
+  boxrule=0pt,
+  leftrule=4pt,
+  arc=3pt,
+  #1
+}
+
+\newtcolorbox{bluebox}[1][]{
+  breakable,
+  enhanced,
+  colback=bluebg,
+  colframe=blueborder,
+  boxrule=0pt,
+  leftrule=4pt,
+  arc=3pt,
+  #1
+}
+
+\newtcolorbox{speciesbox}[2][]{
+  breakable,
+  enhanced,
+  colback=white,
+  colframe=forestgreen,
+  boxrule=0.8pt,
+  arc=4pt,
+  title={\bfseries #2},
+  fonttitle=\color{white},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=forestgreen, arc=2pt},
+  #1
+}
+
+% ── CUSTOM COMMANDS ───────────────────────────────────────────────────────────
+\newcommand{\Hz}[1]{\texttt{\textbf{\textcolor{forestgreen}{#1}}}}
+\newcommand{\tagbio}[0]{\colorbox{green!20}{\textcolor{green!50!black}{\small\bfseries BIOPHONY}}}
+\newcommand{\taggeo}[0]{\colorbox{blue!15}{\textcolor{blue!70!black}{\small\bfseries GEOPHONY}}}
+\newcommand{\taganthro}[0]{\colorbox{orange!20}{\textcolor{orange!60!black}{\small\bfseries ANTHROPOPHONY}}}
+
+% ── TITLE ─────────────────────────────────────────────────────────────────────
+\title{%
+  {\color{darkgreen}\rule{\linewidth}{2pt}}\\[6pt]
+  {\Huge\bfseries\color{forestgreen} Soundscapes \& Biodiversity}\\[4pt]
+  {\large\color{darkgreen} Acoustic Environments, Animal Behaviour,\\
+  Frequency Effects, and Restoration Strategies}\\[6pt]
+  {\color{darkgreen}\rule{\linewidth}{2pt}}
+}
+\author{Research Synthesis --- Ecoacoustics \& Acoustic Ecology}
+\date{May 2026}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace{0.5cm}
+
+\begin{greenbox}[title=Abstract]
+This document synthesises current scientific knowledge on soundscape ecology: how acoustic
+environments are structured, how they influence living organisms across taxa, which frequency
+ranges trigger which biological responses, and how acousticians and ecologists can leverage
+sound as a tool to monitor and actively restore biodiversity. Research covered spans birds,
+insects, fish, marine mammals, terrestrial mammals, amphibians, and plants, drawing on
+peer-reviewed literature from 2003 to 2025.
+\end{greenbox}
+
+\vspace{0.5cm}
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{What Is a Soundscape?}
+% ══════════════════════════════════════════════════════════════════════════════
+
+The term \textbf{soundscape} was coined by Canadian composer R.~Murray Schafer in the 1970s to
+describe the total acoustic environment of a place --- the sum of all sounds, their
+interactions, and the meaning those sounds carry for the beings that perceive them. In the
+biological sciences, \textbf{soundscape ecology} was formalised as a discipline in 2011 with the
+landmark article \textit{``Soundscape Ecology: The Science of Sound in the Landscape''}, which
+defined it as the study of how sound from biological, geophysical, and anthropogenic sources can
+illuminate the coupled dynamics of natural and human systems across space and time.
+
+\subsection{The Three-Component Framework (Krause)}
+
+The theoretical backbone of soundscape ecology was provided by ecologist and musician
+\textbf{Bernie Krause}, who coined three foundational categories:
+
+\vspace{6pt}
+\begin{center}
+\begin{tabularx}{0.96\linewidth}{>{\bfseries\color{forestgreen}}p{3cm} X}
+\toprule
+\rowcolor{rowshade}
+Category & Definition \\
+\midrule
+\tagbio{} Biophony
+  & The collective acoustic signatures produced by all living organisms in a habitat at a given
+    moment: birdsong, frog choruses, insect stridulation, whale calls, bat ultrasound. The
+    richest and most ecologically informative component of any soundscape. \\
+\addlinespace
+\taggeo{} Geophony
+  & Abiotic natural sounds generated by physical forces: wind, flowing water, rain, thunder,
+    ocean surf, and seismic activity. These form the evolutionary acoustic backdrop against which
+    all biological communication evolved. \\
+\addlinespace
+\taganthro{} Anthropophony
+  & All sounds generated by human activity, from music and speech to road traffic, aircraft,
+    shipping, and industrial machinery. Anthropophony now dominates many of Earth's soundscapes,
+    often to the detriment of biophony. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{The Acoustic Niche Hypothesis}
+
+\begin{greenbox}[title=The Acoustic Niche Hypothesis --- Bernie Krause (1993)]
+In a healthy, biodiverse habitat, species evolve to occupy \textbf{distinct acoustic niches} ---
+partitioning the available frequency bandwidth and temporal windows so that their signals do not
+mask one another. Each species adjusts its vocalisations by frequency and timing to minimise
+interference with neighbouring acoustic territories. A rich, complex soundscape is therefore a
+direct proxy for a biodiverse, well-functioning ecosystem. Conversely, when the soundscape
+becomes impoverished or dominated by anthropophony, it signals ecological degradation --- often
+years before visual biodiversity surveys register any change.
+\end{greenbox}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{How Soundscapes Shape the Environment}
+% ══════════════════════════════════════════════════════════════════════════════
+
+Sound is not merely a \textit{byproduct} of life --- it is a fundamental ecological force.
+The acoustic environment encodes continuous information about species presence, population health,
+trophic interactions, seasonal phenology, water dynamics, and vegetation structure.
+Disrupting it triggers cascades that ripple across multiple trophic levels.
+
+\subsection{Key Figures}
+
+\vspace{6pt}
+\begin{center}
+\begin{tabularx}{0.96\linewidth}{>{\centering\bfseries\color{forestgreen}\large}p{2.4cm} X}
+\toprule
+\rowcolor{rowshade}
+Value & Finding \\
+\midrule
+$>$40\% & Of natural soundscapes on Earth have been so radically altered that many animal
+          community members are presumed locally extinct \citep{krause2012}. \\
+\addlinespace
+30 dB   & Reduction in traffic noise achievable using green buffer zones combining dense
+          vegetation with earthen berms. \\
+\addlinespace
+$\times$2 & Increase in fish abundance recorded on coral reef sites subjected to acoustic
+             enrichment playback compared to control sites. \\
+\addlinespace
+$\times$7 & Higher coral larval settlement rates on degraded reefs exposed to healthy-reef
+             sound playback via underwater speakers. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{The Cascade of Anthropogenic Noise}
+
+When anthropophony intrudes into natural soundscapes, the consequences propagate through the
+ecosystem via several interconnected pathways:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Communication masking:} human noise overlaps the frequency bands of animal vocal
+        signals, preventing mates from locating each other, offspring from signalling parents,
+        and conspecifics from coordinating group behaviour.
+
+  \item \textbf{Habitat avoidance:} species abandon acoustically suitable areas due to noise
+        alone, effectively contracting their range without any physical habitat change.
+
+  \item \textbf{Trophic disruption:} predators lose acoustic detection ability; prey lose
+        alarm-call networks; pollinator--plant relationships are impaired when buzz-pollination
+        signals are masked.
+
+  \item \textbf{Chronic physiological stress:} sustained noise elevates glucocorticoids
+        (cortisol/corticosterone), suppresses immune function, reduces growth rates, and
+        decreases reproductive success across taxa.
+
+  \item \textbf{Acoustic niche collapse:} when low-frequency anthropophony saturates the
+        soundscape, species vocalising in that range must either shift their signals --- at
+        energetic cost --- or be excluded from the habitat entirely.
+\end{itemize}
+
+\begin{warnbox}
+\textbf{Early-warning signal.} Long-term recordings by Bernie Krause spanning over five decades
+show that acoustic degradation precedes visually detectable biodiversity decline by years. Passive
+acoustic monitoring is therefore one of the most sensitive early-warning tools available to
+conservation ecologists.
+\end{warnbox}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{How Animals React to Soundscapes}
+% ══════════════════════════════════════════════════════════════════════════════
+
+Sound mediates nearly every critical behaviour in the animal kingdom --- mating, predator
+detection, navigation, social cohesion, and habitat selection. Below is a taxon-by-taxon
+survey of documented responses.
+
+% ── BIRDS ─────────────────────────────────────────────────────────────────────
+\subsection{Birds}
+
+\begin{speciesbox}{Birds}
+Noise pollution acts as a powerful \textbf{filter on bird communities}. Species with
+low-frequency songs (typically larger-bodied birds) are selectively excluded from noisy
+environments, while species capable of higher-frequency vocalisation persist. This restructures
+entire communities based on vocal traits rather than ecological role.
+
+\medskip
+Urban birds display remarkable \textbf{vocal plasticity}. Great tits (\textit{Parus major}),
+European blackbirds (\textit{Turdus merula}), and white-crowned sparrows
+(\textit{Zonotrichia leucophrys}) have all been documented raising their minimum song frequency
+in cities to avoid masking by low-frequency traffic noise. Additional documented adaptations
+include:
+
+\begin{itemize}[itemsep=2pt]
+  \item Singing louder --- the \textit{Lombard effect} (amplitude increase in response to
+        background noise);
+  \item Shifting the timing of song bouts away from peak traffic hours;
+  \item Shortening inter-bout intervals and simplifying song structure.
+\end{itemize}
+
+\medskip
+These adaptations have reproductive costs. Species with narrow vocal plasticity or rigid
+habitat requirements face population decline. A natural experiment at a closed international
+airport showed that the dawn chorus recovered measurably within a single breeding season,
+demonstrating both the sensitivity and the resilience of avian acoustics to noise pressure.
+\end{speciesbox}
+
+% ── INSECTS ───────────────────────────────────────────────────────────────────
+\subsection{Insects}
+
+\begin{speciesbox}{Insects}
+Road-side grasshopper populations (\textit{Chorthippus biguttulus}) produce mating calls with
+\textbf{elevated frequencies} that are less masked by vehicle noise. Crucially, this frequency
+shift persists when individuals are transferred to a silent room, suggesting a genetic or
+developmental fixation of the adaptation --- a rapid evolutionary response to chronic noise
+exposure.
+
+\medskip
+Anthropogenic noise also disrupts insect--plant interactions:
+\begin{itemize}[itemsep=2pt]
+  \item The \textbf{chewing vibrations} of caterpillars trigger glucosinolate defence responses
+        in plants; road noise at the same frequency range can suppress this detection.
+  \item \textbf{Buzz-pollination} (sonication) relies on the resonant frequency of bee wing
+        muscles ($\sim$200--400\,Hz) to release pollen; masking noise may impair this
+        plant--pollinator coupling.
+\end{itemize}
+\end{speciesbox}
+
+% ── FISH & MARINE LIFE ────────────────────────────────────────────────────────
+\subsection{Fish and Marine Life}
+
+\begin{speciesbox}{Fish \& Marine Life}
+Healthy coral reefs generate rich soundscapes --- crackling snapping shrimp
+(\textit{Alpheus} spp.), fish stridulation, parrotfish grazing. \textbf{Fish larvae use these
+sounds as a navigational beacon} from open ocean to suitable reef habitat. Degraded reefs
+produce impoverished soundscapes, directly reducing larval settlement and reef recovery.
+
+\medskip
+Anthropogenic underwater noise (shipping, seismic surveys, pile-driving, military sonar) causes:
+\begin{itemize}[itemsep=2pt]
+  \item Temporary and permanent threshold shifts in hearing sensitivity;
+  \item Interrupted migration corridors and feeding routes;
+  \item Strandings and spatial disorientation in cetaceans near sonar;
+  \item Elevated cortisol and cytokine stress markers in bottlenose dolphins;
+  \item Developmental abnormalities in larval zebrafish at sustained high-noise levels.
+\end{itemize}
+
+\medskip
+Shipping noise specifically overlaps the low-frequency communication band of baleen whales,
+shrinking their effective acoustic communication range by orders of magnitude --- from hundreds
+of kilometres to just a few kilometres in heavily trafficked sea lanes.
+\end{speciesbox}
+
+% ── TERRESTRIAL MAMMALS ───────────────────────────────────────────────────────
+\subsection{Terrestrial Mammals}
+
+\begin{speciesbox}{Terrestrial Mammals}
+Road noise impairs the ability of mongoose (\textit{Mungos mungo}) to detect predator-scent
+cues --- a cross-modal cascade where acoustic masking degrades chemosensory vigilance and group
+cohesion. Chronic noise exposure causes measurable cortisol elevation with downstream immune
+suppression and reduced reproductive success.
+
+\medskip
+\textbf{Elephants} (\textit{Loxodonta africana}, \textit{Elephas maximus}) rely on infrasound
+for long-distance herd coordination and threat communication across landscapes. They monitor
+substrate-borne seismic signals through their feet and skeletal bones. Industrial low-frequency
+and seismic anthropogenic noise directly overlaps and disrupts these channels.
+\end{speciesbox}
+
+% ── AMPHIBIANS ────────────────────────────────────────────────────────────────
+\subsection{Amphibians}
+
+\begin{speciesbox}{Amphibians}
+Frog and toad choruses occupy specific temporal windows (dawn, dusk, rain events) and represent
+key indicators of wetland health. Species richness in anuran communities is strongly correlated
+with soundscape quality. Some species shift call frequency or timing in response to chronic noise
+--- but these adjustments carry energetic costs and impair mate recognition. Frog community
+composition has been shown to predict local noise levels with high accuracy, making anurans
+effective bioacoustic sentinels.
+\end{speciesbox}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Frequencies: Which Hz Provokes Which Reaction?}
+% ══════════════════════════════════════════════════════════════════════════════
+
+The acoustic spectrum spans from seismic substrate vibration below 1\,Hz to ultrasound above
+100\,kHz. Different frequency bands carry profoundly different biological significance.
+Table~\ref{tab:frequencies} synthesises the key findings across taxa.
+
+\begin{greenbox}
+\textbf{Fundamental principle.} No frequency is inherently beneficial or harmful. Harm arises
+from inappropriate \textit{amplitude} (too loud), inappropriate \textit{source} (masking natural
+signals), or inappropriate \textit{timing} (overlapping with critical communication windows).
+The goal of acoustic ecology is to restore balance across the full frequency landscape.
+\end{greenbox}
+
+\vspace{8pt}
+
+\begin{longtable}{>{\Hz{}}p{2.7cm} p{2.8cm} p{8cm}}
+\caption{Frequency ranges and their biological significance across taxa.}
+\label{tab:frequencies} \\
+\toprule
+\textbf{Frequency} & \textbf{Classification} & \textbf{Key Users / Observed Effects} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Frequency} & \textbf{Classification} & \textbf{Key Users / Observed Effects} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+$<$ 1 Hz
+  & Seismic / substrate vibration
+  & Elephants detect seismic rumbles through feet and bones over tens of km. Spiders and insects
+    sense substrate vibrations for prey detection and mate signalling.
+    Pile-driving and seismic surveys strongly disrupt these channels. \\
+\rowcolor{rowshade}
+1 -- 20 Hz
+  & Infrasound
+  & \textbf{Elephants}: coordinate herds over $>$10\,km; signal travels through air and soil
+    simultaneously.
+    \textbf{Baleen whales}: communicate across hundreds of km; blue whale calls reach
+    14--30\,Hz at $>$180\,dB.
+    \textbf{Rhinos, hippos, giraffes, okapis, peacocks, alligators}: conspecific
+    long-distance communication.
+    Biological tissue is particularly sensitive below $\sim$100\,Hz; industrial
+    infrasound causes stress even when inaudible to humans. \\
+20 -- 200 Hz
+  & Low audible range
+  & \textbf{Primary band of road traffic, shipping, and industrial noise} --- the dominant
+    masker of biophony globally.
+    Large-bodied birds (herons, owls, ravens) vocalise here and are selectively excluded
+    from noisy environments.
+    Most fish species hear in 20--1000\,Hz; shipping noise directly overlaps this range.
+    Many frog species call in 100--500\,Hz. \\
+\rowcolor{rowshade}
+200 Hz -- 2 kHz
+  & Mid audible range
+  & Core vocal range of passerine birds; urban adaptation drives frequency minimum above
+    $\sim$1.5--2\,kHz.
+    Frog advertisement and territorial calls cluster here.
+    \textbf{Plants}: most responsive in 100\,Hz--1\,kHz; 500\,Hz triggers auxin (IAA) and
+    gibberellin (GA) biosynthesis in \textit{Arabidopsis}; 1\,kHz at 100\,dB enhances
+    callus growth and drought tolerance in rice; 100\,Hz promotes root elongation. \\
+2 -- 8 kHz
+  & Upper audible range
+  & Highest-information band for passerine communication; species retaining calls here in
+    cities show better reproductive success.
+    Grasshopper, cricket, and cicada stridulation; road-side populations have evolved
+    elevated-frequency calls in this band.
+    Snapping-shrimp reef ``crackling'' --- critical fish-larval recruitment cue ---
+    peaks around 1--7\,kHz. \\
+\rowcolor{rowshade}
+8 -- 20 kHz
+  & High audible / near-ultrasonic
+  & Upper boundary of human hearing. Cats, dogs, rodents communicate here.
+    Lower-frequency bat echolocation (free-tailed bats: 10--15\,kHz).
+    Playback of reef sounds in this range combined with lower frequencies is used in
+    acoustic reef restoration experiments. \\
+20 -- 100 kHz
+  & Ultrasound
+  & \textbf{Bats}: echolocation from $\sim$20\,kHz (large species) to $>$100\,kHz (small
+    species); high frequency reflects well off small objects enabling fine nocturnal
+    navigation.
+    \textbf{Toothed whales \& dolphins}: echolocation at 20--150\,kHz; boat noise can
+    partially mask returning echoes.
+    \textbf{Rodents}: ultrasonic social communication (30--90\,kHz) --- mouse courtship
+    songs, rat pup distress calls.
+    Some moths detect bat echolocation pulses and perform evasive manoeuvres. \\
+$>$ 100 kHz
+  & High ultrasound
+  & Specialist bat species; some marine invertebrates. Largely beyond current anthropogenic
+    interference. \\
+\end{longtable}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Plants in the Acoustic Landscape}
+% ══════════════════════════════════════════════════════════════════════════════
+
+Plants are not passive recipients of their acoustic environment. Research in
+\textbf{plant bioacoustics} has established that sound waves induce mechanical vibrations in
+plant tissues, alter fluid dynamics, increase membrane permeability, and trigger cascades of
+gene expression.
+
+\subsection{Mechanisms of Sound Perception in Plants}
+
+Plants lack a centralised nervous system, but possess \textbf{mechanosensitive ion channels}
+in cell membranes that convert pressure waves into electrochemical signals. At biologically
+relevant intensities (50--100\,dB), sound causes measurable changes in:
+
+\begin{itemize}[itemsep=3pt]
+  \item Water and mineral nutrient uptake efficiency via increased membrane permeability;
+  \item Stomatal aperture and transpiration rates;
+  \item Expression profiles of genes governing primary metabolism and cell-wall modification
+        (transcriptomic analyses confirm genome-wide responses);
+  \item Biosynthesis and spatial distribution of phytohormones.
+\end{itemize}
+
+\subsection{Frequency-Specific Effects on Plants}
+
+\begin{center}
+\begin{tabularx}{0.96\linewidth}{>{\Hz{}}p{2.5cm} X}
+\toprule
+\rowcolor{rowshade}
+Frequency & Documented Effect \\
+\midrule
+100 Hz
+  & Promotes root elongation and cell division in root apical meristems of
+    \textit{Arabidopsis thaliana} (15\,h/day exposure). \\
+500 Hz
+  & Induces production of auxin (IAA), gibberellin (GA), salicylic acid (SA), and jasmonic
+    acid (JA) in \textit{Arabidopsis} --- simultaneous activation of growth and defence
+    hormonal pathways. \\
+\rowcolor{rowshade}
+800 Hz -- 1.5 kHz
+  & 1\,hour exposure increases drought stress tolerance in rice. \\
+1 kHz @ 100 dB
+  & Enhances callus growth in \textit{Dendranthema morifolium}; increases SOD
+    (superoxide dismutase) antioxidant activity and soluble protein content in kiwi callus. \\
+\rowcolor{rowshade}
+20 Hz -- 1 kHz (general)
+  & Broad range shown to enhance seed germination rates, seedling growth, and stress
+    resistance across multiple crop species. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Ecologically Meaningful Acoustic Signals for Plants}
+
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Bee buzz-pollination (sonication):} bees vibrate their flight muscles at
+        $\sim$200--400\,Hz to release pollen from poricidal anthers. This is a finely tuned
+        acoustic coupling between plant and pollinator; masking noise can disrupt it.
+
+  \item \textbf{Herbivore chewing vibrations:} plants detect the characteristic vibration
+        signature of caterpillar chewing and upregulate glucosinolate defences within minutes.
+        Road noise overlapping these frequencies can suppress plant immune priming.
+
+  \item \textbf{Rain and wind:} geophonic cues that trigger stomatal responses and
+        phototropic / thigmotropic growth adjustments.
+\end{itemize}
+
+\begin{warnbox}
+\textbf{Field caution.} Most positive results on sound-enhanced plant growth derive from
+controlled laboratory settings. Applying artificial sound in complex field ecosystems risks
+masking naturally occurring acoustic communication among species --- including the very signals
+(bee buzz, caterpillar vibrations) that plants rely on for pollination and defence.
+Any acoustic intervention must be carefully calibrated in context.
+\end{warnbox}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Monitoring Biodiversity Through Sound}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{Ecoacoustics} has emerged over the past two decades as a cost-effective, scalable,
+and non-invasive approach to biodiversity assessment. Autonomous recording units (ARUs) deployed
+in the field capture continuous soundscape data that can be analysed with a growing toolkit
+of acoustic indices and machine-learning species identification algorithms.
+
+\subsection{Key Acoustic Indices}
+
+A comprehensive 2025 practitioner's guide (\textit{Methods in Ecology and Evolution}) and a
+systematic review of 187 studies (2003--2025) have formalised best practices. The most widely
+used indices are:
+
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{ACI --- Acoustic Complexity Index:} captures amplitude modulation irregularity
+        across frequency bins. High ACI correlates with high biophony diversity.
+
+  \item \textbf{ADI --- Acoustic Diversity Index:} measures evenness of sound energy across
+        the spectrum; analogous to Shannon diversity applied to the acoustic domain.
+
+  \item \textbf{AEI --- Acoustic Evenness Index:} inverse of ADI; high values indicate
+        dominance by a single frequency band --- often a symptom of anthropophony.
+
+  \item \textbf{BI --- Bioacoustic Index:} integrates spectral power in the 2--8\,kHz band,
+        the core biophony window for birds and many insects.
+
+  \item \textbf{NDSI --- Normalised Difference Soundscape Index:} ratio of biophony to
+        anthropophony; a direct quantitative measure of acoustic naturalness.
+
+  \item \textbf{Soundscape Saturation:} based on the acoustic niche hypothesis; reflects how
+        fully acoustic niches are occupied --- a proxy for community species-packing.
+\end{itemize}
+
+\begin{bluebox}
+\textbf{Scale of the field (2025).} A 2025 systematic review identified 187 ecoacoustic
+biodiversity studies published between 2003 and May 2025. Passive acoustic monitoring (PAM)
+was used in 89\% of cases. Bats were the most studied taxon, followed by birds, whole
+soundscapes, amphibians, invertebrates, and mammals. The emerging frontier is
+\textbf{soil ecoacoustics} --- detecting below-ground biodiversity through the acoustic
+signatures of invertebrates and microorganisms in the substrate.
+\end{bluebox}
+
+\subsection{What Soundscapes Reveal}
+
+\begin{itemize}[itemsep=3pt]
+  \item Species richness and dominant taxa --- without visual surveys;
+  \item Breeding phenology and seasonal dynamics across years;
+  \item Canopy structure and vegetation complexity (via geophonic reverberation patterns);
+  \item Rate of ecological recovery during and after restoration interventions;
+  \item Level and spectral character of anthropogenic noise intrusion;
+  \item Soil biodiversity --- an emerging application linking below-ground invertebrate
+        acoustic activity to ecosystem function.
+\end{itemize}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Acoustic Solutions: Restoring and Growing Biodiversity}
+% ══════════════════════════════════════════════════════════════════════════════
+
+Acousticians, ecologists, and urban planners are developing a growing toolkit of interventions
+--- from passive noise abatement to active acoustic seeding of life.
+
+\subsection{Acoustic Enrichment and Playback}
+
+Broadcasting recordings of healthy-ecosystem soundscapes in degraded areas attracts organisms
+and accelerates recolonisation. This has been most rigorously demonstrated in marine ecosystems:
+
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Fish communities:} playback of healthy reef sounds on degraded coral habitat
+        doubled overall fish abundance and increased species richness by 50\%, with
+        improvements across all major trophic guilds (herbivores, planktivores, corallivores,
+        piscivores) \citep{timber2019}.
+  \item \textbf{Coral larvae:} underwater speakers playing healthy-reef soundscapes increased
+        larval (\textit{Porites astreoides}) settlement rates up to 7$\times$ compared to
+        silent controls \citep{vermeij2010}.
+  \item \textbf{Terrestrial restoration:} broadcasting biophony in deforested areas attracts
+        birds and bats, which passively transport seeds and fungal spores, accelerating
+        vegetative recovery.
+\end{itemize}
+
+\subsection{Green Acoustic Buffers}
+
+Dense vegetation absorbs and scatters sound waves. Combining tree belts, hedgerows, and
+living walls with earthen berms (undulating topography) can reduce traffic noise by up to
+30\,dB locally. Seoul's green transport corridors and London's ecological living-wall barriers
+are leading urban examples. These buffers are \textbf{dual-benefit} interventions: they
+attenuate noise \textit{and} create microhabitat for urban wildlife.
+
+\subsection{Soundscape-Aware Urban Design}
+
+Emerging ISO~12913 soundscape standards guide urban planners to introduce \textbf{positive
+masking} natural sounds --- water features, wind-responsive vegetation, bird-attracting
+plantings --- that shift the perceived acoustic environment from anthropophony-dominant to
+biophony-dominant without necessarily requiring overall decibel reduction. This approach
+simultaneously benefits human psychological wellbeing (reduced stress, improved restorativeness)
+and urban biodiversity.
+
+\subsection{Passive Acoustic Monitoring Networks}
+
+Deploying arrays of autonomous recording units provides continuous, real-time ecosystem
+surveillance. Combined with AI-powered species identification, this allows managers to track
+biodiversity responses to interventions at landscape scale. Open platforms such as
+\textit{ecoSound-web} democratise access to ecoacoustic analysis tools for citizen scientists
+and conservation practitioners globally.
+
+\subsection{Maritime Noise Reduction}
+
+\begin{itemize}[itemsep=3pt]
+  \item Reducing ship speed by 20\% cuts underwater radiated noise by up to 6\,dB, substantially
+        expanding the acoustic communication range of whales.
+  \item Propeller redesign and hull acoustic optimisation are engineering approaches under active
+        discussion at the International Maritime Organization (IMO).
+  \item \textbf{Quiet shipping corridors} during whale migration seasons are being trialled
+        internationally as a regulatory tool.
+\end{itemize}
+
+\subsection{Acoustic Refuges and Protected Quiet Zones}
+
+Designating areas free of motorised vehicles, aircraft, and industrial activity allows biophony
+to recover undisturbed. The US National Park Service's \textit{Natural Sounds Program} and the
+European Environmental Noise Directive both include mechanisms to protect acoustic habitat.
+Research shows that even small quiet refuges (a few hectares) can sustain acoustic niche
+diversity for dozens of species, provided they are embedded within a landscape matrix that
+allows animal movement.
+
+\subsection{Chronoacoustic Management}
+
+Scheduling noisy human activities to avoid critical acoustic windows --- dawn chorus, dusk bat
+emergence, nocturnal frog advertisement choruses, crepuscular mammal communication --- can
+dramatically reduce biological cost without reducing the overall volume of activity. Time-based
+noise restrictions represent one of the lowest-cost, highest-impact regulatory tools available
+to land managers and urban authorities.
+
+\subsection{Acoustic Agriculture}
+
+Controlled exposure of crops to specific frequency ranges (500\,Hz -- 1\,kHz) in greenhouse or
+precision-agriculture field settings can enhance germination, root development, and abiotic
+stress tolerance, potentially reducing irrigation demand and agrochemical inputs. This must be
+balanced against the risk of masking buzz-pollination and herbivore-detection pathways in
+adjacent wild vegetation.
+
+\begin{greenbox}[title=Emerging Consensus]
+The most effective biodiversity restoration programmes combine \textbf{acoustic enrichment}
+(active playback) with \textbf{physical habitat restoration} (revegetation, substrate
+rehabilitation), \textbf{noise abatement} (barriers, quiet zones, temporal restrictions), and
+\textbf{continuous passive acoustic monitoring} to track recovery in near-real time.
+Sound is not merely a symptom of biodiversity --- it is a lever for restoring it.
+\end{greenbox}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+% ══════════════════════════════════════════════════════════════════════════════
+
+Soundscape ecology reveals that the acoustic environment is not a passive background to
+biological life but an active ecological dimension --- one that organisms have co-evolved with
+over millions of years, that encodes the health of ecosystems in real time, and that can be
+degraded or restored through deliberate human choices.
+
+The convergence of ecoacoustics, bioacoustics, urban design, and restoration ecology is opening
+a new paradigm: managing landscapes not only for what they look like or what species lists they
+contain, but for what they \textit{sound like}. A thriving soundscape --- rich in biophony,
+structured by the acoustic niche hypothesis, and free from chronic anthropogenic masking --- is
+both the signature and the engine of biodiversity.
+
+For acousticians, the call to action is threefold:
+\begin{enumerate}[itemsep=4pt]
+  \item \textbf{Monitor}: deploy passive acoustic networks to provide baseline data and
+        track ecosystem trajectories with unprecedented resolution.
+  \item \textbf{Protect}: advocate for quiet zones, chronoacoustic restrictions, and
+        noise-reduction standards in maritime and terrestrial policy.
+  \item \textbf{Restore}: use acoustic enrichment as a scalable, cost-effective complement
+        to conventional ecological restoration, anchored in rigorous monitoring to evaluate
+        outcomes.
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════════════════════════
+% BIBLIOGRAPHY
+% ══════════════════════════════════════════════════════════════════════════════
+\newpage
+\section*{References}
+\addcontentsline{toc}{section}{References}
+
+\begin{thebibliography}{99}
+
+\bibitem{krause2012}
+Krause, B.~L. (2012). \textit{The Great Animal Orchestra}. Little, Brown \& Company.
+
+\bibitem{pijanowski2011}
+Pijanowski, B.~C., et al. (2011).
+Soundscape ecology: The science of sound in the landscape.
+\textit{BioScience}, 61(3), 203--216.
+
+\bibitem{timber2019}
+Timber, S., et al. (2019).
+Acoustic enrichment can enhance fish community development on degraded coral reef habitat.
+\textit{Nature Communications}, 10, 5414.
+\url{https://www.nature.com/articles/s41467-019-13186-2}
+
+\bibitem{vermeij2010}
+Vermeij, M.~J.~A., et al. (2010).
+Coral larvae move toward reef sounds.
+\textit{PLOS ONE}, 5(5), e10660.
+
+\bibitem{sager2007}
+Slabbekoorn, H., \& Peet, M. (2003).
+Birds sing at a higher pitch in urban noise.
+\textit{Nature}, 424, 267.
+
+\bibitem{noise_birds_pmc}
+Francis, C.~D., et al. (2011).
+Noise pollution filters bird communities based on vocal frequency.
+\textit{PLOS ONE}, 6(11), e27052.
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC3212537/}
+
+\bibitem{plants_pmc}
+Rodrigues, J., et al. (2020).
+Sound perception and its effects in plants and algae.
+\textit{Plant Signaling \& Behavior}, 16(2), 1828674.
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC7671032/}
+
+\bibitem{arabidopsis_roots}
+Rodrigues, A., et al. (2021).
+Sound waves promote \textit{Arabidopsis thaliana} root growth by regulating root phytohormone content.
+\textit{PMC}.
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC8199107/}
+
+\bibitem{symphonies2024}
+Ghosh, S., et al. (2024).
+Symphonies of growth: Unveiling the impact of sound waves on plant physiology and productivity.
+\textit{PMC}.
+\url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11117645/}
+
+\bibitem{acoustic_restoration}
+Znidersic, E., et al. (2022).
+Acoustic restoration: Using soundscapes to benchmark and fast-track recovery of ecological communities.
+\textit{Ecology Letters}, 25(7), 1597--1607.
+\url{https://onlinelibrary.wiley.com/doi/10.1111/ele.14015}
+
+\bibitem{ecoacoustics2025}
+Gitau, J., et al. (2025).
+The role of ecoacoustics in monitoring ecosystem degradation and restoration.
+\textit{Restoration Ecology}.
+\url{https://onlinelibrary.wiley.com/doi/10.1111/rec.70168}
+
+\bibitem{acoustic_index_guide}
+Bradfer-Lawrence, T., et al. (2025).
+The Acoustic Index User's Guide: A practical manual for defining, generating and understanding
+current and future acoustic indices.
+\textit{Methods in Ecology and Evolution}.
+\url{https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14357}
+
+\bibitem{urban_ecology}
+Urban soundscape monitoring for biodiversity. (2025).
+\textit{Journal of Urban Ecology}, 11(1), juaf002.
+\url{https://academic.oup.com/jue/article/11/1/juaf002/8088407}
+
+\bibitem{royal_society}
+Francis, C.~D., \& Barber, J.~R. (2020).
+Direct and indirect effects of noise pollution alter biological communities in and near
+noise-exposed environments.
+\textit{Proceedings of the Royal Society B}, 287(1933).
+\url{https://royalsocietypublishing.org/doi/10.1098/rspb.2020.0176}
+
+\bibitem{dolphins_stress}
+Kunc, H.~P., et al. (2021).
+Anthropogenic sound exposure-induced stress in captive dolphins.
+\textit{Frontiers in Marine Science}, 8, 606736.
+\url{https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2021.606736/full}
+
+\bibitem{soundscape_city}
+Zhang, M., et al. (2022).
+Soundscape in city and built environment: current developments and design potentials.
+\textit{City and Built Environment}.
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9833864/}
+
+\bibitem{infrasound_elephants}
+O'Connell-Rodwell, C.~E. (2007).
+Keeping an "ear" to the ground: seismic communication in elephants.
+\textit{Physiology}, 22(4), 287--294.
+
+\bibitem{helsinki_animals}
+University of Helsinki. (2023).
+Animals communicate in frequencies we cannot hear.
+\url{https://www.helsinki.fi/en/news/life-sciences/animals-communicate-frequencies-we-cannot-hear}
+
+\end{thebibliography}
+
+\end{document}
