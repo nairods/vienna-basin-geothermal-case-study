@@ -983,3 +983,162 @@ much more honest. Pumped hydro now surpasses Li-ion for storage
 durations beyond roughly 60--70 days (versus the old $\sim$200 days),
 which matches operational reality: nobody actually uses Li-ion for
 month-scale storage, and the chart now shows why.
+
+\subsection*{Revision 2: other factors still missing, and what folded in}
+
+The previous revision covered facility-level AC-AC losses and idle
+parasitic loads. A second pass identifies what was still absent. I
+sort the missing factors into three buckets: things that can be
+honestly folded into the per-trip RTE, things that can only be
+modelled separately from a per-trip RTE, and things that are
+genuinely outside any efficiency metric.
+
+\paragraph{Bucket 1 -- folded into the new RTE.}
+The values in the table and tool have been further reduced to bake
+in three more effects that vary in size but always go in the same
+direction (lossier):
+
+\begin{itemize}
+    \item \textbf{Transmission and distribution losses.} The energy
+    has to travel from generation to the storage site and from the
+    storage site to the load. Typical magnitudes: 5--10\,\%/1000\,km
+    on AC transmission, $\sim$3\,\%/1000\,km on HVDC, and 2--5\,\%
+    on local distribution. US grid average gen-to-load T\&D loss is
+    about 5\,\% one-way (EIA fleet). Round-trip through a remote
+    storage site can easily add 6--12\,\%. Per-technology T\&D was
+    chosen based on usual siting: Li-ion typically substation-sited
+    ($\sim$2\,\%); PHS remote in mountains ($\sim$6\,\%); CAES at
+    salt caverns far from load ($\sim$8\,\%); flywheels and
+    supercapacitors right at load ($\sim$1\,\%).
+    \item \textbf{Mid-life state-of-health derating.} Real-world
+    RTE drifts down a few percentage points as cells age and as
+    impedance grows. For Li-ion, beginning-of-life $\sim$86\,\%
+    AC-AC, end-of-warranty (80\,\% SoH) $\sim$82--83\,\%; the project
+    mid-life average is roughly 1--2\,pp below new. This is the
+    delta a fleet operator actually sees over the asset's life.
+    \item \textbf{Operating envelope (DoD, C-rate, partial load).}
+    Real systems rarely operate at the lab-optimal point. Partial
+    state-of-charge cycling, fast-discharge events, low-DoD
+    fast-cycling for ancillary services, and inverter
+    inefficiency at light load each shave $\sim$0.5--1\,pp.
+\end{itemize}
+
+The composition is approximate, but the direction and magnitude are
+defensible. The breakdown per technology:
+
+\begin{footnotesize}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Technology}         & \textbf{Facility AC-AC} & \textbf{Ops factor} & \textbf{T\&D factor} & \textbf{Net RTE} \\
+\hline
+Lithium-ion (LFP)           & 86 \% & 0.98 & 0.98 & 82 \% \\
+Lead-acid                   & 78 \% & 0.96 & 0.98 & 73 \% \\
+Vanadium flow               & 68 \% & 0.98 & 0.98 & 65 \% \\
+Pumped hydro (PHS)          & 78 \% & 1.00 & 0.94 & 73 \% \\
+CAES diabatic (w/ gas)      & 48 \% & 0.98 & 0.92 & 43 \% \\
+Adiabatic CAES              & 65 \% & 0.97 & 0.94 & 59 \% \\
+Flywheel                    & 86 \% & 0.99 & 0.99 & 85 \% \\
+Molten salt (heat$\to$power)& 40 \% & 0.95 & 0.93 & 35 \% \\
+Supercapacitor              & 93 \% & 1.00 & 0.99 & 92 \% \\
+Hydrogen (P$\to$H$_2\to$P)  & 35 \% & 0.95 & 0.90 & 30 \% \\
+Liquid air (LAES)           & 52 \% & 0.96 & 0.94 & 47 \% \\
+Gravity (solid)             & 75 \% & 0.95 & 0.98 & 70 \% \\
+\hline
+\end{tabular}
+\end{footnotesize}
+
+These ``Net RTE'' values are what the tool now uses for the
+efficiency curves. The model is therefore: ``of the AC kWh fed in
+at the generator side, how many AC kWh come out at the typical load
+$t$ later, for a mid-life asset under realistic operating
+conditions.''
+
+\paragraph{Bucket 2 -- separate from a per-trip RTE.}
+The following effects matter for real-world deployment but are
+\emph{permanent} or \emph{capacity-side} effects, so they cannot be
+folded into a per-trip ``E\textsubscript{out}/E\textsubscript{in}''
+number. They affect total energy delivered \emph{over the asset's
+life}, not the fraction returned on a single round trip:
+
+\begin{itemize}
+    \item \textbf{Calendar capacity fade.} Li-ion loses
+    $\sim$1--3 \%/yr of usable capacity even when idle, faster at
+    high SoC or warm. Lead-acid faster. Vanadium very slow. PHS
+    effectively zero. This permanently shrinks how much energy the
+    system can hold, but doesn't change RTE per trip.
+    \item \textbf{Cycle fade.} Each full cycle costs a tiny capacity
+    fraction. LFP: $\sim$0.005--0.01\,\%/cycle to 80\,\% SoH (so 3--10k
+    cycles); lead-acid 10--100$\times$ faster; flow batteries very
+    slow.
+    \item \textbf{Availability.} Forced outage and maintenance
+    windows take real systems offline. Battery systems sit around
+    95--97\,\% available; thermal/mechanical lower (some plants 85--92\,\%).
+    Capacity available $\neq$ capacity installed.
+    \item \textbf{End-of-warranty derating.} Vendors typically
+    guarantee 70--80\,\% of nameplate capacity at year 10. Operators
+    often oversize installations to hit a contracted capacity at
+    end-of-life.
+    \item \textbf{Temperature.} Li-ion loses 20--40\,\% usable
+    capacity at $-20^{\circ}\mathrm{C}$ and may refuse to charge below
+    $0^{\circ}\mathrm{C}$ without heating. Hot weather accelerates
+    calendar fade (Arrhenius: every $+10^{\circ}\mathrm{C}$ halves
+    lifetime). PHS and CAES have evaporation/leakage that scales with
+    climate. None of this fits a single number.
+\end{itemize}
+
+The right way to incorporate these is a separate lifetime-energy
+metric, e.g.\ ``mean MWh delivered to the grid per nameplate MWh of
+installed capacity per year,'' which folds in availability, calendar
+fade, cycle count, and effective DoD. That's a different chart, not
+on the tool today.
+
+\paragraph{Bucket 3 -- outside any efficiency metric.}
+A final set of factors is genuinely outside a per-trip or
+per-lifetime efficiency framing, but matters for ``is this a good
+deployment to build?'':
+
+\begin{itemize}
+    \item \textbf{Embodied energy (EROI).} The energy spent
+    manufacturing the storage system, mining its materials and
+    eventually recycling/decommissioning it. Li-ion: roughly 10--20
+    equivalent full cycles to ``energy break-even''; PHS very
+    favourable; hydrogen storage tanks middle; supercapacitors
+    poor per kWh of capacity.
+    \item \textbf{Indirect emissions and externalities.}
+    Hydrogen leakage has recently been identified as an indirect
+    greenhouse contributor (it extends atmospheric methane's
+    lifetime); SF$_6$ in switchgear; refrigerants in thermal
+    management.
+    \item \textbf{Land, water and ecological footprint.} PHS dams
+    affect rivers and ecosystems; CAES needs caverns; large battery
+    sites need fenced land plus fire breaks.
+    \item \textbf{Curtailment and generation context.} If the
+    storage is filled from renewable energy that would otherwise
+    be curtailed, the apparent ``loss'' through storage is moot ---
+    the alternative was 100 \% loss. Storage efficiency is therefore
+    most punishing when stealing energy from a deliverable use case
+    and least punishing when soaking up what would have been wasted.
+    \item \textbf{Power-vs-energy decoupling.} Some technologies
+    (flow batteries, CAES, PHS, hydrogen) decouple energy capacity
+    from power rating: doubling the energy capacity is just more
+    electrolyte/water/gas, not more stacks/turbines. This
+    profoundly changes economics at long durations and has nothing
+    to do with the round-trip number.
+    \item \textbf{Multi-service stacking.} Real grid storage often
+    provides energy arbitrage \emph{plus} frequency regulation
+    \emph{plus} capacity \emph{plus} backup. The efficiency budget
+    is shared across these services in ways a single $\eta(t)$
+    curve cannot represent.
+\end{itemize}
+
+\paragraph{Bottom line.}
+With T\&D, mid-life SoH, and realistic operating envelope folded
+into the RTE, the curves in the tool now answer a meaningful
+real-world question: ``of the AC kilowatt-hour leaving a generator,
+how many AC kilowatt-hours arrive at a typical load $t$ later, for
+an asset partway through its design life.'' The chart drops Li-ion
+to a starting 82 \% and pumped hydro to a starting 73 \%, and shifts
+the Li-ion-vs-PHS crossover further still --- down into the
+weeks-to-month range. What it cannot answer is whether the storage
+project is worth building; the items in buckets 2 and 3 above are
+where that question actually lives.
