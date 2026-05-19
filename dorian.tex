@@ -112,3 +112,151 @@ The whole game fits comfortably in around a hundred lines and is a
 useful template for any other grid-based game (Tetris, Pac-Man, etc.):
 keep a model of the world as plain data, advance it one tick at a time,
 and redraw from scratch each frame.
+
+\section*{Notes: A Mini Galaxy Game}
+
+This chapter builds directly on the snake game. Same tools
+(\texttt{pygame}), same overall structure (one big game loop, plain
+data for state, redraw each frame), but the world is now continuous
+instead of grid-based, the character can jump, gravity behaves
+strangely, and there are enemies with their own behaviour. The source
+file is \texttt{galaxy.py}, again in the parent project folder beside
+\texttt{snake.py}.
+
+\subsection*{A note on scope}
+
+Super Mario Galaxy is a full 3D platformer with animated characters,
+fluid camera work and complex physics --- well beyond a single Python
+file. What this game keeps from Galaxy is its \emph{signature
+mechanic}: you walk around the outside of a small planet, and gravity
+pulls toward the planet's centre rather than ``down''. Everything else
+(camera, art, level design) is intentionally minimal. The result is a
+small 2D homage that captures the idea, not a clone.
+
+\subsection*{The key new idea: polar coordinates}
+
+In the snake game, a position was a grid cell \texttt{(x, y)}. Here a
+position is described relative to the planet's centre using two
+numbers:
+
+\begin{itemize}
+    \item $\theta$ (theta) --- the angle around the planet, in radians.
+    Walking around the surface means changing $\theta$.
+    \item $r$ --- the distance from the planet's centre. When the
+    character stands on the ground, $r$ equals the planet's radius
+    plus the character's size. Jumping makes $r$ larger; gravity pulls
+    it back down.
+\end{itemize}
+
+Storing positions this way makes the physics very natural. ``Walking''
+is just changing $\theta$. ``Falling toward the planet'' is just $r$
+decreasing. ``Standing on the ground'' is just $r$ being clamped to a
+fixed value.
+
+When it is time to draw, we convert back to screen pixels with the
+standard polar-to-Cartesian formulas:
+\[
+x = c_x + r \cos\theta, \qquad y = c_y + r \sin\theta,
+\]
+where $(c_x, c_y)$ is the centre of the planet on the screen.
+
+\subsection*{Radial gravity}
+
+Each tick, the radial velocity $v_r$ has gravity subtracted from it:
+$v_r \leftarrow v_r - g$. Because $v_r$ is along the line from the
+planet's centre outward, subtracting from it is always a pull
+\emph{inward}. The player therefore falls toward the planet from
+whichever side they are on --- the top, the bottom, or anywhere
+in between. Then $r \leftarrow r + v_r$. If $r$ drops below
+ground level we clamp $r$ to the ground and set $v_r = 0$; the player
+is now standing.
+
+\subsection*{Jumping and air control}
+
+A jump is one line: when the player presses space and is on the
+ground, set $v_r$ to a positive value (the jump strength). Gravity
+takes care of the rest --- $v_r$ shrinks each tick until the player
+hits the ground again. While in the air the player keeps the
+horizontal momentum they had on the ground, with a small amount of
+``air control'' allowed (steering mid-jump), capped so the player can
+not accelerate beyond walking speed.
+
+\subsection*{Walking around the planet}
+
+When the player is on the ground, pressing left/right sets the
+angular velocity $v_\theta$ directly: $v_\theta = \text{input} \times
+\text{walkSpeed}$. With a fixed camera the same key always rotates
+around the planet in the same direction, so the player walks all the
+way around the world without ever changing how the controls work.
+
+A small visual detail makes this readable: the character is drawn as a
+red circle with a smaller darker circle stuck to the side facing away
+from the planet. That smaller circle acts as a ``hat'', and because it
+is always offset along $(\cos\theta, \sin\theta)$ it automatically
+points away from the planet --- so the character visibly stands
+upright whether they are on top of the planet, the side, or upside
+down on the bottom.
+
+\subsection*{Stars (the objective)}
+
+Five stars are placed at random angles around the planet, each at a
+slightly different height above the surface. They are drawn as yellow
+circles that pulse softly (their radius is modulated by a sine wave on
+the tick counter). A star is collected when the screen-space distance
+between it and the player drops below the sum of their radii. Picking
+up the last star sets a \texttt{won} flag and the game displays a win
+screen.
+
+\subsection*{Enemies and stomping}
+
+Three enemies patrol the surface. Each has an angle $\theta$ and a
+direction ($+1$ or $-1$); each tick the angle increases by direction
+$\times$ enemy speed. Collisions are checked exactly like with the
+stars --- by screen-space distance. What happens on a collision
+depends on the player's vertical state:
+
+\begin{itemize}
+    \item If the player is meaningfully higher than the enemy (i.e.
+    further from the planet centre) and currently moving toward the
+    planet (i.e.\ $v_r < 0$, falling), it counts as a stomp: the
+    enemy dies, and the player bounces upward by setting $v_r$ to a
+    positive value.
+    \item Otherwise it counts as a hit. The player loses one life and
+    is bounced away. Three hits ends the game.
+\end{itemize}
+
+This is the same rule as in many platformers: ``jumping on top of an
+enemy is good; running into one from the side is bad''. Encoded in
+polar coordinates it is just a comparison of $r$ and a sign check on
+$v_r$.
+
+\subsection*{Background starfield}
+
+To make the scene feel more like space, a few hundred fixed pixels are
+scattered across the screen at startup, painted as tiny white dots
+behind the planet. This is purely decorative --- they do not move,
+collide, or interact --- but it changes how the game feels for almost
+no extra code.
+
+\subsection*{What this adds on top of snake}
+
+Comparing the two games is a tidy way to see what changes when a game
+gets a little more ambitious:
+
+\begin{itemize}
+    \item \textbf{Positions} go from a single grid cell to two real
+    numbers $(\theta, r)$.
+    \item \textbf{Movement} goes from a fixed-direction step every
+    tick to continuous velocities that change under gravity.
+    \item \textbf{Collisions} go from list membership to distance
+    checks between circles.
+    \item \textbf{Objects} multiply: a player, several enemies with
+    their own state, several stars, a planet, a background. Each
+    becomes either a small dictionary or a list of dictionaries.
+\end{itemize}
+
+The overall recipe, though, is unchanged from snake: keep the world
+as plain data, advance it one tick at a time inside a single loop,
+and redraw the whole screen each frame. Any future games --- a longer
+platformer, a top-down shooter, a small RPG --- can grow from exactly
+this template.
