@@ -2,7 +2,7 @@
 % Working draft; references collected via web search, May 2026
 % Not yet circulated --- to be reviewed before sharing with the group
 
-\section*{Geothermal Heat for Vienna: Four Research Threads}
+\section*{Geothermal Heat for Vienna: Seven Research Threads}
 
 \subsection*{Why this scope}
 
@@ -22,9 +22,12 @@ plant is scheduled to come online in 2028, with up to $\sim 120$~MW$_{\mathrm{th
 of capacity planned across Donaustadt and Simmering by 2030 [1, 2]. Simply
 reproducing this engineering case study is therefore an exercise, not research.
 
-The four threads below were chosen specifically because each addresses a
+The seven threads below were chosen specifically because each addresses a
 question the utility roadmap does \emph{not} fully cover, while remaining
-tractable within a retreat-then-followup timescale.
+tractable within a retreat-then-followup timescale. Threads 1--4 are the
+original set drafted earlier; threads 5--7 were added in a second pass and
+deliberately reach into adjacent physics (systems-level comparison,
+working-fluid thermodynamics, multi-decade reservoir behaviour).
 
 % ---------------------------------------------------------------------------
 \subsection*{Thread 1 --- Repurposing OMV legacy oil and gas wells}
@@ -259,15 +262,214 @@ and large-scale heat pumps with thermochemical or hydrogen storage
 \end{itemize}
 
 % ---------------------------------------------------------------------------
+\subsection*{Thread 5 --- Geothermal heat vs.\ large heat pumps + green electricity}
+
+\paragraph{Why this is the question Wien Energie can't answer for itself.}
+Wien Energie is already operating Europe's most powerful large-scale heat
+pump --- a 55~MW$_{\mathrm{th}}$ wastewater-source plant at the Ebswien
+treatment site near Simmering, commissioned 2023, which lifts wastewater
+from $\sim 11$--$12\,^\circ$C in winter (24--$25\,^\circ$C summer) to
+$\sim 90\,^\circ$C feed temperature. The plant currently supplies
+$\sim 56{,}000$ households; a second stage doubling capacity to
+$110$~MW$_{\mathrm{th}}$ (target $\sim 112{,}000$ households) is scheduled
+for completion in 2027 [24, 25]. Capital cost of stage 1 was
+$\sim$EUR~70~million, i.e.\ $\sim$EUR~1.3~million per MW$_{\mathrm{th}}$
+installed. \emph{The same utility is therefore simultaneously building
+deep geothermal and large heat pumps to decarbonise the same district-heat
+network.} The implicit question --- in what mix --- is not addressed in any
+public-facing document we have located, and the academic literature on
+direct LCOH/LCOA comparisons for large-DH applications is surprisingly
+thin [26].
+
+\paragraph{The physics-level comparison.}
+The two technologies sit at very different points of the
+exergy/capex/opex Pareto front:
+\begin{itemize}
+\item \textbf{Deep geothermal doublet:} CapEx $\sim$EUR~20--35~M per
+$\sim 18$~MW$_{\mathrm{th}}$ doublet (i.e.\ $\sim$EUR~1.4~M/MW), capacity
+factor $\sim 85$--$90\%$, almost zero operating energy input, $\sim 30$~yr
+nominal lifetime with depletion physics (see thread 7), small marginal
+cost per MWh.
+\item \textbf{Large heat pump:} CapEx $\sim$EUR~1.3~M/MW based on Vienna's
+own numbers [24], COP $\sim 3$--$3.5$ for wastewater-source $\to 90\,^\circ$C
+delivery, so electricity input $\sim 0.3$~MWh per MWh of heat delivered.
+At an Austrian grid carbon intensity of $\sim 100$~g~CO$_2$/kWh
+(hydropower-dominated) this is essentially low-carbon today; whether it
+stays low-carbon depends entirely on the marginal-electricity assumption
+during winter peak.
+\end{itemize}
+The crossover is dominated not by capex (similar per-MW) but by
+\emph{electricity-cost expectations} and \emph{carbon-intensity of
+marginal electricity}. Both are policy- and weather-dependent in ways
+that make sensitivity analysis essential.
+
+\paragraph{Open questions for the retreat.}
+\begin{itemize}
+\item Least-cost optimisation over Vienna's annual DH load curve, with
+both technologies plus biomass + existing waste-incineration (Spittelau,
+already in the network) + HT-ATES (thread 4) competing for share.
+What does the optimum mix actually look like?
+\item Sensitivity to electricity price (EUR~50--200/MWh) and marginal
+carbon intensity (50--500~g~CO$_2$/kWh) --- which of these flips the
+ordering?
+\item Why is Wien Energie hedging? Is it a portfolio-risk argument
+(no single technology covers all of Vienna's $\sim 3$~GW winter peak),
+or a thermal-temperature argument (heat pumps marginal for 90~$^\circ$C
+output, geothermal at native temperature)?
+\item Land use, water use, public acceptance --- secondary axes that
+the retreat could quantify rather than just qualitatively note.
+\end{itemize}
+
+% ---------------------------------------------------------------------------
+\subsection*{Thread 6 --- CO$_2$ (and supercritical) working fluids in closed-loop geothermal}
+
+\paragraph{Why this just became urgent.}
+On 4 December 2025, Eavor Technologies delivered its first grid
+electricity from the Geretsried (Bavaria) closed-loop multilateral
+system --- the first commercial demonstration of an Eavor-Loop at scale
+[27, 28]. The Geretsried plant comprises two vertical wells with six
+horizontal laterals sidetracked from each, the laterals connected
+toe-to-toe underground using active magnetic ranging, forming a
+$\sim 12$-lateral subsurface radiator designed for $64$~MW$_{\mathrm{th}}$
+and $8.2$~MW$_{\mathrm{e}}$. Crucially, the thermosiphon effect was
+established within $\sim 30$ minutes of start-up and the system now
+runs pump-free [28]. This is the first time the closed-loop thermosiphon
+geometry --- proposed for working fluids including supercritical
+CO$_2$ since Brown (2000) --- has been operationally demonstrated as
+a power source.
+
+\paragraph{The CO$_2$-versus-water question.}
+Eavor uses water; the deeper question is whether supercritical CO$_2$
+($T_c = 31.1\,^\circ$C, $p_c = 7.4$~MPa) is a better working fluid at
+Vienna-Basin-relevant temperatures. The physics arguments for sCO$_2$:
+\begin{itemize}
+\item Steeper density gradient with temperature than water in the
+relevant regime, hence stronger thermosiphon driving force and lower
+parasitic pumping load;
+\item Lower viscosity, higher mass flow per unit pressure drop;
+\item Potential for higher conversion efficiency in direct-cycle
+turbomachinery (Brayton cycle on sCO$_2$);
+\item In the open-loop variant (CO$_2$ Plume Geothermal, CPG), permanent
+sequestration of CO$_2$ in the host sedimentary basin as a co-benefit [29].
+\end{itemize}
+The physics arguments against: corrosivity (limits material choices),
+high operating pressure ($> 10$~MPa typical), and --- in CPG mode ---
+displacement of native brine into the wellbore and potential reactivity
+with carbonate host rocks (e.g.\ the Aderklaa Hauptdolomit). For closed
+loops, leakage of CO$_2$ to atmosphere defeats the climate purpose.
+
+\paragraph{Vienna Basin specifics.}
+No published Vienna Basin sCO$_2$ work has been located in the searches
+conducted here. The most concrete physics-flavoured connection is the
+overlap with thread 1: the Aderklaa-96 retrofit is, in principle, a
+candidate for either a coaxial-water BHE or a single-well sCO$_2$
+thermosiphon trial. The Hauptdolomit carbonate host raises the CPG
+reactivity question concretely. Multi-lateral Eavor-style geometries are
+probably not retrofittable into legacy vertical OMV wells without major
+sidetracking work, but the toe-to-toe lateral connection technology is
+now demonstrated at Geretsried and could in principle be applied
+greenfield in the Vienna Basin.
+
+\paragraph{Open questions for the retreat.}
+\begin{itemize}
+\item Comparative thermodynamic model: water vs.\ sCO$_2$ in a coaxial
+closed-loop at Aderklaa-96 conditions ($T_{\mathrm{prod}}\sim 100$\,$^\circ$C,
+$\sim 3$~km depth). Quantify the thermosiphon strength and net power
+delivered for each.
+\item Brayton-cycle conversion efficiency for sCO$_2$ at the modest
+temperatures of the Vienna Basin --- is the efficiency advantage real
+at $T_{\mathrm{prod}}<150\,^\circ$C, or does it only show up at the
+$\geq 200\,^\circ$C Eavor-style EGS regime?
+\item CPG variant: rock--CO$_2$--brine geochemistry in the Aderklaa
+Conglomerate and Hauptdolomit --- back-of-envelope reactivity calculation
+to identify show-stoppers.
+\item Material compatibility of OMV legacy casings (carbon steel, various
+vintages) with sCO$_2$ at $\sim 100\,^\circ$C and $\sim 10$~MPa ---
+literature review with quantitative degradation rates.
+\end{itemize}
+
+% ---------------------------------------------------------------------------
+\subsection*{Thread 7 --- Long-term reservoir depletion and multi-doublet interference}
+
+\paragraph{Why this matters for the 40-doublet vision.}
+The $\sim 40$ doublets implied by our heat-balance estimate are not
+hydraulically independent. Each injection well establishes a thermal plume
+in the aquifer that grows with time; eventually the cold front reaches
+the production well (``thermal breakthrough''), the produced temperature
+declines, and the doublet must be re-sited, re-pointed, or sidetracked.
+For Vienna's $\sim 30$-year deployment horizon, the doublet count is
+therefore not the only design variable --- the time-evolution of the
+reservoir is.
+
+\paragraph{The empirical baseline: Dogger aquifer, Paris Basin.}
+The single best dataset for low-enthalpy doublet behaviour over a
+human-relevant timescale is the Dogger aquifer in the \^Ile-de-France
+($\sim 1500$~m depth, $\sim 60$--$80\,^\circ$C), where district-heating
+doublets have been operating continuously since the 1970s. The Lopez
+\emph{et al.}\ (2010) retrospective on 40 years of operation [30]
+documents the headline result: \emph{none of the active doublets has
+shown a statistically significant production-temperature decline} to
+date, although modelling clearly shows that the natural heat flux at
+the doublet scale is insufficient to maintain current withdrawal rates
+indefinitely. A 2024 reanalysis of the Dogger production data with
+modern thermo-hydraulic codes [31] confirms that the operationally
+relevant decline regime begins at $\sim 50$--$70$~yr for typical
+well spacings of 1--1.5~km.
+
+\paragraph{The physics one layer down.}
+At doublet scale the thermal breakthrough time scales (roughly) as
+$t_{\mathrm{TB}} \propto \frac{(\rho c)_{\mathrm{rock}}\, h\, L^2}{(\rho c)_{\mathrm{water}}\, Q}$
+for spacing $L$, aquifer thickness $h$, and flow rate $Q$. This is a
+simple analytical model the retreat could parameterise for the
+Aderklaa Conglomerate and the Hauptdolomit. The interesting complications
+are: (i) facies heterogeneity --- the conglomerate is not a uniform slab;
+(ii) cooling-induced poroelastic stress changes large enough to reactivate
+distant faults [32], which couples this thread directly to thread 2; and
+(iii) cumulative thermal interference between $\sim 40$ doublets across
+the Vienna Basin once deployment is mature. In the CO$_2$ Plume Geothermal
+variant (thread 6), heat depletion follows different physics again [29],
+making CPG potentially more or less sustainable than water doublets
+depending on parameters.
+
+\paragraph{Open questions for the retreat.}
+\begin{itemize}
+\item Analytical thermal-breakthrough estimate for an Aspern doublet with
+Aderklaa Conglomerate properties (porosity $\sim 20$\,\%, thickness
+$\sim 100$\,m, $L \sim 1.5$\,km) and the Aderklaa-96 reinjection rate
+$\sim 40$~m$^3$/h. How does the predicted breakthrough time compare with
+the Dogger observation that 50+ years have passed without measurable
+decline?
+\item Multi-doublet interference: at what doublet density does the
+collective thermal field interaction become a first-order constraint on
+the maximum sustainable extraction rate per km$^2$ of basin? A 2-D
+heat-diffusion simulation with a realistic Vienna Basin geometry would
+be illuminating.
+\item Coupling to thread 2: estimate the cooling-induced
+poroelastic Coulomb stress change at the depth of the VBTF splay faults
+over 30~yr of operation. Is it large enough to matter for seismic hazard?
+\item Re-pointing economics: at what predicted decline rate does
+re-completing or sidetracking become cheaper than drilling a new doublet?
+This is a small but well-defined LCOH problem.
+\end{itemize}
+
+% ---------------------------------------------------------------------------
 \subsection*{Which thread to pick?}
 
 A pragmatic ranking, given a retreat-plus-followup timescale:
 
 \begin{itemize}
-\item \textbf{Thread 4 (storage coupling)} is the most tractable
-\emph{and} the best aligned with Wien Energie's stated open questions.
-The headline optimisation problem is clean, parameterised, and
-well-suited to a small physics group.
+\item \textbf{Thread 5 (geothermal vs.\ heat pumps)} is now the
+highest-value thread in policy terms --- Wien Energie is actively
+deploying both technologies in parallel and the implicit mix
+question is genuinely open. A clean optimisation answer would be
+publishable and useful.
+\item \textbf{Thread 4 (storage coupling)} remains the most tractable
+single-deliverable thread and the best aligned with Wien Energie's
+stated open questions.
+\item \textbf{Thread 7 (reservoir depletion)} is well-defined, has a
+clean analytical core (thermal breakthrough scaling) and a strong
+empirical baseline (Dogger 40-yr data); also feeds directly into
+threads 2, 4, and 6.
 \item \textbf{Thread 2 (seismicity)} is the most physics-rich and the
 most pedagogically valuable --- rate-and-state friction, pore-pressure
 diffusion, fault mechanics all in one place --- but the deliverable
@@ -276,15 +478,33 @@ is harder to wrap up cleanly.
 because the Vienna Basin Li data gap is real. A focused literature
 review plus an order-of-magnitude bound is achievable and
 publication-relevant.
+\item \textbf{Thread 6 (CO$_2$ working fluid)} is the most speculative
+but has just been operationally validated by Eavor at Geretsried
+(Dec 2025), so the timing for a follow-up academic comparison is
+ideal --- with the caveat that the thermodynamics are heavy and a
+single retreat may not be enough.
 \item \textbf{Thread 1 (well repurposing)} is the most concrete
 because Aderklaa-96 is a live experiment with public data. Good if
 the group prefers a single-case-study format.
 \end{itemize}
 
-Threads 2 and 4 also pair naturally with each other (both touch
-reservoir hydraulics); threads 1 and 3 likewise (both use the existing
-well inventory as their starting point). A retreat that splits into two
-sub-groups along either pairing is a sensible structure.
+Natural pairings:
+\begin{itemize}
+\item \textbf{Reservoir hydraulics pair:} threads 2, 4, and 7 all
+share heat-and-pressure-diffusion modelling in the same aquifer
+geometry. They can share a single underlying numerical model and
+divide labour by which physics is foregrounded.
+\item \textbf{Legacy-well pair:} threads 1, 3, and 6 all use the
+existing OMV well inventory as their starting point (the wells
+themselves; the brine chemistry inside them; the candidates for
+sCO$_2$ retrofit respectively).
+\item \textbf{Systems pair:} threads 4 and 5 share the same demand
+curve and would benefit from a single shared optimisation framework.
+\end{itemize}
+A retreat that splits into three sub-groups along these three pairings
+is a sensible structure, with the proviso that the underlying
+shared-data work (see ``What is still missing'' below) needs to be
+done jointly first.
 
 % ---------------------------------------------------------------------------
 \subsection*{What is still missing before this becomes a project plan}
@@ -303,10 +523,24 @@ has yet done.
 resolution would tighten the optimisation problem considerably ---
 worth asking Wien Energie directly whether anonymised data are
 available for academic use.
-\item All four threads would benefit from a single afternoon's
+\item For thread 5, an hourly (or at least monthly) demand curve for
+Vienna district heat plus an electricity price/carbon-intensity time
+series for the same period are the two inputs that anchor the
+optimisation; both should be assembled before retreat day 1.
+\item For thread 6, locating any published or grey-literature sCO$_2$
+geothermal results from the Eavor Geretsried commissioning would
+sharpen the comparison considerably --- the very first commercial
+operating data has only just been generated and is not yet in the
+journal literature.
+\item For thread 7, a Dogger-aquifer operating-data spreadsheet (Lopez
+\emph{et al.}\ 2010 and the 2024 reanalysis) is the right empirical
+calibration target; this is a literature-only ask but the
+publication-quality figures need to be re-drawn from raw data.
+\item All seven threads would benefit from a single afternoon's
 spreadsheet collaboration to nail down shared numbers (Vienna heat
-demand, doublet capacity, well inventory) before splitting into
-sub-groups, so the four mini-projects rest on a common baseline.
+demand, doublet capacity, well inventory, electricity-price series,
+Aderklaa Conglomerate properties) before splitting into sub-groups,
+so the seven mini-projects rest on a common baseline.
 \end{itemize}
 
 % ---------------------------------------------------------------------------
@@ -456,6 +690,65 @@ Green Energy Lab, ``ATES Vienna --- Aquifer thermal energy storage,'' project
 page. [Online]. Available:
 \texttt{greenenergylab.at/projects/ates-vienna}. [Accessed: May~19, 2026].
 
+\bibitem{ref24}
+TechXplore / AFP, ``Vast Vienna wastewater heat pumps showcase EU climate
+drive,'' Mar.\ 2024. [Online]. Available:
+\texttt{techxplore.com/news/2024-03-vast-vienna-wastewater-showcase-eu.html}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref25}
+Green Energy Lab / Wien Energie, ``Large heat pump in Vienna's Spittelau
+district is now operational,'' 2026. [Online]. Available:
+\texttt{greenenergylab.at/large-heat-pump-in-viennas-spittelau-district-now-operational-sustainable-heating-for-16000-households/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref26}
+Heat Pumping Technologies Magazine, ``Roll-out of large-scale heat pumps as
+a key factor for the German energy and heat transition,'' vol.~42, no.~2,
+2024. [Online]. Available:
+\texttt{heatpumpingtechnologies.org/heat-pumping-technologies-magazine-vol-42-no-2-2024-2/}.
+[Accessed: May~20, 2026]. [Used here as a representative comparative-context
+source; a direct academic LCOH comparison for large-DH applications appears
+to be a literature gap and is itself a research question.]
+
+\bibitem{ref27}
+Eavor Technologies Inc., ``Eavor Technologies achieves first electricity
+production at Geretsried site,'' \emph{Press release / GlobeNewswire},
+Dec.~4, 2025. [Online]. Available:
+\texttt{eavor.com/press-releases/eavor-technologies-achieves-first-electricity-production-at-geretsried-site/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref28}
+\emph{Power Magazine}, ``Eavor's first-of-its-kind closed-loop geothermal
+project produces grid power in Germany,'' Dec.\ 2025. [Online]. Available:
+\texttt{powermag.com/eavors-first-of-its-kind-closed-loop-geothermal-project-produces-grid-power-in-germany/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref29}
+B.~M.~Adams, D.~Vogler, T.~H.~Kuehn, J.~M.~Bielicki, N.~Garapati, and
+M.~O.~Saar, ``Heat depletion in sedimentary basins and its effect on the
+design and electric power output of CO$_2$ Plume Geothermal (CPG) systems,''
+\emph{Renewable Energy}, vol.~172, pp.~1393--1403, 2021.
+
+\bibitem{ref30}
+S.~Lopez, V.~Hamm, M.~Le~Brun, L.~Schaper, F.~Boissier, C.~Cotiche, and
+E.~Giuglaris, ``40 years of Dogger aquifer management in Ile-de-France,
+Paris Basin, France,'' \emph{Geothermics}, vol.~39, no.~4, pp.~339--356,
+2010.
+
+\bibitem{ref31}
+T.~Renaud, J.~Popineau, J.~O'Sullivan, and J.~Gasser Dorado, ``Novel
+approach for modelling low enthalpy geothermal in deep sedimentary
+aquifers: a case study of 40 years of production data in the Dogger
+formation,'' \emph{Geothermal Energy}, vol.~12, art.~44, Dec.~19, 2024,
+doi: 10.1186/s40517-024-00328-z.
+
+\bibitem{ref32}
+I.~Rahimzadeh Kivi, E.~Pujades, J.~Rutqvist, and V.~Vilarrasa,
+``Cooling-induced reactivation of distant faults during long-term
+geothermal energy production in hot sedimentary aquifers,'' \emph{Scientific
+Reports}, vol.~12, art.~2065, 2022, doi: 10.1038/s41598-022-06067-0.
+
 \end{thebibliography}
 
 \paragraph{Note on the bibliography.}
@@ -464,9 +757,14 @@ formatting. Items marked ``[verify]'' had partial information returned by
 the search (typically because the publisher page was paywalled or only
 abstract metadata was indexed); their author lists and exact venue should
 be confirmed against the published versions before circulation. The
-publisher-confirmed references are [6], [9], [12], [13], [20], [21], [22];
-the OMV, Wien Energie / Green Energy Lab, Electrive, S\&P, ILiA, and CEC
-entries are primary-source online materials and are reliable as written.
+publisher-confirmed academic references are [6], [9], [12], [13], [20],
+[21], [22], [29], [30], [31], [32]; the OMV, Wien Energie / Green Energy
+Lab, Tech Xplore, Eavor, Power Magazine, Heat Pumping Technologies,
+Electrive, S\&P, ILiA, and CEC entries are primary-source online materials
+and are reliable as written. Reference [26] is included as a
+representative comparative-context source but is explicitly not an
+academic LCOH comparison --- the absence of such a paper is itself one
+of the open questions in thread~5.
 
 \medskip
 \noindent\emph{For a proper standalone bibliography file, these entries
