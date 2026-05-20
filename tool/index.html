@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vienna Basin Geothermal — interactive case study</title>
+<meta name="viewport" content="width=1200">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root {
+  --ink: #1d2433;
+  --muted: #5a6478;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --accent: #1b8a5a;
+  --accent2: #b54040;
+  --line: #e2e5ec;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.4;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 24px 32px; }
+header {
+  background: linear-gradient(135deg, #15436c, #1b8a5a);
+  color: #fff;
+  padding: 26px 32px;
+}
+header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+header p { margin: 4px 0 0; opacity: 0.92; font-size: 14px; }
+nav.tabs {
+  display: flex;
+  gap: 4px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+  overflow-x: auto;
+}
+nav.tabs button {
+  background: none;
+  border: 0;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+nav.tabs button.active { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.section { display: none; }
+.section.active { display: block; }
+.hero {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.kpi {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+}
+.kpi .val { font-size: 28px; font-weight: 600; color: var(--accent); }
+.kpi .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.kpi .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.panel h2 { margin: 0 0 12px; font-size: 16px; }
+.row { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+.row.single { grid-template-columns: 1fr; }
+.controls label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.controls .ctrl-row { display: flex; align-items: center; gap: 8px; }
+.controls input[type=range] { flex: 1; }
+.controls .val-readout {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 14px;
+  min-width: 60px;
+  text-align: right;
+  text-transform: none;
+  letter-spacing: normal;
+  font-variant-numeric: tabular-nums;
+}
+.legend {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+.chart { width: 100%; height: 380px; }
+.tall { height: 520px; }
+.headline {
+  background: linear-gradient(90deg, #f0f9f3, #fafafa);
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+}
+.headline strong { color: var(--accent); }
+.warn { border-left-color: var(--accent2); }
+.warn strong { color: var(--accent2); }
+small.note { color: var(--muted); display: block; margin-top: 6px; font-size: 11px; }
+table.compact { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.compact th, table.compact td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+table.compact th { background: #fafafa; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Vienna Basin Geothermal — Interactive Case Study</h1>
+  <p>Companion to <code>project.tex</code> (consortium audit Phases&nbsp;1–3j). Play with the parameters — every chart recomputes live.</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-target="overview">Overview</button>
+  <button class="tab" data-target="lcoh">LCOH calculator</button>
+  <button class="tab" data-target="storage">Storage sizing</button>
+  <button class="tab" data-target="seis">Seismicity map</button>
+  <button class="tab" data-target="halo">Thermal halo</button>
+  <button class="tab" data-target="price">Hourly prices</button>
+  <button class="tab" data-target="bench">European benchmarks</button>
+</nav>
+
+<div class="wrap">
+
+<!-- ========== OVERVIEW ========== -->
+<section class="section active" id="overview">
+  <div class="hero">
+    <div class="kpi"><div class="lbl">Vienna DH demand (2024)</div><div class="val">6.0 TWh/yr</div><div class="sub">peak ~2.3 GW<sub>th</sub></div></div>
+    <div class="kpi"><div class="lbl">Geothermal LCOH (range)</div><div class="val">13–34 €/MWh</div><div class="sub">vs heat-pump 67–74</div></div>
+    <div class="kpi"><div class="lbl">Doublets for full coverage</div><div class="val">39</div><div class="sub">LDC analysis; 2040 basis</div></div>
+    <div class="kpi"><div class="lbl">Thermal breakthrough</div><div class="val">~62 yr</div><div class="sub">Aspern doublet</div></div>
+  </div>
+  <div class="panel">
+    <h2>Why this study</h2>
+    <p>The retreat investigates whether deep geothermal heat from the Vienna Basin can substantially decarbonise Vienna’s ~6 TWh/yr district-heating network — and what under-examined questions deserve attention given that Wien&nbsp;Energie + OMV are already building the first 20&nbsp;MW<sub>th</sub> plant (Aspern, 2028).</p>
+    <p>Seven research threads, eight foundation blocks (F1–F8), nine reproducibility scripts, and 160 real earthquake events ground the analysis. Use the tabs to play with the headline calculations.</p>
+  </div>
+  <div class="panel">
+    <h2>Findings at a glance</h2>
+    <table class="compact">
+      <tr><th>Question</th><th>Headline</th><th>Conf.</th></tr>
+      <tr><td>Geo vs heat-pump LCOH</td><td>Geothermal ~2–5× cheaper at midpoint inputs; ratio robust under every plausible drilling-risk scenario</td><td>C</td></tr>
+      <tr><td>Storage for full coverage</td><td>~39 doublets + ~0.2 ×10<sup>6</sup> m³ HT-ATES (2040 LDC basis)</td><td>C</td></tr>
+      <tr><td>Thermal interference at 40-doublet density</td><td>Negligible at hex-grid 3.8 km spacing (3× safety factor over D<sub>crit</sub> = 1.21 km)</td><td>C</td></tr>
+      <tr><td>Induced-seismicity baseline near Aspern</td><td>3 of 160 events within 15 km in 36 yr; cluster-separated from Ebreichsdorf busy zone</td><td>A</td></tr>
+      <tr><td>Surface subsidence (InSAR)</td><td>~0.36 mm/yr local; below detection limit; below damage threshold</td><td>C</td></tr>
+      <tr><td>Decommissioning impact on LCOH</td><td>+0.54 €/MWh (~3% relative); ~€200 M fleet-wide year-30 liability</td><td>B</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ========== LCOH ========== -->
+<section class="section" id="lcoh">
+  <div class="panel">
+    <h2>LCOH calculator — geothermal doublet vs Ebswien-class heat pump</h2>
+    <div class="row">
+      <div class="controls">
+        <div style="font-weight:600;color:var(--accent);margin-bottom:8px;">Geothermal</div>
+        <label>CapEx per MW<sub>th</sub>
+          <div class="ctrl-row"><input type="range" id="geoCapex" min="0.8" max="2.4" step="0.05" value="1.4"><span class="val-readout" id="geoCapexV">1.40</span><span>M €</span></div>
+        </label>
+        <label>Capacity factor
+          <div class="ctrl-row"><input type="range" id="geoCF" min="0.5" max="0.95" step="0.01" value="0.85"><span class="val-readout" id="geoCFV">0.85</span></div>
+        </label>
+        <label>OpEx (% CapEx/yr)
+          <div class="ctrl-row"><input type="range" id="geoOpex" min="1" max="8" step="0.1" value="2.5"><span class="val-readout" id="geoOpexV">2.5</span><span>%</span></div>
+        </label>
+
+        <div style="font-weight:600;color:var(--accent2);margin:14px 0 8px;">Heat pump</div>
+        <label>CapEx per MW<sub>th</sub>
+          <div class="ctrl-row"><input type="range" id="hpCapex" min="0.8" max="2.4" step="0.05" value="1.3"><span class="val-readout" id="hpCapexV">1.30</span><span>M €</span></div>
+        </label>
+        <label>Capacity factor
+          <div class="ctrl-row"><input type="range" id="hpCF" min="0.2" max="0.85" step="0.01" value="0.50"><span class="val-readout" id="hpCFV">0.50</span></div>
+        </label>
+        <label>COP
+          <div class="ctrl-row"><input type="range" id="hpCOP" min="2.0" max="4.5" step="0.05" value="3.20"><span class="val-readout" id="hpCOPV">3.20</span></div>
+        </label>
+        <label>Wholesale electricity price
+          <div class="ctrl-row"><input type="range" id="elecPrice" min="20" max="220" step="1" value="90"><span class="val-readout" id="elecPriceV">90</span><span>€/MWh</span></div>
+        </label>
+        <button id="lcohReset" style="margin-top:8px;padding:6px 10px;border-radius:4px;border:1px solid var(--line);background:#fff;cursor:pointer;">Reset to base case</button>
+      </div>
+      <div>
+        <div id="lcohChart" class="chart"></div>
+        <div class="headline" id="lcohHead"></div>
+        <small class="note">Inputs reproduce <code>notebooks/t5_lcoh.py</code> exactly at the base case (geo 16.93, HP 66.78 €/MWh). CRF assumes r = 5%, n = 30 yr (geo) / 20 yr (HP).</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STORAGE ========== -->
+<section class="section" id="storage">
+  <div class="panel">
+    <h2>Storage-coupling sizing on the real Vienna LDC (Schubert 2022)</h2>
+    <div class="row">
+      <div class="controls">
+        <label>Doublet count N
+          <div class="ctrl-row"><input type="range" id="stN" min="5" max="100" step="1" value="39"><span class="val-readout" id="stNV">39</span></div>
+        </label>
+        <label>Storage round-trip efficiency η
+          <div class="ctrl-row"><input type="range" id="stEta" min="0.40" max="0.90" step="0.01" value="0.70"><span class="val-readout" id="stEtaV">0.70</span></div>
+        </label>
+        <label>Storage ΔT (K)
+          <div class="ctrl-row"><input type="range" id="stDT" min="20" max="100" step="2" value="60"><span class="val-readout" id="stDTV">60</span></div>
+        </label>
+      </div>
+      <div>
+        <div id="ldcChart" class="chart"></div>
+        <div class="headline" id="stHead"></div>
+        <small class="note">LDC digitised from the Schubert (2022) Wien&nbsp;Energie presentation (2040 scenario). Energy balance ε·surplus ≥ deficit; storage volume from peak cumulative surplus and ΔT. Reproduces <code>notebooks/t4_storage_ldc.py</code>.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEISMICITY ========== -->
+<section class="section" id="seis">
+  <div class="panel">
+    <h2>Vienna Basin seismicity 1990–2026 (160 events, EMSC + USGS + GeoSphere)</h2>
+    <div class="row">
+      <div class="controls">
+        <label>Minimum magnitude
+          <div class="ctrl-row"><input type="range" id="mMin" min="0" max="5" step="0.1" value="1.5"><span class="val-readout" id="mMinV">1.5</span></div>
+        </label>
+        <label>Show traffic-light zones
+          <div class="ctrl-row"><input type="checkbox" id="showRings" checked> <span>15 km amber, 30 km outer</span></div>
+        </label>
+        <label>Show cluster colours
+          <div class="ctrl-row"><input type="checkbox" id="showClusters" checked> <span>DBSCAN clustering</span></div>
+        </label>
+        <div id="seisStats" style="margin-top:14px;font-size:13px;line-height:1.6;"></div>
+      </div>
+      <div>
+        <div id="seisMap" class="chart tall"></div>
+        <small class="note">Cluster colours = DBSCAN (ε = 8 km, min_samples = 5). Aspern (green star) sits in cluster C1 (Fischamend); Ebreichsdorf busy zone is C0. <em>Zero overlap of their 15 km zones.</em></small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HALO ========== -->
+<section class="section" id="halo">
+  <div class="panel">
+    <h2>Thermal halo growth & multi-doublet interference</h2>
+    <div class="row">
+      <div class="controls">
+        <label>Doublet spacing L (m)
+          <div class="ctrl-row"><input type="range" id="hL" min="500" max="4000" step="50" value="1500"><span class="val-readout" id="hLV">1500</span></div>
+        </label>
+        <label>Aquifer thickness h (m)
+          <div class="ctrl-row"><input type="range" id="hH" min="20" max="300" step="5" value="100"><span class="val-readout" id="hHV">100</span></div>
+        </label>
+        <label>Flow rate Q (kg/s)
+          <div class="ctrl-row"><input type="range" id="hQ" min="20" max="200" step="5" value="75"><span class="val-readout" id="hQV">75</span></div>
+        </label>
+        <label>Porosity φ
+          <div class="ctrl-row"><input type="range" id="hPhi" min="0.05" max="0.40" step="0.01" value="0.20"><span class="val-readout" id="hPhiV">0.20</span></div>
+        </label>
+        <label>Operating time (yr)
+          <div class="ctrl-row"><input type="range" id="hT" min="1" max="100" step="1" value="30"><span class="val-readout" id="hTV">30</span></div>
+        </label>
+        <div id="haloStats" style="margin-top:14px;font-size:13px;line-height:1.6;"></div>
+      </div>
+      <div>
+        <div id="haloChart" class="chart"></div>
+        <div class="headline" id="haloHead"></div>
+        <small class="note">Bodvarsson–Tsang formula for the thermal breakthrough time; mass-conservation halo radius for the visualisation. Reproduces <code>notebooks/t7_multidoublet.py</code>.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICES ========== -->
+<section class="section" id="price">
+  <div class="panel">
+    <h2>Austrian wholesale electricity — hourly 2024–2025 (Ember)</h2>
+    <div class="row single">
+      <div>
+        <div id="priceHour" class="chart" style="height:340px;"></div>
+        <div id="priceMonth" class="chart" style="height:300px;"></div>
+        <div class="headline">Heat pumps consume electricity when prices peak (winter evenings). The <strong>HP-weighted</strong> price is +8 to +14% above the unweighted mean. Geothermal does not pay this cost.</div>
+        <small class="note">Data: 99,788 hourly points from Ember Energy. Reproduces <code>scripts/austria_price_stats.py</code>.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BENCHMARKS ========== -->
+<section class="section" id="bench">
+  <div class="panel">
+    <h2>European DH-with-geothermal benchmarks (F7)</h2>
+    <div class="row single">
+      <div>
+        <div id="benchChart" class="chart tall"></div>
+        <div class="headline">
+          Aspern reservoir temperature (~100&nbsp;°C) is mid-range; per-doublet capacity (18.8 MW<sub>th</sub>) aligns with Bavarian Molasse plants. Szeged is the closest Pannonian-edge benchmark; Reykjavík the aspirational scale.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* ============================================================
+ * DATA — embedded directly so the tool works offline
+ * ============================================================ */
+
+// 160 Vienna Basin earthquake events, columns: t, lat, lon, m, c (cluster), src, reg, da (km to Aspern)
+const EVENTS = [{"t":"1990-02-20","lat":47.87,"lon":16.03,"m":3.5,"c":0,"src":"USGS","reg":"1 km W of Waldegg, Austria","da":52.33},{"t":"1991-01-10","lat":47.704,"lon":16.133,"m":3.5,"c":0,"src":"USGS","reg":"1 km WNW of Seebenstein, Austria","da":63.59},{"t":"1991-01-27","lat":47.87,"lon":16.44,"m":2.9,"c":0,"src":"USGS","reg":"Austria-Hungary border region","da":39.22},{"t":"1991-05-02","lat":47.929,"lon":16.209,"m":3.8,"c":0,"src":"USGS","reg":"0 km WNW of Leobersdorf, Austria","da":38.95},{"t":"1991-05-02","lat":47.91,"lon":16.317,"m":3.1,"c":0,"src":"USGS","reg":"4 km SSE of Tattendorf, Austria","da":37.09},{"t":"1992-03-31","lat":47.935,"lon":16.344,"m":3.0,"c":0,"src":"USGS","reg":"3 km ESE of Tattendorf, Austria","da":33.78},{"t":"1992-11-08","lat":47.844,"lon":16.239,"m":3.4,"c":0,"src":"USGS","reg":"0 km SSE of Theresienfeld, Austria","da":46.14},{"t":"1992-11-08","lat":47.857,"lon":16.379,"m":2.8,"c":0,"src":"USGS","reg":"0 km S of Neufeld an der Leitha, Austria","da":41.4},{"t":"1992-12-14","lat":47.739,"lon":16.07,"m":3.4,"c":0,"src":"USGS","reg":"2 km NNW of Neunkirchen, Austria","da":62.36},{"t":"1993-03-14","lat":47.774,"lon":16.174,"m":2.8,"c":0,"src":"USGS","reg":"4 km SSE of Weikersdorf am Steinfelde, Austria","da":55.25},{"t":"1994-11-10","lat":48.18,"lon":16.277,"m":3.1,"c":-1,"src":"USGS","reg":"1 km WSW of Hietzing, Austria","da":17.17},{"t":"1994-12-03","lat":47.716,"lon":16.166,"m":4.6,"c":0,"src":"USGS","reg":"1 km W of Pitten, Austria","da":61.35},{"t":"1996-01-09","lat":47.957,"lon":16.382,"m":4.5,"c":0,"src":"USGS","reg":"1 km WNW of Weigelsdorf, Austria","da":30.56},{"t":"1996-03-14","lat":47.722,"lon":16.322,"m":2.9,"c":0,"src":"USGS","reg":"2 km WNW of Forchtenstein, Austria","da":56.99},{"t":"1997-05-10","lat":48.112,"lon":16.633,"m":3.6,"c":1,"src":"USGS","reg":"2 km ESE of Fischamend-Markt, Austria","da":15.57},{"t":"1997-07-19","lat":47.864,"lon":16.399,"m":2.9,"c":0,"src":"USGS","reg":"1 km E of Neufeld an der Leitha, Austria","da":40.33},{"t":"1997-09-04","lat":47.74,"lon":16.159,"m":3.1,"c":0,"src":"USGS","reg":"1 km NW of Schwarzau am Steinfeld, Austria","da":59.14},{"t":"1997-11-03","lat":47.706,"lon":16.194,"m":2.9,"c":0,"src":"USGS","reg":"1 km SE of Pitten, Austria","da":61.57},{"t":"1997-11-03","lat":47.735,"lon":16.19,"m":2.6,"c":0,"src":"USGS","reg":"1 km ENE of Schwarzau am Steinfeld, Austria","da":58.7},{"t":"1997-11-04","lat":47.725,"lon":16.221,"m":2.5,"c":0,"src":"USGS","reg":"0 km ESE of Bad Erlach, Austria","da":58.88},{"t":"1998-11-21","lat":47.729,"lon":16.047,"m":2.5,"c":0,"src":"USGS","reg":"1 km NNE of Ternitz, Austria","da":64.2},{"t":"1999-05-02","lat":47.7375,"lon":16.1368,"m":2.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":60.12},{"t":"1999-07-26","lat":47.848,"lon":16.411,"m":3.1,"c":0,"src":"USGS","reg":"1 km NNW of Steinbrunn, Austria","da":41.94},{"t":"1999-07-26","lat":47.9067,"lon":16.2989,"m":3.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":37.95},{"t":"2000-07-11","lat":48.013,"lon":16.419,"m":5.3,"c":0,"src":"USGS","reg":"2 km W of Moosbrunn, Austria","da":23.82},{"t":"2000-07-11","lat":47.935,"lon":16.499,"m":2.7,"c":0,"src":"USGS","reg":"1 km E of Leithaprodersdorf, Austria","da":31.73},{"t":"2000-07-11","lat":47.965,"lon":16.36,"m":5.0,"c":0,"src":"USGS","reg":"3 km ESE of Oberwaltersdorf, Austria","da":30.23},{"t":"2000-07-12","lat":47.93,"lon":16.502,"m":3.0,"c":0,"src":"USGS","reg":"1 km ESE of Leithaprodersdorf, Austria","da":32.28},{"t":"2000-07-12","lat":47.951,"lon":16.494,"m":3.7,"c":0,"src":"USGS","reg":"2 km WSW of Seibersdorf, Austria","da":29.95},{"t":"2000-07-16","lat":47.918,"lon":16.497,"m":2.9,"c":0,"src":"USGS","reg":"1 km W of Loretto, Austria","da":33.62},{"t":"2001-03-11","lat":47.883,"lon":16.397,"m":2.5,"c":0,"src":"USGS","reg":"1 km S of Landegg, Austria","da":38.29},{"t":"2001-06-07","lat":47.876,"lon":16.354,"m":2.6,"c":0,"src":"USGS","reg":"1 km W of Ebenfurth, Austria","da":39.8},{"t":"2001-06-27","lat":47.7292,"lon":16.1736,"m":2.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":59.78},{"t":"2001-06-27","lat":47.712,"lon":16.183,"m":2.6,"c":0,"src":"USGS","reg":"0 km S of Pitten, Austria","da":61.26},{"t":"2001-07-01","lat":47.7234,"lon":16.1173,"m":4.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":62.17},{"t":"2001-11-21","lat":48.0603,"lon":16.553,"m":3.6,"c":1,"src":"EMSC","reg":"AUSTRIA","da":18.21},{"t":"2003-07-17","lat":47.935,"lon":16.383,"m":2.6,"c":0,"src":"USGS","reg":"2 km SW of Weigelsdorf, Austria","da":32.9},{"t":"2004-04-26","lat":48.0583,"lon":16.6087,"m":4.0,"c":1,"src":"EMSC","reg":"AUSTRIA","da":19.73},{"t":"2004-09-11","lat":48.024,"lon":16.265,"m":2.8,"c":0,"src":"USGS","reg":"0 km N of Pfaffst\u00e4tten, Austria","da":27.95},{"t":"2005-07-25","lat":47.8459,"lon":16.2604,"m":4.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":45.29},{"t":"2006-06-30","lat":47.8749,"lon":16.2952,"m":3.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":41.32},{"t":"2006-07-01","lat":47.8946,"lon":16.2284,"m":2.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":41.47},{"t":"2007-02-05","lat":47.726,"lon":16.2089,"m":2.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":59.1},{"t":"2007-02-26","lat":47.8223,"lon":16.0091,"m":2.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":57.38},{"t":"2007-07-09","lat":47.8231,"lon":16.1446,"m":3.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":51.48},{"t":"2007-07-20","lat":47.8639,"lon":16.1915,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":45.8},{"t":"2007-07-20","lat":47.8461,"lon":16.2123,"m":1.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":46.8},{"t":"2007-08-08","lat":47.7697,"lon":16.2227,"m":1.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.2},{"t":"2007-08-09","lat":47.86,"lon":16.0904,"m":1.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":50.33},{"t":"2007-08-20","lat":47.8554,"lon":16.1103,"m":1.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":49.87},{"t":"2007-09-04","lat":47.7277,"lon":16.6104,"m":2.9,"c":-1,"src":"EMSC","reg":"HUNGARY","da":55.41},{"t":"2007-09-28","lat":47.9015,"lon":16.2148,"m":3.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":41.31},{"t":"2007-11-15","lat":48.1149,"lon":16.1182,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":30.7},{"t":"2008-01-08","lat":48.0866,"lon":16.2353,"m":1.5,"c":0,"src":"EMSC","reg":"AUSTRIA                                 ","da":24.65},{"t":"2008-01-15","lat":47.9763,"lon":16.644,"m":1.6,"c":1,"src":"EMSC","reg":"AUSTRIA                                 ","da":29.16},{"t":"2008-01-30","lat":47.7717,"lon":16.0507,"m":3.7,"c":0,"src":"EMSC","reg":"AUSTRIA                                 ","da":60.05},{"t":"2008-02-05","lat":48.0151,"lon":16.2855,"m":3.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":27.83},{"t":"2008-04-06","lat":47.7266,"lon":16.0938,"m":1.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":62.68},{"t":"2008-04-15","lat":48.0135,"lon":16.5819,"m":1.6,"c":1,"src":"EMSC","reg":"AUSTRIA","da":23.78},{"t":"2008-04-28","lat":48.2893,"lon":16.7741,"m":2.2,"c":2,"src":"EMSC","reg":"AUSTRIA","da":21.79},{"t":"2008-05-02","lat":47.7996,"lon":16.0725,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":56.57},{"t":"2008-06-07","lat":48.1047,"lon":16.2473,"m":2.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":22.75},{"t":"2008-06-09","lat":47.9647,"lon":16.6323,"m":1.7,"c":1,"src":"EMSC","reg":"AUSTRIA","da":30.07},{"t":"2008-10-14","lat":47.9,"lon":16.2519,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":40.11},{"t":"2008-10-14","lat":47.9053,"lon":16.2853,"m":2.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":38.5},{"t":"2008-11-17","lat":47.7124,"lon":16.2329,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":59.89},{"t":"2008-12-07","lat":47.826,"lon":16.08,"m":3.9,"c":0,"src":"USGS","reg":"2 km WNW of Winzendorf, Austria","da":53.84},{"t":"2008-12-07","lat":47.7818,"lon":16.2657,"m":1.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":51.8},{"t":"2009-01-14","lat":48.1211,"lon":16.5634,"m":2.8,"c":1,"src":"EMSC","reg":"AUSTRIA","da":11.98},{"t":"2009-01-14","lat":48.0683,"lon":16.6356,"m":1.6,"c":1,"src":"EMSC","reg":"AUSTRIA","da":19.67},{"t":"2009-01-14","lat":48.0927,"lon":16.5627,"m":2.2,"c":1,"src":"EMSC","reg":"AUSTRIA","da":14.92},{"t":"2009-01-14","lat":48.0603,"lon":16.6799,"m":1.5,"c":1,"src":"EMSC","reg":"AUSTRIA","da":22.25},{"t":"2009-01-14","lat":48.0784,"lon":16.6222,"m":2.2,"c":1,"src":"EMSC","reg":"AUSTRIA","da":18.19},{"t":"2009-01-18","lat":48.0961,"lon":16.5405,"m":2.8,"c":1,"src":"EMSC","reg":"AUSTRIA","da":14.12},{"t":"2009-01-25","lat":47.8172,"lon":16.1742,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":50.96},{"t":"2009-01-25","lat":47.8248,"lon":16.1517,"m":2.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":51.05},{"t":"2009-01-25","lat":47.8081,"lon":16.1607,"m":2.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":52.33},{"t":"2009-07-27","lat":47.8979,"lon":16.3235,"m":2.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":38.18},{"t":"2009-07-27","lat":47.8991,"lon":16.3217,"m":2.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":38.1},{"t":"2009-07-27","lat":47.9056,"lon":16.2947,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":38.18},{"t":"2009-08-11","lat":47.9155,"lon":16.2919,"m":1.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":37.26},{"t":"2009-10-20","lat":47.8732,"lon":16.3552,"m":2.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":40.08},{"t":"2009-11-09","lat":47.9185,"lon":16.2657,"m":1.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":37.81},{"t":"2009-11-19","lat":47.9138,"lon":16.3403,"m":2.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":36.09},{"t":"2009-11-19","lat":47.9232,"lon":16.3213,"m":3.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":35.61},{"t":"2009-11-25","lat":48.0129,"lon":16.5987,"m":1.7,"c":1,"src":"EMSC","reg":"AUSTRIA","da":24.19},{"t":"2010-01-20","lat":47.8936,"lon":16.3257,"m":1.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":38.58},{"t":"2010-02-05","lat":47.7045,"lon":16.0965,"m":1.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":64.75},{"t":"2010-02-22","lat":47.8646,"lon":16.0895,"m":1.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":49.97},{"t":"2010-06-11","lat":47.9133,"lon":16.0872,"m":2.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":45.91},{"t":"2010-06-24","lat":47.9848,"lon":16.397,"m":2.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":27.28},{"t":"2010-07-18","lat":47.8565,"lon":16.2861,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":43.48},{"t":"2010-09-11","lat":47.9221,"lon":16.2907,"m":2.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":36.63},{"t":"2010-12-09","lat":48.317,"lon":16.8318,"m":1.9,"c":2,"src":"EMSC","reg":"AUSTRIA","da":26.93},{"t":"2010-12-09","lat":48.3311,"lon":16.7724,"m":2.7,"c":2,"src":"EMSC","reg":"AUSTRIA","da":23.73},{"t":"2010-12-10","lat":48.3448,"lon":16.8596,"m":2.9,"c":2,"src":"EMSC","reg":"AUSTRIA","da":30.13},{"t":"2010-12-10","lat":48.3199,"lon":16.9259,"m":1.5,"c":2,"src":"EMSC","reg":"SLOVAKIA","da":33.56},{"t":"2010-12-16","lat":48.379,"lon":16.5988,"m":2.0,"c":-1,"src":"EMSC","reg":"AUSTRIA","da":19.16},{"t":"2010-12-18","lat":47.9875,"lon":16.4552,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":26.1},{"t":"2010-12-18","lat":47.9632,"lon":16.4751,"m":2.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":28.65},{"t":"2011-02-10","lat":47.756,"lon":16.1132,"m":2.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":59.12},{"t":"2011-02-22","lat":47.7936,"lon":16.1421,"m":1.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.42},{"t":"2011-03-08","lat":47.859,"lon":16.2484,"m":1.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":44.33},{"t":"2011-06-16","lat":47.9698,"lon":16.1175,"m":1.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":39.8},{"t":"2011-07-23","lat":47.9524,"lon":16.4565,"m":1.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":29.96},{"t":"2011-08-11","lat":48.0197,"lon":16.2938,"m":2.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":27.06},{"t":"2011-08-15","lat":47.7923,"lon":16.1582,"m":3.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":53.97},{"t":"2011-08-20","lat":47.7436,"lon":16.3272,"m":1.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.57},{"t":"2011-09-16","lat":47.7113,"lon":16.1142,"m":2.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":63.48},{"t":"2011-09-28","lat":48.0784,"lon":16.2358,"m":2.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":25.18},{"t":"2011-10-10","lat":47.7593,"lon":16.3498,"m":1.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":52.49},{"t":"2011-10-17","lat":47.8495,"lon":16.2741,"m":2.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":44.53},{"t":"2011-10-22","lat":47.7735,"lon":16.2593,"m":2.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":52.83},{"t":"2011-10-31","lat":47.7389,"lon":16.1821,"m":3.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":58.54},{"t":"2011-11-22","lat":47.8025,"lon":16.1262,"m":1.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.15},{"t":"2011-11-24","lat":47.7416,"lon":16.3472,"m":2.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.45},{"t":"2011-12-06","lat":47.7895,"lon":16.1571,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.28},{"t":"2011-12-07","lat":47.8406,"lon":16.1431,"m":2.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":49.88},{"t":"2011-12-13","lat":47.7508,"lon":16.2102,"m":2.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":56.5},{"t":"2011-12-31","lat":47.744,"lon":16.3437,"m":1.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.25},{"t":"2012-08-04","lat":48.39,"lon":16.51,"m":2.6,"c":-1,"src":"EMSC","reg":"AUSTRIA","da":18.94},{"t":"2012-11-15","lat":47.83,"lon":16.16,"m":2.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":50.24},{"t":"2013-01-25","lat":47.76,"lon":16.15,"m":3.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":57.44},{"t":"2013-09-20","lat":47.94,"lon":16.51,"m":4.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":31.18},{"t":"2013-10-02","lat":47.99,"lon":16.41,"m":3.6,"c":0,"src":"EMSC","reg":"AUSTRIA","da":26.46},{"t":"2013-10-02","lat":47.95,"lon":16.45,"m":2.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":30.29},{"t":"2013-10-06","lat":47.89,"lon":16.13,"m":2.7,"c":0,"src":"EMSC","reg":"AUSTRIA","da":45.89},{"t":"2013-10-23","lat":47.99,"lon":16.31,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":29.24},{"t":"2013-12-11","lat":47.77,"lon":16.31,"m":3.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":52.05},{"t":"2014-03-31","lat":48.08,"lon":16.28,"m":2.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":22.59},{"t":"2014-04-13","lat":47.94,"lon":16.34,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":33.36},{"t":"2014-06-08","lat":47.9,"lon":16.31,"m":3.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":38.32},{"t":"2016-04-25","lat":48.0884,"lon":16.1428,"m":4.2,"c":0,"src":"USGS","reg":"3 km NNE of Heiligenkreuz, Austria","da":30.33},{"t":"2016-05-10","lat":48.14,"lon":16.04,"m":2.7,"c":-1,"src":"EMSC","reg":"AUSTRIA","da":35.34},{"t":"2016-08-12","lat":47.71,"lon":16.14,"m":2.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":62.77},{"t":"2016-12-29","lat":47.87,"lon":16.04,"m":2.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":51.84},{"t":"2017-07-29","lat":47.86,"lon":16.22,"m":2.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":45.16},{"t":"2017-11-08","lat":48.07,"lon":16.13,"m":3.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":32.18},{"t":"2017-11-10","lat":47.71,"lon":16.12,"m":3.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":63.41},{"t":"2020-11-20","lat":48.27,"lon":16.31,"m":2.4,"c":-1,"src":"EMSC","reg":"AUSTRIA","da":15.18},{"t":"2021-03-30","lat":47.78,"lon":16.18,"m":4.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":54.45},{"t":"2021-04-04","lat":47.79,"lon":16.22,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":52.2},{"t":"2021-04-19","lat":47.77,"lon":16.13,"m":4.3,"c":0,"src":"EMSC","reg":"AUSTRIA","da":57.15},{"t":"2021-04-19","lat":47.83,"lon":16.15,"m":2.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":50.62},{"t":"2021-04-19","lat":47.83,"lon":16.23,"m":2.1,"c":0,"src":"EMSC","reg":"AUSTRIA","da":47.83},{"t":"2021-04-20","lat":47.78,"lon":16.07,"m":2.9,"c":0,"src":"EMSC","reg":"AUSTRIA","da":58.49},{"t":"2021-04-23","lat":47.76,"lon":16.0,"m":3.4,"c":0,"src":"EMSC","reg":"AUSTRIA","da":63.28},{"t":"2021-04-24","lat":47.81,"lon":16.25,"m":3.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":49.28},{"t":"2021-05-21","lat":47.91,"lon":16.75,"m":2.4,"c":-1,"src":"EMSC","reg":"AUSTRIA","da":39.2},{"t":"2022-01-14","lat":47.72,"lon":16.06,"m":2.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":64.56},{"t":"2022-10-02","lat":48.37,"lon":16.86,"m":3.1,"c":2,"src":"EMSC","reg":"SLOVAKIA","da":31.55},{"t":"2023-01-06","lat":47.97,"lon":16.37,"m":2.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":29.46},{"t":"2023-03-30","lat":47.74,"lon":16.02,"m":4.0,"c":0,"src":"EMSC","reg":"AUSTRIA","da":64.25},{"t":"2023-10-11","lat":47.715,"lon":16.004,"m":2.5,"c":0,"src":"EMSC","reg":"AUSTRIA","da":67.23},{"t":"2024-04-14","lat":47.83,"lon":16.15,"m":3.2,"c":0,"src":"EMSC","reg":"AUSTRIA","da":50.62},{"t":"2025-07-13","lat":47.9173,"lon":16.0906,"m":2.8,"c":0,"src":"EMSC","reg":"AUSTRIA","da":45.41},{"t":"2026-04-24","lat":47.85,"lon":16.82,"m":2.7,"c":-1,"src":"EMSC","reg":"AUSTRIA","da":47.57},{"t":"2026-05-11","lat":47.7813,"lon":16.1137,"m":0.9,"c":0,"src":"GeoSphere","reg":"Neunkirchen","da":56.65},{"t":"2026-05-11","lat":47.7796,"lon":16.1115,"m":1.0,"c":0,"src":"GeoSphere","reg":"Neunkirchen","da":56.9},{"t":"2026-05-17","lat":47.9433,"lon":16.2987,"m":0.5,"c":0,"src":"GeoSphere","reg":"Sollenau","da":34.25}];
+
+// Schubert 2022 LDC: 30 sample points (day-rank, GWh/d)
+const LDC_SAMPLES = [
+  [1,47.5],[5,43.0],[10,40.0],[15,37.5],[20,35.5],
+  [25,33.5],[30,31.5],[35,30.0],[40,28.5],[50,25.5],
+  [60,23.5],[70,21.5],[80,19.5],[90,18.0],[100,17.0],
+  [115,15.5],[130,14.0],[145,12.8],[160,11.5],[180,10.0],
+  [200,8.8],[220,7.7],[240,6.8],[260,6.0],[280,5.4],
+  [300,5.0],[320,4.5],[340,3.8],[355,3.2],[365,2.8]
+];
+
+// 2024-2025 hourly price means by local hour
+const HOURLY_2425 = [
+  [0,87.21],[1,81.50],[2,78.75],[3,77.06],[4,78.68],[5,86.04],
+  [6,100.89],[7,112.84],[8,106.61],[9,89.58],[10,74.60],[11,65.23],
+  [12,58.35],[13,55.81],[14,59.83],[15,73.08],[16,89.45],[17,107.98],
+  [18,121.93],[19,130.36],[20,123.56],[21,110.97],[22,101.84],[23,91.34]
+];
+
+// 2024-2025 monthly price means
+const MONTHLY_2425 = [
+  [1,107.4],[2,102.4],[3,83.2],[4,70.1],[5,67.6],[6,67.5],
+  [7,75.8],[8,79.6],[9,87.5],[10,96.8],[11,123.4],[12,121.0]
+];
+
+// European benchmark sites (size = households served, x = depth km, y = temperature C)
+const BENCH = [
+  {name:"Munich-Riem",       depth:1.8, T:120, MWth:13,  hh:5000,   color:"#4477aa"},
+  {name:"Bavarian Molasse",  depth:3.3, T:120, MWth:360, hh:560000, color:"#4477aa"},
+  {name:"Paris Dogger",      depth:1.7, T:70,  MWth:227, hh:210000, color:"#88aa66"},
+  {name:"Reykjavík",         depth:1.5, T:200, MWth:750, hh:190000, color:"#cc6677"},
+  {name:"Szeged (Pannonian)",depth:1.85,T:92,  MWth:224, hh:27500,  color:"#ddcc77"},
+  {name:"Aspern (planned)",  depth:2.9, T:102, MWth:120, hh:200000, color:"#1b8a5a"}
+];
+
+const ASPERN = {lat:48.22, lon:16.50};
+const EBR    = {lat:47.95, lon:16.40};
+
+/* ============================================================
+ * TAB SWITCHING
+ * ============================================================ */
+document.querySelectorAll(".tab").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById(b.dataset.target).classList.add("active");
+    // Plotly resizes need a nudge after display:none -> block
+    window.dispatchEvent(new Event("resize"));
+  });
+});
+
+/* ============================================================
+ * LCOH CALCULATOR
+ * ============================================================ */
+function crf(r, n) { return r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1); }
+
+function computeLcoh(P_MW, CF, capex_per_MW, opex_pct, lifetime, r,
+                     cop, elec_price) {
+  const capex = capex_per_MW * P_MW;
+  const ann_capex = capex * crf(r, lifetime);
+  const opex_fix = opex_pct * capex;
+  const annual_heat = P_MW * 8760 * CF;
+  let opex_elec = 0;
+  if (cop !== undefined) {
+    opex_elec = (annual_heat / cop) * elec_price / 1e6;
+  }
+  const total = (ann_capex + opex_fix + opex_elec) * 1e6;
+  return { lcoh: total / annual_heat, ann_capex, opex_fix, opex_elec, annual_heat, capex };
+}
+
+const lcohEls = {
+  geoCapex: document.getElementById("geoCapex"),
+  geoCF: document.getElementById("geoCF"),
+  geoOpex: document.getElementById("geoOpex"),
+  hpCapex: document.getElementById("hpCapex"),
+  hpCF: document.getElementById("hpCF"),
+  hpCOP: document.getElementById("hpCOP"),
+  elecPrice: document.getElementById("elecPrice")
+};
+
+function updateLcoh() {
+  const gC = +lcohEls.geoCapex.value;
+  const gF = +lcohEls.geoCF.value;
+  const gO = +lcohEls.geoOpex.value / 100;
+  const hC = +lcohEls.hpCapex.value;
+  const hF = +lcohEls.hpCF.value;
+  const cop = +lcohEls.hpCOP.value;
+  const elec = +lcohEls.elecPrice.value;
+
+  document.getElementById("geoCapexV").textContent = gC.toFixed(2);
+  document.getElementById("geoCFV").textContent = gF.toFixed(2);
+  document.getElementById("geoOpexV").textContent = (gO*100).toFixed(1);
+  document.getElementById("hpCapexV").textContent = hC.toFixed(2);
+  document.getElementById("hpCFV").textContent = hF.toFixed(2);
+  document.getElementById("hpCOPV").textContent = cop.toFixed(2);
+  document.getElementById("elecPriceV").textContent = elec.toFixed(0);
+
+  // Geothermal: 18.8 MW per doublet, 30 yr life, 2.5-8% opex
+  const geo = computeLcoh(18.8, gF, gC, gO, 30, 0.05);
+  // Heat pump: 55 MW, 20 yr, 5% opex, COP, electricity
+  const hp  = computeLcoh(55, hF, hC, 0.05, 20, 0.05, cop, elec);
+  // Gas-CHP counterfactual at EU ETS 90 EUR/tCO2, 200 g CO2/kWh: ~35-60 EUR/MWh
+  // Carbon-credited geothermal: 17 - 200e-3 * 90 = ~-1
+  const geo_credit = geo.lcoh - 0.2 * 90;
+  const hp_credit  = hp.lcoh  - 0.033 * 90;
+
+  const data = [
+    {
+      type: "bar", orientation: "h",
+      y: ["Heat pump (after carbon credit)", "Heat pump", "Geothermal (after carbon credit)", "Geothermal"],
+      x: [hp_credit, hp.lcoh, geo_credit, geo.lcoh],
+      marker: { color: ["#e3a8b1","#cc6677","#82c19f","#1b8a5a"] },
+      text: [hp_credit, hp.lcoh, geo_credit, geo.lcoh].map(v => v.toFixed(1) + " €/MWh"),
+      textposition: "outside",
+      hovertemplate: "%{y}: %{x:.2f} €/MWh<extra></extra>"
+    }
+  ];
+  const layout = {
+    margin: { l: 220, r: 60, t: 10, b: 36 },
+    xaxis: { title: "LCOH [€/MWh<sub>th</sub>]", range: [Math.min(-10, geo_credit-5, hp_credit-5), Math.max(120, hp.lcoh+15)] },
+    yaxis: { tickfont: { size: 11 } },
+    height: 320,
+    showlegend: false,
+    bargap: 0.35,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff"
+  };
+  Plotly.react("lcohChart", data, layout, {displayModeBar: false, responsive: true});
+
+  const ratio = hp.lcoh / geo.lcoh;
+  let cls = "headline", msg;
+  if (ratio > 1.5) {
+    msg = `<strong>Geothermal ${ratio.toFixed(1)}× cheaper</strong> at these inputs (geo ${geo.lcoh.toFixed(1)} vs HP ${hp.lcoh.toFixed(1)} €/MWh). With EU ETS 90 €/tCO₂ carbon credit against gas-CHP baseline, geothermal becomes ${geo_credit.toFixed(1)} €/MWh.`;
+  } else if (ratio > 1) {
+    msg = `Geothermal still ${ratio.toFixed(2)}× cheaper but the gap narrows. Try resetting and varying one parameter at a time.`;
+  } else {
+    cls += " warn";
+    msg = `<strong>Heat pump wins at these inputs</strong> (ratio ${ratio.toFixed(2)}). This requires unusual combinations of adverse geothermal + favourable heat-pump parameters.`;
+  }
+  const head = document.getElementById("lcohHead");
+  head.className = cls;
+  head.innerHTML = msg;
+}
+
+Object.values(lcohEls).forEach(el => el.addEventListener("input", updateLcoh));
+document.getElementById("lcohReset").addEventListener("click", () => {
+  lcohEls.geoCapex.value = 1.4;
+  lcohEls.geoCF.value = 0.85;
+  lcohEls.geoOpex.value = 2.5;
+  lcohEls.hpCapex.value = 1.3;
+  lcohEls.hpCF.value = 0.50;
+  lcohEls.hpCOP.value = 3.20;
+  lcohEls.elecPrice.value = 90;
+  updateLcoh();
+});
+
+/* ============================================================
+ * STORAGE
+ * ============================================================ */
+function interpolateLdc() {
+  const out = [];
+  for (let d = 1; d <= 365; d++) {
+    if (d <= LDC_SAMPLES[0][0]) { out.push(LDC_SAMPLES[0][1]); continue; }
+    if (d >= LDC_SAMPLES[LDC_SAMPLES.length-1][0]) { out.push(LDC_SAMPLES[LDC_SAMPLES.length-1][1]); continue; }
+    for (let i = 0; i < LDC_SAMPLES.length - 1; i++) {
+      const [r0, v0] = LDC_SAMPLES[i], [r1, v1] = LDC_SAMPLES[i+1];
+      if (r0 <= d && d <= r1) {
+        const f = (d - r0) / (r1 - r0);
+        out.push(v0 + f * (v1 - v0));
+        break;
+      }
+    }
+  }
+  return out;
+}
+const LDC = interpolateLdc();
+const DAYS = Array.from({length:365}, (_, i) => i+1);
+
+function storageBalance(ldc, baseGWhd, eta) {
+  let surplus = 0, deficit = 0, cumulative = 0, peak = 0;
+  for (const d of ldc) {
+    const delta = baseGWhd - d;
+    if (delta >= 0) { surplus += delta; cumulative += delta * eta; }
+    else { deficit += -delta; cumulative -= -delta; }
+    peak = Math.max(peak, cumulative);
+  }
+  return { surplus, deficit, peakStoredGWh: peak };
+}
+
+const stEls = {
+  N: document.getElementById("stN"),
+  eta: document.getElementById("stEta"),
+  dT: document.getElementById("stDT")
+};
+
+function updateStorage() {
+  const N = +stEls.N.value;
+  const eta = +stEls.eta.value;
+  const dT = +stEls.dT.value;
+  document.getElementById("stNV").textContent = N;
+  document.getElementById("stEtaV").textContent = eta.toFixed(2);
+  document.getElementById("stDTV").textContent = dT;
+
+  const Peff = 18.8 * 0.85;  // MW continuous per doublet
+  const baseGWhd = N * Peff * 24 / 1000;
+  const { surplus, deficit, peakStoredGWh } = storageBalance(LDC, baseGWhd, eta);
+  const V_m3 = peakStoredGWh * 1e9 * 3600 / (1000 * 4180 * dT);
+  const feas = surplus * eta >= deficit;
+  const coverage = Math.min(1, baseGWhd * 365 / LDC.reduce((a,b)=>a+b, 0));
+
+  const data = [
+    { type: "scatter", x: DAYS, y: LDC, name: "LDC", fill: "tozeroy",
+      line: { color: "#88a4c8" }, fillcolor: "rgba(136,164,200,0.4)",
+      hovertemplate: "Day rank %{x}: %{y:.1f} GWh/d<extra></extra>" },
+    { type: "scatter", x: DAYS, y: Array(365).fill(baseGWhd), name: `N=${N} baseload`,
+      line: { color: "#1b8a5a", width: 2 },
+      hovertemplate: "Baseload %{y:.1f} GWh/d<extra></extra>" }
+  ];
+  const layout = {
+    margin: { l: 56, r: 30, t: 10, b: 50 },
+    xaxis: { title: "Day rank (1 = peak)", range: [0, 365] },
+    yaxis: { title: "Daily heat demand [GWh/d]", range: [0, 52] },
+    legend: { x: 0.65, y: 0.95 },
+    height: 380,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff"
+  };
+  Plotly.react("ldcChart", data, layout, {displayModeBar: false, responsive: true});
+
+  const head = document.getElementById("stHead");
+  const feasTxt = feas
+    ? `<strong>Feasible.</strong> Surplus×η = ${(surplus*eta).toFixed(0)} GWh covers deficit ${deficit.toFixed(0)} GWh.`
+    : `<strong>Infeasible: shortfall.</strong> Surplus×η = ${(surplus*eta).toFixed(0)} GWh &lt; deficit ${deficit.toFixed(0)} GWh.`;
+  head.className = feas ? "headline" : "headline warn";
+  head.innerHTML = `${feasTxt}<br>
+    Peak stored energy: ${peakStoredGWh.toFixed(0)} GWh →
+    storage volume <strong>${(V_m3/1e6).toFixed(2)} × 10<sup>6</sup> m³</strong> at ΔT = ${dT} K.
+    Annual demand coverage: <strong>${(coverage*100).toFixed(1)}%</strong>.`;
+}
+Object.values(stEls).forEach(el => el.addEventListener("input", updateStorage));
+
+/* ============================================================
+ * SEISMICITY MAP
+ * ============================================================ */
+const CLUSTER_COLORS = {
+  "-1": "#aaaaaa",
+  "0":  "#cc6677",
+  "1":  "#4477aa",
+  "2":  "#ddcc77"
+};
+const CLUSTER_NAMES = {
+  "-1": "noise / isolated",
+  "0":  "C0 southern VB / Ebreichsdorf",
+  "1":  "C1 Fischamend / E of Aspern",
+  "2":  "C2 Marchfeld"
+};
+
+function ringCoords(lat0, lon0, rKm, n=72) {
+  const xs = [], ys = [];
+  const degLat = 111.32;
+  const degLon = degLat * Math.cos(lat0 * Math.PI/180);
+  for (let i = 0; i <= n; i++) {
+    const th = 2*Math.PI*i/n;
+    xs.push(lon0 + (rKm/degLon)*Math.cos(th));
+    ys.push(lat0 + (rKm/degLat)*Math.sin(th));
+  }
+  return { lons: xs, lats: ys };
+}
+
+function updateSeis() {
+  const mMin = +document.getElementById("mMin").value;
+  document.getElementById("mMinV").textContent = mMin.toFixed(1);
+  const showRings = document.getElementById("showRings").checked;
+  const useClusters = document.getElementById("showClusters").checked;
+
+  const filt = EVENTS.filter(e => e.m >= mMin);
+  // group by cluster
+  const groups = {};
+  filt.forEach(e => {
+    const k = useClusters ? String(e.c) : "all";
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(e);
+  });
+
+  const traces = Object.keys(groups).sort().map(k => {
+    const g = groups[k];
+    return {
+      type: "scattergeo",
+      lat: g.map(e => e.lat),
+      lon: g.map(e => e.lon),
+      marker: {
+        size: g.map(e => 4 + 4*(e.m-1)),
+        color: useClusters ? (CLUSTER_COLORS[k] || "#888") : "#666",
+        line: { color: "#000", width: 0.3 },
+        opacity: 0.7
+      },
+      text: g.map(e => `${e.t} M${e.m} ${e.reg}<br>cluster ${e.c}, ${e.da.toFixed(1)} km from Aspern`),
+      hovertemplate: "%{text}<extra></extra>",
+      name: useClusters ? (CLUSTER_NAMES[k] || k) + ` (n=${g.length})` : `All events (n=${g.length})`
+    };
+  });
+  // markers
+  traces.push({ type:"scattergeo", lat:[ASPERN.lat], lon:[ASPERN.lon],
+    marker:{symbol:"star",size:18,color:"#1b8a5a",line:{color:"#000",width:1}},
+    name:"Aspern (planned)",
+    hovertemplate:"Aspern (planned geothermal site)<extra></extra>"});
+  traces.push({ type:"scattergeo", lat:[EBR.lat], lon:[EBR.lon],
+    marker:{symbol:"triangle-up",size:13,color:"#b54040",line:{color:"#000",width:1}},
+    name:"Ebreichsdorf",
+    hovertemplate:"Ebreichsdorf (busy zone)<extra></extra>"});
+
+  if (showRings) {
+    [15, 30].forEach((r, idx) => {
+      const c = ringCoords(ASPERN.lat, ASPERN.lon, r);
+      traces.push({ type:"scattergeo", lat:c.lats, lon:c.lons, mode:"lines",
+        line:{ color:"#1b8a5a", width: idx ? 1 : 1.6, dash: idx ? "dot" : "dash" },
+        name:`Aspern ${r} km`,
+        hovertemplate:`${r} km from Aspern<extra></extra>`});
+    });
+  }
+
+  const layout = {
+    margin: { l: 0, r: 0, t: 0, b: 0 },
+    geo: {
+      scope: "europe",
+      resolution: 50,
+      lonaxis: { range: [15.9, 17.0] },
+      lataxis: { range: [47.6, 48.5] },
+      projection: { type: "mercator" },
+      showcountries: true, countrycolor: "#888",
+      showrivers: true, rivercolor: "#a8c8e8", riverwidth: 1,
+      showlakes: true, lakecolor: "#a8c8e8",
+      showland: true, landcolor: "#f0f1ec", coastlinecolor: "#666",
+      bgcolor: "#fff"
+    },
+    legend: { x: 0.01, y: 0.99, bgcolor: "rgba(255,255,255,0.85)", bordercolor: "#ccc", borderwidth: 1, font: { size: 10 } },
+    showlegend: true,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff"
+  };
+  Plotly.react("seisMap", traces, layout, {displayModeBar: false, responsive: true});
+
+  // Stats
+  const inAsp15 = filt.filter(e => e.da <= 15).length;
+  const inAsp30 = filt.filter(e => e.da <= 30).length;
+  const total = filt.length;
+  let mMax = 0, mMaxEvt = null;
+  filt.forEach(e => { if (e.m > mMax) { mMax = e.m; mMaxEvt = e; } });
+  document.getElementById("seisStats").innerHTML = `
+    <strong>${total}</strong> events with M ≥ ${mMin.toFixed(1)}<br>
+    Within 15 km of Aspern: <strong>${inAsp15}</strong><br>
+    Within 30 km of Aspern: <strong>${inAsp30}</strong><br>
+    Largest: M ${mMax.toFixed(1)} (${mMaxEvt ? mMaxEvt.t : "—"})`;
+}
+document.getElementById("mMin").addEventListener("input", updateSeis);
+document.getElementById("showRings").addEventListener("change", updateSeis);
+document.getElementById("showClusters").addEventListener("change", updateSeis);
+
+/* ============================================================
+ * THERMAL HALO
+ * ============================================================ */
+const haloEls = {
+  L: document.getElementById("hL"),
+  H: document.getElementById("hH"),
+  Q: document.getElementById("hQ"),
+  Phi: document.getElementById("hPhi"),
+  T: document.getElementById("hT")
+};
+
+function tTBYears(L, h, Q_m3s, phi) {
+  const rhoc_w = 4.18e6, rhoc_r = 2.20e6;
+  const rhoc_b = phi*rhoc_w + (1-phi)*rhoc_r;
+  const V = Math.PI * L*L * h;
+  const t_s = V * rhoc_b / (3 * rhoc_w * Q_m3s);
+  return t_s / (3600 * 24 * 365.25);
+}
+function haloRadiusM(t_yr, h, Q_m3s, phi) {
+  const rhoc_w = 4.18e6, rhoc_r = 2.20e6;
+  const rhoc_b = phi*rhoc_w + (1-phi)*rhoc_r;
+  const Vc = Q_m3s * t_yr * 365.25 * 86400 * (rhoc_w / rhoc_b);
+  return Math.sqrt(Vc / (Math.PI * h));
+}
+
+function updateHalo() {
+  const L = +haloEls.L.value;
+  const h = +haloEls.H.value;
+  const Q_kgs = +haloEls.Q.value;
+  const phi = +haloEls.Phi.value;
+  const T = +haloEls.T.value;
+  const Q_m3s = Q_kgs / 1000;
+
+  document.getElementById("hLV").textContent = L;
+  document.getElementById("hHV").textContent = h;
+  document.getElementById("hQV").textContent = Q_kgs;
+  document.getElementById("hPhiV").textContent = phi.toFixed(2);
+  document.getElementById("hTV").textContent = T;
+
+  // r_halo(t) curve
+  const times = [1,2,3,5,8,12,18,25,35,50,75,100];
+  const radii = times.map(t => haloRadiusM(t, h, Q_m3s, phi));
+  const tTB = tTBYears(L, h, Q_m3s, phi);
+  const rNow = haloRadiusM(T, h, Q_m3s, phi);
+  const dCrit = 2 * rNow;
+
+  const data = [
+    { type:"scatter", x: times, y: radii, mode:"lines+markers",
+      line: { color: "#1b8a5a", width: 2 }, marker: { color: "#1b8a5a", size: 6 },
+      name: "r_halo(t)", hovertemplate: "t = %{x} yr<br>r = %{y:.0f} m<extra></extra>" },
+    { type:"scatter", x: [T], y: [rNow], mode:"markers",
+      marker: { color: "#b54040", size: 14, symbol: "diamond" },
+      name: `Selected t = ${T} yr`, hovertemplate: "r(%{x} yr) = %{y:.0f} m<extra></extra>" },
+    { type:"scatter", x: [times[0], times[times.length-1]], y: [L/2, L/2], mode:"lines",
+      line: { color: "#888", dash: "dash" }, name: `L/2 = ${(L/2).toFixed(0)} m (interference)` }
+  ];
+  const layout = {
+    margin: { l: 64, r: 30, t: 10, b: 50 },
+    xaxis: { title: "Time [yr]", type: "log" },
+    yaxis: { title: "Halo radius [m]", type: "log" },
+    legend: { x: 0.02, y: 0.98 },
+    height: 380,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff"
+  };
+  Plotly.react("haloChart", data, layout, {displayModeBar: false, responsive: true});
+
+  const interferes = 2 * rNow >= L;
+  document.getElementById("haloStats").innerHTML = `
+    Thermal breakthrough time: <strong>${tTB.toFixed(1)} yr</strong><br>
+    Halo radius at t = ${T} yr: <strong>${rNow.toFixed(0)} m</strong><br>
+    Critical separation (2·r_halo at this t): <strong>${dCrit.toFixed(0)} m</strong><br>
+    ${interferes
+      ? '<span style="color:#b54040;font-weight:600;">⚠ Halos OVERLAP at this spacing</span>'
+      : `<span style="color:#1b8a5a;">✓ Safe spacing (L = ${L} m &gt; ${dCrit.toFixed(0)} m)</span>`}
+  `;
+  const head = document.getElementById("haloHead");
+  head.className = interferes ? "headline warn" : "headline";
+  head.innerHTML = interferes
+    ? `<strong>Halos overlap.</strong> At L = ${L} m and t = ${T} yr, neighbouring doublets share cooled rock. Reduce density or operating life.`
+    : `<strong>Comfortable spacing.</strong> Breakthrough in ~${tTB.toFixed(0)} yr at this geometry; halos do not touch within ${T} yr.`;
+}
+Object.values(haloEls).forEach(el => el.addEventListener("input", updateHalo));
+
+/* ============================================================
+ * PRICES
+ * ============================================================ */
+function renderPrices() {
+  Plotly.newPlot("priceHour", [{
+    type:"bar",
+    x: HOURLY_2425.map(d => d[0]),
+    y: HOURLY_2425.map(d => d[1]),
+    marker: { color: HOURLY_2425.map(d => d[1] > 100 ? "#cc6677" : d[1] < 70 ? "#88a4c8" : "#999") },
+    hovertemplate: "Hour %{x}: %{y:.1f} €/MWh<extra></extra>"
+  }], {
+    margin: { l: 56, r: 20, t: 30, b: 40 },
+    title: "Mean wholesale price by local hour (2024–2025)",
+    xaxis: { title: "Hour of day (local)" },
+    yaxis: { title: "€ / MWh" },
+    height: 320,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff"
+  }, {displayModeBar: false, responsive: true});
+
+  Plotly.newPlot("priceMonth", [{
+    type:"scatter", mode:"lines+markers",
+    x: MONTHLY_2425.map(d => d[0]),
+    y: MONTHLY_2425.map(d => d[1]),
+    line: { color: "#15436c", width: 2 },
+    marker: { color: "#15436c", size: 8 },
+    hovertemplate: "Month %{x}: %{y:.1f} €/MWh<extra></extra>"
+  }], {
+    margin: { l: 56, r: 20, t: 30, b: 40 },
+    title: "Mean wholesale price by month (2024–2025)",
+    xaxis: { title: "Month", tickvals: MONTHLY_2425.map(d=>d[0]),
+             ticktext: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] },
+    yaxis: { title: "€ / MWh" },
+    height: 280,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff"
+  }, {displayModeBar: false, responsive: true});
+}
+
+/* ============================================================
+ * BENCHMARKS
+ * ============================================================ */
+function renderBench() {
+  const trace = {
+    type: "scatter", mode: "markers+text",
+    x: BENCH.map(b => b.depth),
+    y: BENCH.map(b => b.T),
+    text: BENCH.map(b => b.name),
+    textposition: "top center",
+    textfont: { size: 11 },
+    marker: {
+      size: BENCH.map(b => Math.sqrt(b.hh)/8 + 12),
+      color: BENCH.map(b => b.color),
+      opacity: 0.75,
+      line: { color: "#000", width: 0.6 }
+    },
+    customdata: BENCH.map(b => [b.MWth, b.hh]),
+    hovertemplate: "<b>%{text}</b><br>depth %{x:.2f} km<br>T %{y} °C<br>%{customdata[0]} MWth, %{customdata[1]} households<extra></extra>"
+  };
+  Plotly.newPlot("benchChart", [trace], {
+    margin: { l: 60, r: 30, t: 30, b: 50 },
+    xaxis: { title: "Reservoir depth [km]" },
+    yaxis: { title: "Reservoir temperature [°C]" },
+    title: "Bubble size ∝ households served",
+    height: 500,
+    plot_bgcolor: "#fff", paper_bgcolor: "#fff",
+    showlegend: false
+  }, {displayModeBar: false, responsive: true});
+}
+
+/* ============================================================
+ * INITIAL RENDER
+ * ============================================================ */
+updateLcoh();
+updateStorage();
+updateSeis();
+updateHalo();
+renderPrices();
+renderBench();
+
+</script>
+</body>
+</html>
