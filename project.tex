@@ -753,6 +753,57 @@ mode is \emph{partial} storage coupling: storage to smooth
 shoulder-season variability and reduce the marginal winter
 peakers, not to replace them.
 
+\paragraph{LDC-based refinement (Phase~3c).} The two-block model
+above is honest about being a rough approximation. With access to
+the actual Wien Energie daily load-duration curve from
+Schubert (2022) [48] (Compass Lexecon 2021 underlying study), we
+re-ran the same optimisation using a 365-day digitised LDC. The
+notebook \texttt{notebooks/t4\_storage\_ldc.py} contains the
+30-sample digitisation and the analysis. Headline differences:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Quantity} & \textbf{Two-block} & \textbf{LDC-based} \\
+\hline
+Annual demand basis                  & 6.0 TWh & 4.9 TWh (Schubert 2040 scenario, post-efficiency) \\
+Peak-day average                     & --- & 1979 MW (peak hour ~2375 MW, matches F2's 2308 MW within 3\%) \\
+Minimum $N$ for full energy balance  & 46     & \textbf{39} \\
+Peak storage volume required         & $23\cdot 10^{6}$~m$^3$ & \textbf{$0.2\cdot 10^{6}$~m$^3$} \\
+60\% partial-coverage $N$            & 26     & 21 \\
+60\% partial-coverage storage        & $\sim 2.6\cdot 10^{6}$~m$^3$ & $\sim 0$ (fits under LDC without seasonal storage) \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{The two-block model dramatically over-estimated storage
+volume} (by a factor of $\sim 100$) because half-year-block
+averaging missed the fact that the LDC is \emph{narrow at the
+peak} (only $\sim 30$ days exceed 30~GWh/d) and \emph{long-tailed
+at the bottom} (most days are at modest demand). A modest
+geothermal baseload ($\sim 39$ doublets) covers most of the LDC
+area, with only a few weeks of summer surplus to be stored.
+\textbf{This is the most important quantitative correction the
+reproducibility loop produced for this case study.}
+
+\textbf{Caveat: this assumes ideal hourly storage charge/discharge
+within the day.} Real HT-ATES has inter-day inertia (hours to charge
+or discharge), so a fully dispatchable model would need finer-than-
+daily resolution. The 0.2 million~m$^3$ headline is therefore a
+\emph{lower bound}; a more realistic operational target (covering
+intra-week variability) is probably in the $1$--$5$ million~m$^3$
+range, still 5--20$\times$ smaller than the two-block estimate.
+
+\textbf{Note on the demand basis.} The Schubert (2022) LDC is a
+\emph{2040 projection} that incorporates Vienna's building-efficiency
+roadmap; the annual total of 4.9~TWh is below the current 6~TWh
+because off-peak demand falls with insulation upgrades, while the
+peak hour ($\sim 2308$~MW current vs.\ $\sim 2375$~MW projected)
+is roughly maintained because peak demand is set by cold-snap
+building heat loss. For a geothermal plant commissioning in 2028
+and operating to $\sim 2058$, the 2040-projection basis is the
+more relevant planning anchor than the current-demand basis.
+
 \paragraph{Partial-coverage scenario (the realistic operating point).}
 A more realistic target is to dimension geothermal+storage so it
 covers $X\%$ of annual demand, with biomass/HP/gas peakers
@@ -928,6 +979,41 @@ $5.74 + 3.58 + 6.78 = 16.10$~M EUR/yr.
 \textbf{Base-case headline:} geothermal LCOH $\sim 17$~EUR/MWh$_{\mathrm{th}}$
 \emph{vs.}\ heat pump $\sim 67$~EUR/MWh$_{\mathrm{th}}$ --- a factor
 $\sim 4$ in favour of geothermal in the base case [conf.\ C, derived].
+
+\paragraph{Curtailment-aware CF (Phase~3c).} The base-case
+$\mathrm{CF}_{\mathrm{geo}}=0.85$ implicitly assumes that all
+geothermal output is utilised when produced --- i.e.\ that summer
+surplus is absorbed by storage. The LDC analysis in thread~4
+shows that \emph{without} storage, geothermal output above demand
+must be curtailed during the LDC's low-demand tail. Effective CF
+under curtailment, from the LDC notebook
+\texttt{t4\_storage\_ldc.py}, is:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{N (doublets)} & \textbf{CF if all output utilised} & \textbf{CF curtailed (no storage)} \\
+\hline
+10  & 0.85 & 0.84 \\
+20  & 0.85 & 0.74 \\
+30  & 0.85 & 0.64 \\
+46  & 0.85 & $\sim 0.52$ \\
+60  & 0.85 & 0.44 \\
+80  & 0.85 & 0.36 \\
+\hline
+\end{tabular}
+\end{center}
+
+For a 46-doublet fleet \emph{without} seasonal storage, $\mathrm{CF}
+\to 0.52$ and the corresponding geothermal LCOH rises to
+$\sim 28$~EUR/MWh$_{\mathrm{th}}$. This is still cheaper than the
+heat pump ($\sim 67$~EUR/MWh), but the ratio narrows from
+$\sim 4\times$ to $\sim 2.4\times$. The headline finding that
+``geothermal is cheaper than heat pumps for Vienna DH'' is
+therefore robust to the no-storage case --- but the size of the
+advantage \emph{depends materially on storage being available}.
+This is the quantitative reason why thread~4 (storage coupling)
+is not a separable design question from this thread~5 analysis.
 
 \paragraph{Sensitivity analysis.} The base-case ordering is robust under
 realistic single-parameter sensitivities; the only way it flips is
@@ -1587,7 +1673,9 @@ Open-loop doublet thermal output (T1)         & 18.8 MW$_{\mathrm{th}}$ at 75~kg
 Coaxial closed-loop retrofit output (T1)       & $\sim 0.6$--$2$ MW$_{\mathrm{th}}$ (Mol/Hinton-class) & B \\
 Doublets to cover Vienna DH demand with storage (T4) & $\sim 46$ (with HT-ATES, $\eta=0.70$) & C \\
 HT-ATES volume required for 100\% coverage (T4) & $\sim 23 \cdot 10^{6}$~m$^3$ (unrealistic) & C \\
-Realistic 60\% coverage target (T4)            & $\sim 26$ doublets, $\sim 2.6 \cdot 10^{6}$~m$^3$ & C \\
+Realistic 60\% coverage target (T4)            & $\sim 26$ doublets, $\sim 2.6 \cdot 10^{6}$~m$^3$ (two-block) & C \\
+\textbf{LDC-based minimum $N$ for full coverage (T4)} & 39 doublets, $\sim 0.2 \cdot 10^{6}$~m$^3$ (much smaller storage) & C \\
+Curtailment-aware CF at $N=46$ no-storage (T5)  & 0.52 (vs.\ 0.85 with storage); LCOH 28 vs.\ 17~EUR/MWh & C \\
 LCOH, geothermal base case (T5)                 & $\sim 17$~EUR/MWh$_{\mathrm{th}}$ & C \\
 LCOH, large heat pump base case (T5)            & $\sim 67$~EUR/MWh$_{\mathrm{th}}$ & C \\
 Thermal breakthrough time, Aspern (T7)          & $\sim 62$~yr & C \\
@@ -1797,13 +1885,15 @@ support files have substantively closed some of the gaps flagged
 earlier:
 \begin{itemize}
 \item \textbf{Wien~Energie hourly DH-demand curve} ---
-\emph{partially closed.} The \texttt{dh-demand.md} file
-identifies the Schubert/Wien~Energie 2022 IEA Bioenergy
-presentation containing a load duration curve and seasonal
-distribution, plus three TU~Wien theses on hourly DH modelling.
-The 2308~MW peak from the Vienna Model documentation [43] is now
-in F2. \emph{Remaining ask:} digitise the load duration curve
-from the PDF (Phase~3 task; doable from public source).
+\emph{closed in Phase~3c.} The Schubert (2022) [48] load duration
+curve has been digitised (30 sample points across the 365-day rank)
+and is in \texttt{notebooks/t4\_storage\_ldc.py}; the 2308~MW
+peak from [43] cross-validates the digitisation to within $\sim 3\%$.
+The LDC analysis substantially refines T4/T5 (storage volume from
+$\sim 23\cdot 10^{6}$~m$^3$ to $\sim 0.2\cdot 10^{6}$~m$^3$;
+N from 46 to 39; curtailment-aware CF documented). The
+\emph{hourly} curve remains proprietary, but daily resolution is
+sufficient for the seasonal-storage question.
 \item \textbf{GeoSphere Austria earthquake catalog} ---
 \emph{CLOSED in Phase~3b.} The script
 \texttt{scripts/geosphere\_extract.py} fetches and dedupes events
@@ -2157,6 +2247,16 @@ U.S.\ Geological Survey, ``ANSS Comprehensive Earthquake Catalog
 catalog. [Online]. Available:
 \texttt{earthquake.usgs.gov/fdsnws/event/1/}.
 [Accessed: May~20, 2026].
+
+\bibitem{ref48}
+T.~Schubert (Wien Energie), ``Wien Energie's vision of a sustainable
+energy and resource supply of Vienna,'' \emph{IEA Bioenergy Task 44
+Workshop}, Nov.\ 23, 2022. [Online; load-duration curve on p.~8 digitised
+into \texttt{notebooks/t4\_storage\_ldc.py}]. Available via Wayback Machine:
+\texttt{web.archive.org/web/20221130163207/https://www.ieabioenergy.com/wp-content/uploads/2022/11/T44Workshop\_SCHUBERT\_presentation.pdf}.
+Underlying source: Compass Lexecon (2021), \emph{W\"arme \& K\"alte,
+Mobilit\"at, Strom: Szenarien f\"ur die Dekarbonisierung des Wiener
+Energiesystems bis 2040}.
 
 \end{thebibliography}
 
