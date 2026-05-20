@@ -533,6 +533,54 @@ era are well below the $M\geq 7$ palaeoseismological upper bound
 [6] --- the catalog confirms that historical seismicity has not
 ``tested'' the high end of what the VBTFS can in principle host.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_seismicity.pdf}
+\caption{Vienna~Basin earthquake catalog 1990--2026, $n = 160$ events
+(EMSC + USGS + GeoSphere, deduped; see \texttt{scripts/geosphere\_extract.py}).
+Marker size scales with magnitude. Colours correspond to DBSCAN clusters
+($\varepsilon = 8$~km, min\_samples $= 5$): \textbf{C0} southern Vienna
+Basin / Ebreichsdorf ($n = 133$), \textbf{C1} Fischamend / east of Aspern
+($n = 13$), \textbf{C2} Marchfeld corner ($n = 6$); grey = noise / isolated.
+Green star: Aspern (planned Wien~Energie geothermal site); red triangle:
+Ebreichsdorf. Dashed green circle: proposed 15~km traffic-light radius.}
+\label{fig:seismicity}
+\end{figure}
+
+\textbf{Spatial clustering refinement (Phase~3e).} Running DBSCAN
+($\varepsilon=8$~km, min\_samples$=5$) on the 160-event catalog
+(notebook \texttt{scripts/seismicity\_clusters.py}) separates the
+Vienna~Basin background seismicity into three clusters
+(Fig.~\ref{fig:seismicity}). Critically:
+\begin{itemize}
+\item \emph{The 10 events closest to Aspern are all in cluster~C1
+(Fischamend area) or are isolated/noise; \emph{none} are in C0
+(Ebreichsdorf).}
+\item \emph{The 10 events closest to Ebreichsdorf are all in C0.}
+\item No DBSCAN cluster contains both Aspern-area and
+Ebreichsdorf-area events.
+\item Within the 15~km Aspern traffic-light zone there are $n=3$
+events (all $M < 2.8$); within the 15~km Ebreichsdorf zone there are
+$n = 50$ events (including $M\,5.3$ Moosbrunn). \emph{The two zones
+do not overlap.}
+\end{itemize}
+
+This refines the T2 traffic-light proposal: the 10~km amber radius
+\emph{cannot} pick up the Ebreichsdorf cluster as background, so the
+amber-trigger rate would actually be lower than the $\sim 1$--$3$~/yr
+basin-wide estimate. Using the Aspern-local cluster (C1) annual rate
+($\sim 13$~events over 36 years, all within $\sim 30$~km of Aspern) and
+narrowing to the 10~km radius, the \emph{local} background is
+$\lesssim 0.2$~$M\geq 1.5$ events/yr. \emph{Any felt event within
+10~km of the doublet would therefore be exceptional against the
+local background, supporting the practical attribution of induced
+seismicity post-startup.}
+
+\textbf{k-means cross-check.} k-means at $k=3$ (silhouette $0.45$)
+identifies one ``Aspern-area'' centroid (24 events, ~15~km from
+Aspern), separate from the larger Ebreichsdorf-area centroid (76
+events). The conclusion is robust to the clustering method.
+
 \textbf{Implications for the traffic-light proposal.} At the
 observed baseline of $\sim 1.35$~$M\geq 3$ events/yr in the
 bbox, the proposed Amber threshold ($1.5 \leq M \leq 2.5$ within
@@ -804,6 +852,20 @@ building heat loss. For a geothermal plant commissioning in 2028
 and operating to $\sim 2058$, the 2040-projection basis is the
 more relevant planning anchor than the current-demand basis.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_ldc.pdf}
+\caption{Left: Wien~Energie load-duration curve (Schubert 2022, [48],
+2040 scenario) digitised to 30~sample points (filled blue), with the
+two-block model overlay (dashed red) and the two candidate baselines
+($N=39$ LDC-optimal, $N=46$ two-block). Right: required storage volume
+as a function of doublet count $N$, computed from the LDC energy
+balance with $\eta = 0.70$ and $\Delta T = 60$~K. The two-block
+estimate of $\sim 23 \cdot 10^{6}$~m$^3$ (dashed red horizontal) is
+$\sim 100\times$ too large.}
+\label{fig:ldc}
+\end{figure}
+
 \paragraph{Partial-coverage scenario (the realistic operating point).}
 A more realistic target is to dimension geothermal+storage so it
 covers $X\%$ of annual demand, with biomass/HP/gas peakers
@@ -1014,6 +1076,19 @@ therefore robust to the no-storage case --- but the size of the
 advantage \emph{depends materially on storage being available}.
 This is the quantitative reason why thread~4 (storage coupling)
 is not a separable design question from this thread~5 analysis.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.80\textwidth]{figures/fig_lcoh.pdf}
+\caption{Levelised cost of heat (LCOH) in EUR/MWh$_{\mathrm{th}}$
+for a Vienna~Basin geothermal doublet (green) vs.\ an Ebswien-class
+large heat pump (pink) under the base case and seven
+single-parameter perturbations, plus a combined ``worst-of-both''
+case (adverse geothermal assumptions vs.\ favourable heat-pump assumption,
+electricity at 50~EUR/MWh). All values reproduced by
+\texttt{notebooks/t5\_lcoh.py}.}
+\label{fig:lcoh}
+\end{figure}
 
 \paragraph{Sensitivity analysis.} The base-case ordering is robust under
 realistic single-parameter sensitivities; the only way it flips is
@@ -1558,6 +1633,21 @@ the lower end of the empirical fault-triggering threshold
 single-doublet Coulomb-stress estimate ($\sim 0.2$--$2$~MPa)
 that already governs the traffic-light proposal.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_halo.pdf}
+\caption{Left: single-doublet thermal halo radius $r_{\mathrm{halo}}(t)$
+on log--log axes (Bodvarsson--Tsang heat balance applied to the
+standard Aspern doublet). Critical inter-doublet separation for
+30-yr no-interference ($D_{\mathrm{crit}}=1.21$~km, dashed red) and
+the hex-grid spacing for $N=40$ in 1500~km$^2$ ($D=3.8$~km,
+dotted green) are shown for context. Right: spatial sketch of the
+40-doublet hex-grid layout with 30-yr thermal halos rendered as
+filled circles ($r = 603$~m). Halos do not touch at this density.
+Both panels reproduced by \texttt{notebooks/t7\_multidoublet.py}.}
+\label{fig:halo}
+\end{figure}
+
 \textbf{Net conclusion for the Vienna Basin 40-doublet vision.}
 At realistic spacings ($> 3$~km), thermal interference is
 negligible; pressure interference is non-zero but
@@ -1749,6 +1839,8 @@ Vienna Basin stress regime at reservoir depth (T2) & normal faulting, $S_v > S_{
 \textbf{Vienna Basin baseline catalog (T2)}     & 160 events (1990--2026), $b\approx 0.65$, rate $1.35$/yr at $M\geq 3$ & A \\
 Largest event in bbox (T2)                       & Moosbrunn 2000-07-11 $M\,5.3$ at 24~km from Aspern & A \\
 Aspern proximity quiet zone (T2)                 & 3 of 160 events within 15~km in 36~yr & A \\
+\textbf{DBSCAN cluster identity (T2)}            & Aspern and Ebreichsdorf in \emph{different} clusters; no overlap of their 15-km zones & C \\
+Local Aspern-area background rate (T2)           & $\lesssim 0.2$ $M\geq 1.5$/yr within 10 km (much lower than basin-wide 4.3/yr) & C \\
 sCO$_2$ vs.\ H$_2$O thermosiphon ratio (T6)      & $\sim 4.6\times$ for sCO$_2$ at Aderklaa-96 conditions & C \\
 sCO$_2$ Brayton-cycle efficiency at $100\,^\circ$C (T6) & $\sim 8$--$12\%$, no advantage vs.\ ORC & B \\
 \hline
@@ -1847,6 +1939,8 @@ to within 1--2\%:
 \texttt{notebooks/t4\_storage\_ldc.py} & T4 & LDC-based refinement (Phase~3c) \\
 \texttt{notebooks/t7\_multidoublet.py} & T7 & multi-doublet thermal/pressure interference (Phase~3d) \\
 \texttt{scripts/geosphere\_extract.py}& T2 & real EMSC + USGS + GeoSphere catalog (Phase~3b) \\
+\texttt{scripts/seismicity\_clusters.py} & T2 & DBSCAN + k-means cluster analysis (Phase~3e) \\
+\texttt{notebooks/figures.py}          & all & generates the 4 PDF figures embedded in this doc \\
 \hline
 \end{tabular}
 \end{center}
