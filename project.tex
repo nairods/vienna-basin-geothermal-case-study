@@ -1484,26 +1484,87 @@ But: closer spacing or higher pumping rates would change this, and
 this is exactly the design-point question Wien~Energie has not
 publicly answered.
 
-\paragraph{Multi-doublet thermal interference --- the 40-doublet
-question.} If $\sim 40$~doublets are deployed across the
-$\sim 1000$--$2000$~km$^2$ of Vienna~Basin hosting the Aderklaa
-Conglomerate, the mean inter-doublet spacing is
-$\sqrt{1500/40}\,\mathrm{km} \approx 6$~km. At that spacing the
-single-doublet breakthrough formula gives
-$t_{\mathrm{TB}}\sim 1000$~yr, but \emph{collective} thermal
-plumes interact much sooner: at 30~yr the cooled rock volume
-around each injector is roughly
+\paragraph{Multi-doublet thermal interference (Phase~3d).} For a
+40-doublet deployment across the $\sim 1500$~km$^2$ Aderklaa
+Conglomerate target area, we re-did the analysis with a proper
+multi-doublet thermal-halo model (notebook
+\texttt{notebooks/t7\_multidoublet.py}). The cooled-rock volume
+around an injector is set by the heat-balance equation
 \[
-V_{\mathrm{cool}} \approx \frac{Q\,t}{1-\phi}\cdot \frac{(\rho c)_{\mathrm{w}}}
-{(\rho c)_{\mathrm{bulk}}} \approx
-\frac{0.075\cdot 9.46\cdot 10^{8}}{0.80}\cdot \frac{4.18}{2.60}
-\approx 1.4 \cdot 10^{8}\;\mathrm{m^3},
+V_{\mathrm{cool}}(t) = Q\,t\,
+\frac{(\rho c)_{\mathrm{w}}}{(\rho c)_{\mathrm{bulk}}}
+\quad\Longrightarrow\quad
+r_{\mathrm{halo}}(t) = \sqrt{\frac{V_{\mathrm{cool}}(t)}{\pi h}}.
 \]
-or a cylindrical thermal halo of $\sim 670$~m radius for
-$h=100$~m. This is much smaller than 6~km, so direct thermal
-interference is \emph{not} a first-order concern at the 40-doublet
-basin scale for $\sim 30$~yr operation --- a useful, non-obvious
-result.
+For the standard Aspern doublet
+($Q = 0.075$~m$^3$/s, $h = 100$~m, $(\rho c)_{\mathrm{w}}/(\rho
+c)_{\mathrm{bulk}} \approx 1.61$) this gives:
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{$t$~[yr]} & \textbf{$r_{\mathrm{halo}}$~[m]} \\
+\hline
+1    & 110  \\
+10   & 348  \\
+20   & 493  \\
+30   & 603  \\
+50   & 779  \\
+100  & 1101 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Critical separation for 30-yr operation.} Two halos
+touch when $D = 2\,r_{\mathrm{halo}}(t_{\mathrm{int}})$, giving
+$t_{\mathrm{int}} \propto D^{2}$. At
+$D = 1$~km: $t_{\mathrm{int}} = 21$~yr (\emph{within plant
+lifetime!}); at $D = 1.5$~km: 46~yr; at $D = 3$~km: 185~yr; at
+$D = 6$~km: 742~yr. The critical separation for 30-yr operation
+is $D_{\mathrm{crit}} = 2\,r_{\mathrm{halo}}(30) = 1.21$~km.
+
+\textbf{40 doublets in 1500~km$^2$.} On a hexagonal grid the
+nearest-neighbour distance is $d_{\mathrm{NN}} = 3.80$~km
+($\sqrt{2A/(N\sqrt{3})}$); on a square grid 6.12~km. Either way
+the safety factor over $D_{\mathrm{crit}}$ is $> 3\times$.
+\emph{Direct thermal interference is not a first-order concern at
+the 40-doublet basin scale for plant-lifetime operation.} The
+geometric upper bound on deployment density at 30-yr
+no-interference is $\sim 1190$~doublets in the same area --- a
+factor of $\sim 30$ above any plausible utility target. Vienna
+Basin geothermal is not space-constrained on these grounds.
+
+\textbf{Cumulative cooled basin fraction.} For $N=40$ doublets
+operated 30~yr, the total cooled volume is $\sim 4.6 \cdot
+10^{9}$~m$^3$ = 3.0\% of the 150~km$^3$ deployment volume; at
+100~yr, $\sim 10\%$. The Vienna Basin would still be far from
+``thermally exhausted'' even on multi-century timescales at the
+proposed deployment density.
+
+\textbf{Pressure interference --- different physics, different
+conclusion.} Hydraulic diffusivity ($\sim 1$~m$^2$/s) is
+$\sim 10^{6}\times$ thermal, so pressure perturbations from each
+doublet reach basin scale within hours to days. But the
+\emph{doublet} pressure field is a dipole (producer + injector)
+so its far-field falls as $\sim 1/D^{2}$ rather than the
+$\sim \ln D$ of a single well. With $Q = 0.075$~m$^3$/s,
+$\mu \approx 2.8 \cdot 10^{-4}$~Pa$\cdot$s, $k \approx
+10^{-13}$~m$^2$, $h = 100$~m, $L = 1.5$~km, $D = 6$~km, the net
+dipole pressure perturbation per neighbour is
+$\Delta p \sim 0.02$~MPa; superposing six hex-grid neighbours
+gives an order-of-magnitude cumulative of $\sim 0.1$~MPa --- at
+the lower end of the empirical fault-triggering threshold
+($\sim 0.01$--$0.1$~MPa) and well within the T2
+single-doublet Coulomb-stress estimate ($\sim 0.2$--$2$~MPa)
+that already governs the traffic-light proposal.
+
+\textbf{Net conclusion for the Vienna Basin 40-doublet vision.}
+At realistic spacings ($> 3$~km), thermal interference is
+negligible; pressure interference is non-zero but
+small-compared-to single-doublet stress effects. The T2
+traffic-light radius of 10~km already covers the multi-doublet
+case. \emph{No new operational constraints emerge from the
+multi-doublet analysis at the proposed deployment density.}
 
 \paragraph{Cooling-induced stress and the thread~2 link.} The
 cooled volume above implies a thermoelastic stress redistribution
@@ -1680,6 +1741,9 @@ LCOH, geothermal base case (T5)                 & $\sim 17$~EUR/MWh$_{\mathrm{th
 LCOH, large heat pump base case (T5)            & $\sim 67$~EUR/MWh$_{\mathrm{th}}$ & C \\
 Thermal breakthrough time, Aspern (T7)          & $\sim 62$~yr & C \\
 Cooling-induced stress at fault km-scale (T7)   & $\sim 0.1$--$1$~MPa over 30~yr & C \\
+\textbf{Multi-doublet thermal halo at 30 yr (T7)} & $r_{\mathrm{halo}}=603$~m; critical spacing $D_{\mathrm{crit}}=1.21$~km; hex-grid 3.8~km at $N=40$ is $3\times$ safe & C \\
+Geometric max doublets in 1500 km$^2$ (T7)       & $\sim 1190$ at $D=D_{\mathrm{crit}}$ ($30\times$ above utility target) & C \\
+Multi-doublet pressure dipole at 6~km (T7)       & $\sim 0.02$~MPa/neighbour, $\sim 0.1$~MPa cumulative & C \\
 Aspern doublet Coulomb stress on AFS faults (T2) & $\sim 0.2$--$2$~MPa over 30~yr; exceeds triggering threshold & C \\
 Vienna Basin stress regime at reservoir depth (T2) & normal faulting, $S_v > S_{H,\max} > S_{h,\min}$ [44] & B \\
 \textbf{Vienna Basin baseline catalog (T2)}     & 160 events (1990--2026), $b\approx 0.65$, rate $1.35$/yr at $M\geq 3$ & A \\
@@ -1780,7 +1844,9 @@ to within 1--2\%:
 \texttt{notebooks/t5\_lcoh.py}        & T5 & all headline values OK ($<0.2\%$ diff) \\
 \texttt{notebooks/t4\_storage.py}     & T4 & all headline values OK ($<1.5\%$ diff) \\
 \texttt{notebooks/t7\_breakthrough.py}& T7 & all headline values OK ($<0.3\%$ diff) \\
-\texttt{scripts/geosphere\_extract.py}& T2 & data-access stub; documents the seed events \\
+\texttt{notebooks/t4\_storage\_ldc.py} & T4 & LDC-based refinement (Phase~3c) \\
+\texttt{notebooks/t7\_multidoublet.py} & T7 & multi-doublet thermal/pressure interference (Phase~3d) \\
+\texttt{scripts/geosphere\_extract.py}& T2 & real EMSC + USGS + GeoSphere catalog (Phase~3b) \\
 \hline
 \end{tabular}
 \end{center}
@@ -1815,6 +1881,12 @@ the actual figure is smaller than the prior rough estimate.
 \emph{swapped}; higher porosity gives \emph{longer} $t_{TB}$
 because $(\rho c)_{\mathrm{bulk}}$ is higher. Corrected to
 $\phi=0.30\to 66$~yr, $\phi=0.10\to 57$~yr.
+\item T7 multi-doublet text had an extra $1/(1-\phi)$ factor in the
+$V_{\mathrm{cool}}$ formula (incorrectly inserted in the original
+prose). The correct heat-balance is
+$V_{\mathrm{cool}} = Q\,t\,(\rho c)_w/(\rho c)_{\mathrm{bulk}}$, giving
+$r_{\mathrm{halo}}(30\,\mathrm{yr}) = 603$~m, not $670$~m as the
+earlier text said. Conclusion unchanged.
 \end{itemize}
 None of the headline-level conclusions change as a result of these
 corrections: geo--HP LCOH ratio is still $\sim 4\times$, full-coverage
