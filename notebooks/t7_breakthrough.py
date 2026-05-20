@@ -98,12 +98,13 @@ print()
 
 # %% [Multi-doublet thermal halo at 30 yr]
 
-# Cooled rock volume per doublet:
-#   V_cool ~ (Q * t / (1 - phi)) * (rho c)_water / (rho c)_bulk
+# Cooled rock volume per doublet (heat-balance form;
+# consistent with notebooks/t7_multidoublet.py after the Phase-3a fix):
+#   V_cool = Q * t * (rho c)_water / (rho c)_bulk
 T_OP_YR = 30.0
 t_op_s = T_OP_YR * 365.25 * 86400
 rhoc_bulk = PHI_BASE * RHOC_WATER + (1 - PHI_BASE) * RHOC_ROCK
-V_cool = (Q_BASE * t_op_s / (1 - PHI_BASE)) * (RHOC_WATER / rhoc_bulk)
+V_cool = Q_BASE * t_op_s * (RHOC_WATER / rhoc_bulk)
 # Thermal halo radius for cylinder of height h:
 R_halo = math.sqrt(V_cool / (math.pi * H_BASE))
 
