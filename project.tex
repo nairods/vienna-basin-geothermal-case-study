@@ -1352,6 +1352,81 @@ during winter peak is the climate concern, HP becomes worse than
 the annual average suggests and the case for geothermal as a
 displacement of winter HP load is strengthened.
 
+\paragraph{Decommissioning provisions and the LCOH (Phase~3j, M8 closed).}
+The T5 base-case LCOH omits end-of-life plug-and-abandon (P\&A) and
+surface-plant decommissioning costs. Under Austrian Mineralrohstoffgesetz
+§159 [49], operators must demonstrate ability to provide a
+\emph{Sicherheitsleistung} (security deposit, bond, or bank guarantee)
+covering all decommissioning costs and surface restoration after the
+end of mining activity. We compute the LCOH impact.
+
+\textbf{Cost components per doublet:}
+\begin{itemize}
+\item Two-well P\&A at $\sim 2.9$~km depth: EUR~$1$--$3$~M per well in
+Austrian / European practice, depending on casing complexity, mud
+properties, and cementing requirements. Central estimate
+EUR~$2$~M/well; both wells = EUR~$4$~M.
+\item Surface-plant decommissioning (heat exchangers, pump houses,
+ATES manifolds, pipelines): EUR~$0.5$--$1.5$~M; central EUR~$1$~M.
+\item Surface restoration: typically modest for industrial-zone
+sites (Aspern's site is already industrial); EUR~$0.2$--$0.5$~M.
+\end{itemize}
+\emph{Central nominal end-of-life decommissioning liability per
+doublet: $\approx$~EUR~$5$--$6$~M (year-30 nominal).}
+
+\textbf{Sinking-fund annuity over 30~yr at $r = 5\%$ discount rate.}
+The future-value annuity factor is
+$s_{30,5\%} = ((1+r)^{30} - 1)/r = 66.44$, so the annual contribution
+that accumulates to EUR~$5$~M at end of life is
+$5 \cdot 10^{6} / 66.44 \approx$ EUR~$75{,}300$/yr per doublet.
+
+\textbf{LCOH impact.} Annual heat per doublet at $\mathrm{CF}=0.85$ is
+$18.8 \cdot 8760 \cdot 0.85 = 140{,}005$~MWh. The decommissioning
+sinking-fund adds
+$75{,}300 / 140{,}005 = $~EUR~$0.54$/MWh$_{\mathrm{th}}$ to the LCOH.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{LCOH variant} & \textbf{EUR/MWh$_{\mathrm{th}}$} & \textbf{$\Delta$ vs base} \\
+\hline
+T5 base case (no P\&A)                & 16.93 & --- \\
++ decommissioning sinking-fund        & 17.47 & +0.54 \\
++ decommissioning + worst-case P\&A 3 M/well + 1.5 M plant & 17.71 & +0.78 \\
++ Worst-of-both (Sceptic C1) + decommissioning & 39.95 & +0.55 vs worst-of-both \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{Decommissioning is a $\sim 3\%$ relative addition to the
+geothermal LCOH and does not change the qualitative geo:HP comparison
+($\sim 4\times$ becomes $\sim 3.8\times$).} Heat-pump LCOH is also
+under-counted in our T5 base case by an analogous amount
+($\sim 0.5$--$1$~EUR/MWh for the HP itself, plus modest electrical
+infrastructure scrap value), so the \emph{ratio} is essentially
+unchanged.
+
+\textbf{Cash-flow (not LCOH) impact.} The total nominal liability for
+a 40-doublet fleet is $40 \cdot 5 \approx$~EUR~$200$~M at end-of-life
+(year 30), corresponding to an annual sinking-fund commitment of
+EUR~$3.0$~M/yr. Under MinroG §159, the \emph{Sicherheitsleistung}
+must be posted upfront (as bond or bank guarantee) at each
+plant's commissioning; it is not the LCOH sinking-fund amount but
+the present-value-recovery commitment. For a sovereign-rated
+utility (Wien~Energie is implicitly backed by Stadt Wien), the
+bond cost is typically $0.5$--$1\%$/yr of the bonded amount, i.e.\
+EUR~$1$--$2$~M/yr fleet-wide --- a separate cost line from the
+sinking fund but of comparable magnitude.
+
+\textbf{Net.} Decommissioning is a real Phase~4-quality finance line,
+not a free option. But at $\sim 0.5$~EUR/MWh LCOH impact and
+$\sim 5$~M~EUR fleet-wide annual financing/sinking commitment, it
+does not change any of the headline conclusions. \emph{We mark M8
+closed; the more interesting Phase~4 follow-up is the dynamic
+financing structure (when do payments start, parent vs project
+guarantee, who holds the bond), which is a legal/finance
+exercise rather than a physics question.}
+
 \paragraph{Probabilistic drilling-risk LCOH (Phase~3h, H2 closed).}
 The T5 sensitivity table treats ``dry-well premium'' as a $+50\%$ CapEx
 markup. A proper Monte Carlo replaces this with a binomial draw over
@@ -2377,10 +2452,17 @@ record. \textbf{H2 (Monte Carlo dry-well) has also been closed} in
 Phase~3h: the geothermal LCOH median stays in 22--34~EUR/MWh across
 $p_{\mathrm{well}} \in \{0.6, 0.75, 0.85, 0.9\}$, and even the
 pessimistic p90 (38 EUR/MWh at $p=0.6$) remains well below the HP
-base case (67). \textbf{Only M8 (decommissioning provisions)}
-remains as a deferred Phase~4 task --- this is a finance/legal
-modelling exercise rather than a physics question and is the
-natural next step for a project-economics consortium.
+base case (67). \textbf{M8 (decommissioning provisions) has now also been closed} in
+Phase~3j: MinroG §159 \emph{Sicherheitsleistung} requirements
+characterised; per-doublet nominal end-of-life liability EUR~5--6~M;
+sinking-fund LCOH impact +0.54~EUR/MWh ($\sim 3\%$ relative) at 5\%
+discount; fleet-wide cash-flow commitment $\sim$EUR~3~M/yr sinking +
+$\sim$EUR~1--2~M/yr bond service. None of the headline conclusions
+change. \emph{All Sceptic CRITICAL/MAJOR and Auditor HIGH/MEDIUM
+items are now closed.} The only remaining deferred work involves
+operator-held data (OMV well inventory, produced-water chemistry,
+helium analyses) that no amount of analytical or literature work
+can substitute for.
 
 \textbf{Auditor ALREADY-COVERED items (10):} the auditor confirmed
 that the document does have a real Vienna~Basin earthquake catalog
