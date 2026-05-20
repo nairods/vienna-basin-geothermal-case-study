@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.4,
+          47.95
+        ]
+      },
+      "properties": {
+        "event_id": "EBR2000",
+        "datetime_utc": "2000-07-11T00:00:00Z",
+        "depth_km": null,
+        "magnitude": 4.8,
+        "magnitude_type": "ML",
+        "region": "Ebreichsdorf",
+        "source": "GeoSphere Austria (formerly ZAMG) catalog; project.tex F5",
+        "felt_intensity": null,
+        "induced_classification": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.4,
+          47.95
+        ]
+      },
+      "properties": {
+        "event_id": "EBR2013A",
+        "datetime_utc": "2013-09-20T00:00:00Z",
+        "depth_km": null,
+        "magnitude": 4.3,
+        "magnitude_type": "ML",
+        "region": "Ebreichsdorf",
+        "source": "GeoSphere Austria; project.tex F5",
+        "felt_intensity": null,
+        "induced_classification": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.4,
+          47.95
+        ]
+      },
+      "properties": {
+        "event_id": "EBR2024",
+        "datetime_utc": "2024-04-14T00:00:00Z",
+        "depth_km": null,
+        "magnitude": 3.0,
+        "magnitude_type": "ML",
+        "region": "Ebreichsdorf (VBTF normal splay)",
+        "source": "GeoSphere Austria; project.tex F5",
+        "felt_intensity": null,
+        "induced_classification": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.85,
+          48.1
+        ]
+      },
+      "properties": {
+        "event_id": "CARNUNTUM_4C",
+        "datetime_utc": "0350-01-01T00:00:00Z",
+        "depth_km": null,
+        "magnitude": 6.5,
+        "magnitude_type": "Mw_est",
+        "region": "Carnuntum (Roman archaeological evidence)",
+        "source": "Hintersberger & Decker 2018 [6]",
+        "felt_intensity": null,
+        "induced_classification": null
+      }
+    }
+  ]
+}

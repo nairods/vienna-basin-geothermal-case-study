@@ -1,0 +1,25 @@
+# Vienna Basin geothermal case study --- reproducibility requirements.
+#
+# All four scripts in notebooks/ and scripts/ run on the Python standard
+# library alone (math, csv, json, urllib, dataclasses, pathlib). No
+# third-party dependencies are needed to reproduce the headline numbers
+# in project.tex.
+#
+# The packages below are OPTIONAL and only needed if you want figures,
+# nicer DataFrames, or geospatial export beyond stdlib GeoJSON.
+
+# Recommended for figures (LCOH, storage, breakthrough sensitivity plots):
+matplotlib>=3.8
+
+# Recommended for the GeoSphere catalog work once real data are loaded:
+pandas>=2.0
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+
+# Optional for jupyter notebook conversion:
+jupytext>=1.16     # to convert the # %% scripts into .ipynb on demand
+jupyter>=1.0       # only if you want to open them as notebooks
+
+# Recommended Python version: 3.10+
+# Tested with: Python 3.14.4 on macOS (Darwin 25.2.0)

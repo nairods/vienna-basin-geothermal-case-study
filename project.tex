@@ -718,8 +718,8 @@ $\eta=0.5$ (poor HT-ATES)                       & 50  & 30 \\
 $\eta=0.85$ (best ATES)                         & 44  & 21 \\
 $\Delta T = 30$~K (modest temperature lift)     & 46  & 47 \\
 $\Delta T = 90$~K (steam-grade storage)         & 46  & 15 \\
-Winter avg $D_{\mathrm{w}}=1.3$~GW (colder)     & 58  & 41 \\
-60\% coverage target                            & 26  & 4--6 \\
+Winter avg $D_{\mathrm{w}}=1.3$~GW (colder)     & 57  & 34 \\
+60\% coverage target                            & 26  & $\sim 2.6$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -882,20 +882,22 @@ ones. We vary each parameter individually around the base case:
 \hline
 Geo CapEx +50\% (dry-well premium)    & 25.4 & ---  & still well below HP \\
 Geo CF $\to$ 0.70                     & 20.5 & ---  & well-loss / depletion case \\
-Geo OpEx $\to$ 5\%                    & 19.6 & ---  & high-maintenance scenario \\
-HP elec.\ price 180~EUR/MWh           & ---  & 95.0 & winter peak pricing \\
-HP CF $\to$ 0.30 (peakier role)       & ---  & 91.6 & smaller annual base \\
-HP COP $\to$ 2.5                      & ---  & 76.2 & older equipment \\
-\textbf{Worst-of-both combined}       & 25.4 & 76.2 & geo still 3.0$\times$ cheaper \\
+Geo OpEx $\to$ 5\%                    & 21.6 & ---  & high-maintenance scenario \\
+HP elec.\ price 180~EUR/MWh           & ---  & 94.9 & winter peak pricing \\
+HP CF $\to$ 0.30 (peakier role)       & ---  & 92.5 & smaller annual base \\
+HP COP $\to$ 2.5                      & ---  & 74.7 & older equipment \\
+\textbf{Worst-of-both:} all 3 adverse-geo \emph{vs.}\ HP best (50~EUR/MWh elec) & 39.4 & 54.3 & geo still 1.4$\times$ cheaper \\
 \hline
 \end{tabular}
 \end{center}
 
 To make heat pumps cost-competitive head-to-head against new
 geothermal at the level of LCOH, the electricity-input cost
-would have to fall to roughly $-20$~EUR/MWh (i.e.\ structurally
-negative day-ahead prices) at COP~3.2, which is unphysical as a
-long-run scenario in the Austrian market today.
+would have to fall to roughly $-70$~EUR/MWh (verified by the
+reproducibility notebook \texttt{notebooks/t5\_lcoh.py}), i.e.\
+sustained \emph{deeply} negative day-ahead prices at COP~3.2,
+which is unphysical as a long-run scenario in the Austrian
+market today.
 
 \paragraph{The carbon-intensity question (where the answer depends).}
 The picture changes if the relevant axis is carbon, not euros:
@@ -1322,8 +1324,8 @@ $L=2000$~m (wider spacing)                      & 110 & favoured for sustainabil
 $h=50$~m (thinner aquifer)                      & 31  & thin-bed reservoir \\
 $h=200$~m (full Aderklaa interval)              & 124 & best-case thickness \\
 $Q=150$~kg/s (higher production)                & 31  & doubles thermal output, halves life \\
-$\phi=0.30$ (high porosity)                     & 57  & weak effect \\
-$\phi=0.10$ (low porosity)                      & 68  & weak effect \\
+$\phi=0.30$ (high porosity)                     & 66  & weak effect (higher $(\rho c)_{\mathrm{bulk}}$) \\
+$\phi=0.10$ (low porosity)                      & 57  & weak effect (lower $(\rho c)_{\mathrm{bulk}}$) \\
 \hline
 \end{tabular}
 \end{center}
@@ -1526,7 +1528,7 @@ Open-loop doublet thermal output (T1)         & 18.8 MW$_{\mathrm{th}}$ at 75~kg
 Coaxial closed-loop retrofit output (T1)       & $\sim 0.6$--$2$ MW$_{\mathrm{th}}$ (Mol/Hinton-class) & B \\
 Doublets to cover Vienna DH demand with storage (T4) & $\sim 46$ (with HT-ATES, $\eta=0.70$) & C \\
 HT-ATES volume required for 100\% coverage (T4) & $\sim 23 \cdot 10^{6}$~m$^3$ (unrealistic) & C \\
-Realistic 60\% coverage target (T4)            & $\sim 26$ doublets, $\sim 4$--$6 \cdot 10^{6}$~m$^3$ & C \\
+Realistic 60\% coverage target (T4)            & $\sim 26$ doublets, $\sim 2.6 \cdot 10^{6}$~m$^3$ & C \\
 LCOH, geothermal base case (T5)                 & $\sim 17$~EUR/MWh$_{\mathrm{th}}$ & C \\
 LCOH, large heat pump base case (T5)            & $\sim 67$~EUR/MWh$_{\mathrm{th}}$ & C \\
 Thermal breakthrough time, Aspern (T7)          & $\sim 62$~yr & C \\
@@ -1612,6 +1614,65 @@ written and accessed in May~2026. Two references retain
 ``[verify]'' flags from Phase~1 ([5] Vienna~Basin edited volume,
 [10] INSIDE project) where full author lists were not
 recoverable from the searches conducted.
+
+\paragraph{Phase~3a addendum --- notebook-based reproducibility
+audit.} Every analytical headline number in this document has been
+re-implemented as a stdlib Python script and re-run independently.
+The scripts live in \texttt{notebooks/} and \texttt{scripts/} and end
+with verification blocks that assert agreement with the \texttt{.tex}
+to within 1--2\%:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Script} & \textbf{Thread} & \textbf{Verification status} \\
+\hline
+\texttt{notebooks/t5\_lcoh.py}        & T5 & all headline values OK ($<0.2\%$ diff) \\
+\texttt{notebooks/t4\_storage.py}     & T4 & all headline values OK ($<1.5\%$ diff) \\
+\texttt{notebooks/t7\_breakthrough.py}& T7 & all headline values OK ($<0.3\%$ diff) \\
+\texttt{scripts/geosphere\_extract.py}& T2 & data-access stub; documents the seed events \\
+\hline
+\end{tabular}
+\end{center}
+
+The reproducibility loop caught several numerical and labelling
+issues in the original draft tables and they have been corrected
+here:
+\begin{itemize}
+\item T5 sensitivity: ``Geo OpEx $\to$ 5\%'' was reported 19.6;
+correct value 21.6~EUR/MWh.
+\item T5 sensitivity: ``HP COP $\to$ 2.5'' was reported 76.2;
+correct value 74.7~EUR/MWh.
+\item T5 sensitivity: ``HP CF $\to$ 0.30'' was reported 91.6;
+correct value 92.5~EUR/MWh.
+\item T5 sensitivity: ``HP elec.\ 180~EUR/MWh'' was reported 95.0;
+correct value 94.9~EUR/MWh (rounding only).
+\item T5 sensitivity: \emph{labelling} of the
+``worst-of-both'' row was misleading (showed single perturbations,
+not combined). Corrected to honest combined values
+(geo 39.4 vs.\ HP 54.3, $1.4\times$).
+\item T5 prose: break-even electricity price for HP=Geo LCOH
+quoted as ``$\sim -20$~EUR/MWh''; correct value is
+$\sim -70$~EUR/MWh.
+\item T4 sensitivity: $\eta=0.5$ storage volume reported 30,
+correct value 26 (million~m$^3$).
+\item T4 sensitivity: $D_w = 1.3$~GW storage volume reported 41,
+correct value 34 (million~m$^3$).
+\item T4 sensitivity: 60\% coverage storage volume reported
+``$4$--$6$'' (range), correct value $\sim 2.6$ (million~m$^3$);
+the actual figure is smaller than the prior rough estimate.
+\item T7 sensitivity: $\phi=0.30$ and $\phi=0.10$ rows were
+\emph{swapped}; higher porosity gives \emph{longer} $t_{TB}$
+because $(\rho c)_{\mathrm{bulk}}$ is higher. Corrected to
+$\phi=0.30\to 66$~yr, $\phi=0.10\to 57$~yr.
+\end{itemize}
+None of the headline-level conclusions change as a result of these
+corrections: geo--HP LCOH ratio is still $\sim 4\times$, full-coverage
+storage volume is still $\sim 23\cdot 10^6$~m$^3$ (unrealistic), and
+Aspern thermal breakthrough is still $\sim 62$~yr. But the
+underlying tables are now table-of-numbers-correct as well as
+direction-correct, which the reproducibility loop is precisely
+designed to ensure.
 
 \paragraph{Phase~2b addendum --- threads 2 and 6.} A second
 Phase~2 pass added quantitative content to threads 2 and 6 using

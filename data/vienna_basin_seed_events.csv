@@ -1,0 +1,5 @@
+event_id,datetime_utc,latitude,longitude,depth_km,magnitude,magnitude_type,region,source,felt_intensity,induced_classification
+EBR2000,2000-07-11T00:00:00Z,47.95,16.4,,4.8,ML,Ebreichsdorf,GeoSphere Austria (formerly ZAMG) catalog; project.tex F5,,
+EBR2013A,2013-09-20T00:00:00Z,47.95,16.4,,4.3,ML,Ebreichsdorf,GeoSphere Austria; project.tex F5,,
+EBR2024,2024-04-14T00:00:00Z,47.95,16.4,,3.0,ML,Ebreichsdorf (VBTF normal splay),GeoSphere Austria; project.tex F5,,
+CARNUNTUM_4C,0350-01-01T00:00:00Z,48.1,16.85,,6.5,Mw_est,Carnuntum (Roman archaeological evidence),Hintersberger & Decker 2018 [6],,
