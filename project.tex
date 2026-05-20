@@ -230,6 +230,57 @@ favourable scenarios.} A full regulatory compliance + finance
 mapping is a deferred Phase~4 task for whoever takes this case
 study forward; the citations [49]--[51] are entry points.
 
+\paragraph{F7 --- European geothermal-DH benchmarks (Phase~3g addition).}
+The Vienna~Basin proposal is not the first European deep-geothermal
+district-heating system; it is calibration-anchored against four
+operating analogues, each at different scale and reservoir type.
+
+\begin{center}
+\begin{tabular}{lllllll}
+\hline
+\textbf{Site} & \textbf{Reservoir} & \textbf{Depth / $T$} & \textbf{Wells / capacity} & \textbf{Households} & \textbf{Online} & \textbf{Conf.} \\
+\hline
+Munich--Riem [52]    & Malm carbonate (karst)      & $> 1500$~m, $<200\,^\circ$C    & 1 doublet / 13~MW$_{\mathrm{th}}$ & Messe + residential & 2004 & B \\
+Bav.\ Molasse fleet  & Malm carbonate              & 2.5--4~km, 90--150~$^\circ$C   & $\sim 25$ plants / $> 360$~MW$_{\mathrm{th}}$ & $\sim 560{,}000$ target 2035 & 2004-- & B \\
+Paris Dogger [30,31] & Bajocian limestone          & 1.5--2~km, 55--85~$^\circ$C    & 34 of 55 doublets / 227~MW$_{\mathrm{th}}$ (2000) & $\sim 210{,}000$ housing units & 1970s-- & A \\
+Reykjav\'{i}k [53]   & Volcanic-hosted hot water   & 0.6--2.85~km, 100--300~$^\circ$C & 93 wells / $\sim 750$~MW$_{\mathrm{th}}$ & $\sim 190{,}000$ users & 1930-- & A \\
+Szeged [54]          & Miocene/Pliocene sandstone  & 1.7--2~km, 90--94~$^\circ$C    & 27 wells / 224~MW$_{\mathrm{th}}$ & 27{,}000 + 500 public  & 2018-- & A \\
+\textbf{Aspern (Vienna)} & Aderklaa Conglomerate / Hauptdolomit & 2--3~km, $\sim 100\,^\circ$C & Stage~1 20~MW$_{\mathrm{th}}$; up to $\sim 120$~MW by 2030 & up to $\sim 200{,}000$ by 2040 & 2028 & A \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{What the comparisons tell us.}
+\begin{itemize}
+\item Aspern reservoir temperatures ($\sim 100\,^\circ$C from the
+Aderklaa Conglomerate at $\sim 2.9$~km) are \emph{lower} than the
+Bavarian Molasse Malm (90--150~$^\circ$C at 2.5--4~km) but
+\emph{higher} than Szeged (90--94~$^\circ$C) and well above the Paris
+Basin Dogger (55--85~$^\circ$C). The Aspern conditions are mid-range
+for European hydrothermal DH --- not unusually challenging.
+\item Per-doublet thermal power (18.8~MW$_{\mathrm{th}}$ frozen for
+Vienna) is well-aligned with Bavarian Molasse plant averages
+($\sim 12$--$25$~MW per plant) and well above Dogger doublets
+($\sim 5$--$10$~MW). Munich--Riem's single 13~MW$_{\mathrm{th}}$
+doublet is the closest in scale to a Vienna~Basin doublet.
+\item The full Bavarian Molasse fleet ($\sim 25$ plants over
+$\sim 20$~years) is the natural operational analogue: same regulatory
+regime, similar reservoir, and a substantial body of public data on
+doublet success rate, scaling (Sauerlach BaSO$_4$), and induced
+seismicity (Poing $M\sim 2.1$). Adopting Bavarian operational lessons
+is the most direct de-risking path for Wien~Energie.
+\item Szeged is the most relevant Pannonian-edge benchmark: lower-T
+sandstone reservoir, replacing $\sim 20\cdot 10^{6}$~m$^3$/yr natural
+gas (39.3~kt~CO$_2$/yr avoided). At the Vienna~Basin 2040 target
+(4~TWh/yr from geothermal+HP), the avoided CO$_2$ would be
+$\sim 800$~kt/yr at gas-CHP-equivalent intensity --- an order of
+magnitude larger.
+\item Reykjav\'ik is the aspirational benchmark: 100 years of
+operation, 4~kW thermal per user. Vienna's long-term aspiration
+($\sim 200{,}000$ households at $\sim 5$--$10$~kW each) is
+geographically realistic by this ratio.
+\end{itemize}
+
 \paragraph{Cross-thread numerical conventions.} Subsequent threads
 should use the following \emph{frozen} reference values unless
 they explicitly note a deviation:
@@ -1213,6 +1264,39 @@ during winter peak is the climate concern, HP becomes worse than
 the annual average suggests and the case for geothermal as a
 displacement of winter HP load is strengthened.
 
+\paragraph{HP-weighted electricity price refinement (Phase~3g addition).}
+The T5 base case uses a flat $90$~EUR/MWh wholesale electricity input.
+The Austrian hourly Ember dataset [42] (\texttt{scripts/austria\_price\_stats.py},
+99{,}788 hourly points 2015--2026) reveals a systematic
+\emph{HP-weighted} premium because heat pumps consume electricity in
+winter evenings, when prices are highest:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Year} & \textbf{Unweighted mean (EUR/MWh)} & \textbf{HP-weighted mean (EUR/MWh)} \\
+\hline
+2023 & 102.1 & 110.5 (+8.2\%) \\
+2024 &  81.2 &  90.5 (+11.4\%) \\
+2025 &  99.1 & 113.2 (+14.2\%) \\
+\hline
+\end{tabular}
+\end{center}
+
+The HP-weighted-2025 price of 113~EUR/MWh shifts the heat-pump LCOH
+to $\sim 74$~EUR/MWh (vs the T5 base-case 67). The geothermal LCOH
+(midpoint 17~EUR/MWh) is unaffected since deep geothermal doesn't
+consume grid electricity. \emph{The geo:HP ratio therefore widens
+under the realistic time-weighted price} from $\sim 4\times$ to
+$\sim 4.4\times$ (or $\sim 2.6$--$5.5\times$ across the full
+geothermal-CapEx range). Diurnal price pattern confirms the
+mechanism: 2024--2025 hour-19 local average is 130~EUR/MWh,
+hour-13 local is 56~EUR/MWh --- a $2.3\times$ peak/trough ratio that
+HPs cannot avoid because their thermal output must coincide with
+demand. The 2025 winter average (119~EUR/MWh) is the most aggressive
+sustained price an HP would face in operation, and even there the
+geothermal advantage holds.
+
 \paragraph{Gas-CHP counterfactual and EU ETS (Phase~3f addition).}
 The geo--HP comparison above omits the \emph{incumbent} technology
 being displaced: gas combined heat and power, which supplies
@@ -2112,10 +2196,16 @@ empirical Vienna~Basin Li data exist (T3's central gap).
 (M7), decommissioning provisions (M8), an expanded comparison table
 of European DH-with-geothermal sites (M9), climate-change feedback on
 heat demand (M10), explicit Wien~Energie/OMV stakeholder positions
-(M11), and the ENTSO-E hourly extraction (M12) are all genuine gaps.
-M9, M10, and M12 are the most cost-effective Phase~4 additions
-(each is a single-day analytical or data-fetch task). M7 (InSAR
-subsidence estimate) is the most physics-interesting follow-up.
+(M11), and the ENTSO-E hourly extraction (M12). \textbf{M9 and M12 have
+now been closed in Phase~3g:} the F7 foundation block adds a comparison
+table covering Munich--Riem, Bavarian Molasse, Paris Dogger, Reykjav\'ik,
+and Szeged; the T5 thread adds the HP-weighted hourly-price refinement
+using the Ember 99{,}788-point Austrian hourly dataset
+(\texttt{scripts/austria\_price\_stats.py}), confirming the geo:HP
+advantage \emph{widens} from $\sim 4\times$ to $\sim 4.4\times$ under
+realistic time-weighted electricity pricing. M7 (InSAR subsidence),
+M8 (decommissioning), M10 (climate-change demand) and M11 (stakeholder
+positions) remain genuine deferred Phase~4 tasks.
 
 \textbf{Auditor ALREADY-COVERED items (10):} the auditor confirmed
 that the document does have a real Vienna~Basin earthquake catalog
@@ -2157,6 +2247,7 @@ to within 1--2\%:
 \texttt{notebooks/t7\_multidoublet.py} & T7 & multi-doublet thermal/pressure interference (Phase~3d) \\
 \texttt{scripts/geosphere\_extract.py}& T2 & real EMSC + USGS + GeoSphere catalog (Phase~3b) \\
 \texttt{scripts/seismicity\_clusters.py} & T2 & DBSCAN + k-means cluster analysis (Phase~3e) \\
+\texttt{scripts/austria\_price\_stats.py} & T5 & hourly Austrian wholesale prices, HP-weighted refinement (Phase~3g) \\
 \texttt{notebooks/figures.py}          & all & generates the 4 PDF figures embedded in this doc \\
 \hline
 \end{tabular}
@@ -2659,6 +2750,35 @@ Federal Ministry for Climate Action, Republic of Austria,
 EIA Act),'' BGBl.\ Nr.\ 697/1993 as amended; deep-geothermal-relevant
 Annex~1 thresholds. [Online]. Available:
 \texttt{ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen\&Gesetzesnummer=10010767}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref52}
+ThinkGeoEnergy / Stadtwerke M\"unchen, ``Heating with geothermal ---
+the ambitious plans of Munich, Germany'' and ``Munich targeting
+geothermal district heating for 560,000 households''; Geothermie-Allianz
+Bayern overview pages. Munich--Riem plant: 13~MW$_{\mathrm{th}}$,
+operating since 2004, Malm carbonate aquifer below 1500~m.
+[Online]. Available: \texttt{thinkgeoenergy.com}, \texttt{geothermie-allianz.de/en/geothermal-in-bavaria/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref53}
+Orkuveita Reykjav\'ikur, ``District heating in Reykjav\'ik and electrical
+production using geothermal energy''; Gunnlaugsson, ``Geothermal
+district heating in Reykjav\'ik'' (Stanford / IGA Standard 2004);
+Wikipedia ``Geothermal power in Iceland.'' 750~MW$_{\mathrm{th}}$
+installed, 93 wells, $\sim 190{,}000$ users, T 100--300~$^\circ$C,
+depths 0.6--2.85~km, world's largest municipal geothermal DH.
+[Accessed: May~20, 2026].
+
+\bibitem{ref54}
+EU Covenant of Mayors / Szegedi Tav\"of\H{u}t\H{o} ZRT.\ (SZETAV),
+``Szeged implements Europe's largest geothermal district-heating
+renovation''; \emph{European Geologist Journal 43} (Osvald);
+\texttt{geotherm.szetav.hu}. 224~MW$_{\mathrm{th}}$, 27 wells, 16
+heating plants, 250~km network, 27{,}000+ households, 1.7--2~km wells
+at 90--94~$^\circ$C in Miocene/Pliocene sandstone (Pannonian Basin),
+fully online 2018. CO$_2$ saving 39.3~kt/yr replacing $\sim 20$~Mm$^3$
+natural gas annually.
 [Accessed: May~20, 2026].
 
 \end{thebibliography}
