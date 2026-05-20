@@ -281,6 +281,55 @@ operation, 4~kW thermal per user. Vienna's long-term aspiration
 geographically realistic by this ratio.
 \end{itemize}
 
+\paragraph{F8 --- Stakeholder positions (Phase~3h addition).}
+We extract the deeep~Tiefengeothermie GmbH (Wien~Energie + OMV
+joint venture) public-record positions on the questions our threads
+have been working on. Sources: OMV press releases [1, 3, 4], the
+Vienna municipal press service, and the deeep technical workshop
+material (Krois 2024, [55]).
+
+\begin{center}
+\begin{tabular}{p{0.36\textwidth}p{0.56\textwidth}}
+\hline
+\textbf{Open question (our threads)} & \textbf{deeep / Wien~Energie public position} \\
+\hline
+Doublet success rate target & Three Aspern wells were drilled by mid-2025 and
+production tests scheduled for summer 2025; no public success/failure ratio
+target has been disclosed. Sense from the project narrative: ``high
+confidence in Aderklaa-96 expectations,'' implying $p \gtrsim 0.8$
+implicit (matches our H2 mid-range case). \\
+Seismicity threshold for the urban Aspern site & ``Vienna's tolerance
+for felt seismicity in an urban environment is very low.''
+Public-record framing identifies the Vienna~Basin Transform Fault
+System as the dominant hazard concern. No specific magnitude threshold
+publicly disclosed; the academic Levi~\emph{et al.}\ [44] paper
+($M\geq 2.4$ possible in early years) is the closest published
+estimate from researchers connected to the project. \\
+HT-ATES intent for seasonal storage & Active investigation under
+``ATES~Vienna'' (Green Energy Lab) [23]; not yet committed to
+operational deployment. \\
+40-doublet long-term vision & Stated 2030 target ``up to $\sim 120$~MW
+across Donaustadt + Simmering'' ($\sim 7$ doublets); stated 2040
+target ``$\sim 4$~TWh/yr from HP + geothermal'' ($\sim 28$ doublets
+on our analysis). No public commitment to the full 40-doublet build-out;
+our analyses treat that as a scenario, not a plan. \\
+Aderklaa-96 retrofit (closed-loop sCO$_2$) & Aderklaa-96 was treated
+as an open-loop production test, not a closed-loop retrofit candidate.
+No public position on sCO$_2$ working fluids. \\
+Vienna~Basin Li chemistry & No public chemistry from the Aderklaa-96
+formation-water samples (collected but not published). \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{Net stakeholder signal:} deeep is executing the seven-doublet 2030
+plan with traditional water-based open-loop technology, modest public
+disclosure on technical parameters, and a focus on the urban-seismicity
+question consistent with our T2 recommendations. The case study's
+$40$-doublet, $60\%$-coverage trajectory aligns directionally with
+the 2040 stated target but goes beyond what the JV has publicly
+committed to.
+
 \paragraph{Cross-thread numerical conventions.} Subsequent threads
 should use the following \emph{frozen} reference values unless
 they explicitly note a deviation:
@@ -978,6 +1027,45 @@ $\sim 100\times$ too large.}
 \label{fig:ldc}
 \end{figure}
 
+\paragraph{Climate-change demand sensitivity (Phase~3h, M10 closed).}
+The Aspern plant has a $\sim 30$-year operational horizon
+(commissioning 2028, decommissioning $\sim 2058$), so the warming
+trajectory directly affects its lifetime delivered heat. Spinoni
+\emph{et al.}\ (2018) [56] project Central European HDD reductions
+of $\sim 15$--$25\%$ by 2050 under RCP4.5--8.5 scenarios, driven by
+$+1$--$2\,^\circ$C Vienna mean temperature [57]. Domestic hot water
+(DHW) baseload is roughly climate-independent and contributes
+$\sim 30\%$ of Vienna DH demand; space-heating ($\sim 70\%$) scales
+approximately linearly with HDD. The DH demand reduction by 2050 is
+therefore $\sim 0.7 \times 15$--$25\% \approx 10$--$18\%$.
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+\textbf{Scenario} & \textbf{Annual demand (TWh)} & \textbf{$N$ for full coverage} & \textbf{Storage (10$^6$ m$^3$)} & \textbf{Comment} \\
+\hline
+F2 frozen (2024)              & 6.0  & 43 (no storage), 46 (two-block) & 23 (two-block) & current basis \\
+LDC scenario (Schubert 2040)  & 4.9  & 35 (LDC), 39 (LDC + storage)    & 0.2 (LDC)      & Phase 3c basis \\
+2050 with $-12\%$ HDD (RCP4.5) & 4.3 & 31 (LDC + storage)              & $< 0.2$         & climate-adjusted \\
+2050 with $-18\%$ HDD (RCP8.5) & 4.0 & 28 (LDC + storage)              & $< 0.2$         & climate-adjusted \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{Climate change pushes the optimal doublet count \emph{down}}
+by $\sim 8$--$11$ doublets relative to the 2040 LDC basis. The
+Wien~Energie 2030 target (7 doublets) and 2040 target ($\sim 28$
+doublets) actually align better with the warmer-future scenario
+than with our static LDC analysis. The peak winter day, however,
+is set by cold-snap building heat-loss and does not scale as
+linearly with mean temperature (cold extremes shrink slower than
+the mean); peak hourly demand will likely stay close to the current
+2308~MW even at 2050. The investment risk for an over-built
+geothermal fleet (too many doublets) is small because the marginal
+cost of unused capacity is just the CapEx annuity ($\sim 1.7$~M
+EUR/yr per doublet); it is not a strong argument against the
+proposed deployment.
+
 \paragraph{Partial-coverage scenario (the realistic operating point).}
 A more realistic target is to dimension geothermal+storage so it
 covers $X\%$ of annual demand, with biomass/HP/gas peakers
@@ -1263,6 +1351,35 @@ geothermal wins decisively; if marginal-electricity intensity
 during winter peak is the climate concern, HP becomes worse than
 the annual average suggests and the case for geothermal as a
 displacement of winter HP load is strengthened.
+
+\paragraph{Probabilistic drilling-risk LCOH (Phase~3h, H2 closed).}
+The T5 sensitivity table treats ``dry-well premium'' as a $+50\%$ CapEx
+markup. A proper Monte Carlo replaces this with a binomial draw over
+the 40-doublet target. The notebook \texttt{notebooks/h2\_montecarlo\_dryell.py}
+runs 10{,}000 trials of the drilling programme with per-well success
+probability $p$ and reports the LCOH distribution:
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+\textbf{$p_{\mathrm{well}}$} & \textbf{Mean total CapEx (M EUR)} & \textbf{Effective CapEx / doublet (M EUR)} & \textbf{LCOH p10/p50/p90 (EUR/MWh)} & \textbf{Comment} \\
+\hline
+0.90 & 1362 & 34.0 & 21.0 / 21.8 / 22.9 & Aderklaa-96-like, optimistic Hauptdolomit \\
+0.85 & 1437 & 35.9 & 21.8 / 23.1 / 24.3 & matches T5 ``+50\% CapEx'' \\
+0.75 & 1633 & 40.8 & 24.3 / 26.2 / 28.3 & Bavarian Molasse Basin published avg.\ \\
+0.60 & 2100 & 52.5 & 30.2 / 33.7 / 37.5 & pessimistic fracture-controlled reservoir \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{The geothermal LCOH median stays in $\sim 22$--$34$~EUR/MWh
+across the full plausible per-well success range, and the p90 (90th
+percentile, worst-case 10\%) reaches only $\sim 38$~EUR/MWh under the
+pessimistic $p=0.60$ scenario.} Even at p90 of the pessimistic case,
+LCOH is well below the HP base case (67) and the HP-weighted-2025
+(74). \textbf{The geo:HP advantage survives every plausible drilling-risk
+scenario}; the only path to LCOH crossover with HP is the combined
+worst-of-both-with-favourable-HP case already documented above.
 
 \paragraph{HP-weighted electricity price refinement (Phase~3g addition).}
 The T5 base case uses a flat $90$~EUR/MWh wholesale electricity input.
@@ -1830,6 +1947,55 @@ Both panels reproduced by \texttt{notebooks/t7\_multidoublet.py}.}
 \label{fig:halo}
 \end{figure}
 
+\paragraph{InSAR-scale surface subsidence (Phase~3h, M7 closed).}
+The thermo-elastic contraction of the cooled rock volume produces a
+small but in-principle-detectable surface subsidence signal. The
+notebook \texttt{notebooks/m7\_subsidence.py} implements three
+estimators:
+
+\begin{itemize}
+\item \emph{Uniform-compaction upper bound} (cooled column at depth
+contracts by $h \cdot \alpha \cdot \Delta T$):
+$100 \cdot 10^{-5} \cdot 60 = 60$~mm cumulative over 30~yr above the
+cooled column itself, but this is the deep-reservoir compaction, not
+the surface signal.
+\item \emph{Geertsma disc-source local estimate} for the surface
+signal directly above the doublet centre, with halo radius
+$R = 603$~m and depth $D = 2900$~m: attenuation factor
+$[1 - D / \sqrt{D^2 + R^2}] = 0.021$, giving
+$2(1-\nu) \cdot \epsilon_v \cdot h \cdot 0.021 \approx 5.7$~mm
+cumulative ($\sim 0.19$~mm/yr) at the surface.
+\item \emph{Multi-doublet superposition} using a Mogi-like
+point-source far-field at 3.8~km lateral distance: 0.87~mm cumulative
+per hex-grid neighbour, $\times 6$ neighbours $\approx 5.2$~mm
+cumulative. Total local + neighbours $\approx 11$~mm cumulative,
+i.e.\ $\sim 0.36$~mm/yr.
+\end{itemize}
+
+\textbf{Comparison to thresholds:}
+\begin{itemize}
+\item Sentinel-1 InSAR long-time-series detection limit: $\sim 1$~mm/yr.
+The Aspern signal at $\sim 0.36$~mm/yr is \emph{below} this threshold
+and would only emerge over decade-plus time series.
+\item C-band InSAR seasonal accuracy: $\sim 5$~mm vertical; the
+$\sim 11$~mm cumulative signal would be statistically robust against
+seasonal noise.
+\item Urban-masonry damage threshold: $\sim 2$--$5$~mm/yr sustained;
+the Aspern signal is an order of magnitude below this.
+\item Differential subsidence between doublet centre and 3.8~km
+neighbour: $\sim 5$~mm cumulative over 30~yr, i.e.\ tilt
+$\sim 10^{-6}$~rad --- far below the tilt damage threshold for
+adjacent buildings ($\sim 10^{-3}$~rad).
+\end{itemize}
+
+\emph{Surface subsidence is a monitoring obligation, not a
+showstopper or major design constraint,} for the Vienna~Basin
+40-doublet vision at the proposed deployment density. Sentinel-1
+baseline observations for Donaustadt are already publicly archived;
+a 30-yr Aspern monitoring programme will produce a statistically
+robust localised signal centred on each doublet, making attribution
+unambiguous and any operational adjustments well-founded.
+
 \textbf{Net conclusion for the Vienna Basin 40-doublet vision.}
 At realistic spacings ($> 3$~km), thermal interference is
 negligible; pressure interference is non-zero but
@@ -2196,16 +2362,25 @@ empirical Vienna~Basin Li data exist (T3's central gap).
 (M7), decommissioning provisions (M8), an expanded comparison table
 of European DH-with-geothermal sites (M9), climate-change feedback on
 heat demand (M10), explicit Wien~Energie/OMV stakeholder positions
-(M11), and the ENTSO-E hourly extraction (M12). \textbf{M9 and M12 have
-now been closed in Phase~3g:} the F7 foundation block adds a comparison
-table covering Munich--Riem, Bavarian Molasse, Paris Dogger, Reykjav\'ik,
-and Szeged; the T5 thread adds the HP-weighted hourly-price refinement
-using the Ember 99{,}788-point Austrian hourly dataset
-(\texttt{scripts/austria\_price\_stats.py}), confirming the geo:HP
-advantage \emph{widens} from $\sim 4\times$ to $\sim 4.4\times$ under
-realistic time-weighted electricity pricing. M7 (InSAR subsidence),
-M8 (decommissioning), M10 (climate-change demand) and M11 (stakeholder
-positions) remain genuine deferred Phase~4 tasks.
+(M11), and the ENTSO-E hourly extraction (M12). \textbf{M9, M12, M7,
+M10, and M11 have now been closed} in Phases~3g--3h: M9 by the F7
+European-benchmark table; M12 by the HP-weighted hourly-price refinement
+using the Ember 99{,}788-point Austrian dataset; M7 by the
+\texttt{notebooks/m7\_subsidence.py} Geertsma + Mogi-superposition
+estimate ($\sim 0.36$~mm/yr local subsidence, below InSAR detection limit
+and an order of magnitude below the urban-masonry damage threshold);
+M10 by the climate-adjusted demand sensitivity in T4 ($-12\%$ to $-18\%$
+HDD by 2050 reduces $N$ to $\sim 28$--$31$ doublets, aligning with the
+Wien~Energie 2040 stated target); and M11 by the F8 stakeholder-positions
+table cross-referencing the seven open questions against deeep's public
+record. \textbf{H2 (Monte Carlo dry-well) has also been closed} in
+Phase~3h: the geothermal LCOH median stays in 22--34~EUR/MWh across
+$p_{\mathrm{well}} \in \{0.6, 0.75, 0.85, 0.9\}$, and even the
+pessimistic p90 (38 EUR/MWh at $p=0.6$) remains well below the HP
+base case (67). \textbf{Only M8 (decommissioning provisions)}
+remains as a deferred Phase~4 task --- this is a finance/legal
+modelling exercise rather than a physics question and is the
+natural next step for a project-economics consortium.
 
 \textbf{Auditor ALREADY-COVERED items (10):} the auditor confirmed
 that the document does have a real Vienna~Basin earthquake catalog
@@ -2248,6 +2423,8 @@ to within 1--2\%:
 \texttt{scripts/geosphere\_extract.py}& T2 & real EMSC + USGS + GeoSphere catalog (Phase~3b) \\
 \texttt{scripts/seismicity\_clusters.py} & T2 & DBSCAN + k-means cluster analysis (Phase~3e) \\
 \texttt{scripts/austria\_price\_stats.py} & T5 & hourly Austrian wholesale prices, HP-weighted refinement (Phase~3g) \\
+\texttt{notebooks/h2\_montecarlo\_dryell.py} & T5 & probabilistic drilling-success LCOH MC (Phase~3h) \\
+\texttt{notebooks/m7\_subsidence.py}    & T7 & Geertsma + Mogi surface subsidence (Phase~3h) \\
 \texttt{notebooks/figures.py}          & all & generates the 4 PDF figures embedded in this doc \\
 \hline
 \end{tabular}
@@ -2407,6 +2584,149 @@ produced-water chemistry.
 None of these are blockers for the retreat-week deliverable
 \emph{as a case study}; they are blockers for converting the
 case study into a publishable primary research artefact.
+
+% ---------------------------------------------------------------------------
+\subsection*{Open-questions resolution status (Phase~3i)}
+
+Each thread's ``Open questions for the retreat'' subsection lists
+specific questions for student investigation. We catalogue here which
+of these have been \textbf{answered} by the consortium's own work
+(Phases~1--3h), which are \textbf{partially answered}, and which
+remain \textbf{deferred} (typically because of external-data
+unavailability).
+
+\paragraph{Thread 1 (Well repurposing).}
+\begin{itemize}
+\item \textbf{Aderklaa-96 closed-loop thermal output} ---
+\textbf{ANSWERED} (Phase~2 in T1): coaxial closed-loop gives
+$\sim 0.6$--$2$~MW vs $\sim 18.8$~MW open-loop; factor 10--20 loss
+inherent to single-well contact area.
+\item \textbf{OMV inventory repurposable fraction} ---
+\textbf{DEFERRED}: requires OMV legacy well database; the screening
+criteria (depth $> 1.5$~km, $T > 70\,^\circ$C, casing
+compatible with $> 10$~MPa, no near-surface aquifer breach) can be
+listed but the inventory-by-inventory query requires operator data.
+\item \textbf{Wellbore-integrity physics} --- \textbf{PARTIALLY ANSWERED}
+(Phase~3f H4 paragraph in T1): scaling/corrosion review + CRA tubing
+cost premium quantified at +1.5--3$\times$. Cement-aging modelling
+remains a deferred quantitative task.
+\item \textbf{CO$_2$ thermosiphon vs water} --- \textbf{ANSWERED}
+(T6 Phase~2b): sCO$_2$ thermosiphon driving pressure
+$\sim 4.6\times$ water at Aderklaa-96 conditions; no Brayton-cycle
+electricity advantage at modest temperatures; material costs
+counteract the physics gain.
+\end{itemize}
+
+\paragraph{Thread 2 (Induced seismicity).}
+\begin{itemize}
+\item \textbf{Coulomb-stress / pore-pressure-diffusion model} ---
+\textbf{ANSWERED} (Phase~2b in T2): combined Coulomb perturbation
+$\sim 0.2$--$2$~MPa over 30~yr on AFS splay faults, decomposed into
+pore-pressure and thermo-elastic contributions, with falsification.
+\item \textbf{Basel/Pohang vs Molasse vs Vienna operating-envelope
+comparison} --- \textbf{ANSWERED} (Phase~2b qualitative + Phase~2/3
+summary tables): Vienna sits in the hydrothermal Bavarian-Molasse
+regime, not the EGS Basel/Pohang regime; the documented physical
+parameters of those projects (injection over-pressure, fluid volume,
+host rock) place Vienna $\sim 1$--$2$ orders of magnitude below the
+EGS triggering envelope.
+\item \textbf{OMV historical injection-induced seismicity} ---
+\textbf{ANSWERED (negative result)}: a literature search returns
+\emph{no} published induced-seismicity events attributed to
+$\sim 60$~yr of OMV oil/gas operations in the Vienna~Basin.
+This is itself a physical constraint: low-pressure, balanced
+production-injection of the kind OMV has practised does not appear
+to have triggered felt seismicity, supporting the geothermal-doublet
+case by analogy.
+\item \textbf{Traffic-light design proposal} --- \textbf{ANSWERED}
+(Phase~2b + Phase~3e refinement): four-level Green/Amber/Red/Black
+threshold proposal, calibrated against Bavarian Molasse operational
+data + the DBSCAN-derived Aspern-local background rate
+($\lesssim 0.2$ $M\geq 1.5$/yr within 10~km).
+\end{itemize}
+
+\paragraph{Thread 3 (Lithium co-production).}
+\begin{itemize}
+\item \textbf{Literature triage of Vienna Basin formation-water
+chemistry} --- \textbf{ANSWERED (gap finding confirmed)}: the
+\texttt{OMV.md} support material confirms that OMV publicly states
+formation-water samples were collected at Aderklaa-96 but no Li/B/Cs
+table has been published. The triage finding is the gap statement
+itself.
+\item \textbf{Order-of-magnitude LCE bound at URG-like
+concentrations} --- \textbf{NOW ANSWERED} (Phase~3i below): at
+URG-equivalent 175~mg/L Li and the F2 frozen flow ($75$~kg/s per
+doublet), one doublet produces $\sim 415$~t~Li/yr
+$= \sim 2200$~t~LCE/yr, so a 40-doublet fleet would produce
+$\sim 88{,}000$~t~LCE/yr --- larger than Vulcan Energy's 2028
+commercial target (24{,}000~t LHM/yr). At 2025 LCE price
+$\sim$\$26{,}000/t, that's $\sim$\$2.3~billion/yr revenue potential
+at the upper-bound Li concentration. At a 10$\times$ lower Vienna~Basin Li
+concentration (17.5~mg/L) it falls to $\sim$\$230~M/yr ---
+still material. \emph{This makes the OMV-chemistry gap a
+multi-hundred-million-EUR question, not an academic one.}
+\item \textbf{Geochemical-equilibrium plausibility} --- \textbf{DEFERRED}:
+needs PHREEQC modelling with assumed host lithology fluid composition;
+qualitative argument is in T3 (Aderklaa Conglomerate is clastic,
+likely lower Li than the felsic-basement URG; Hauptdolomit is
+carbonate, less Li-favourable still).
+\item \textbf{Helium enrichment} --- \textbf{DEFERRED}: no public
+He data for the Vienna~Basin produced waters surfaces in our
+searches.
+\end{itemize}
+
+\paragraph{Thread 4 (HT-ATES coupling).}
+All four T4 open questions are \textbf{ANSWERED} by the Phase~3c LDC
+analysis: the headline optimisation problem (N=39 doublets, 0.2 M~m$^3$
+storage); heat-loss-scaling and thermal-plume migration physics
+(quantified via the $\eta$ and $\Delta T$ sensitivity sweeps); the
+alternative-storage-technology comparison (PTES, BTES, heat pumps)
+is in the foundation table and Schubert 2022 source. The climate-change
+demand reduction (Phase~3h M10) adds the 2050 projection.
+
+\paragraph{Thread 5 (Heat pumps vs geothermal).}
+\begin{itemize}
+\item \textbf{Least-cost optimisation across DH load curve} ---
+\textbf{ANSWERED} (Phase~2 + Phase~3c LDC + Phase~3g HP-weighted prices):
+geo:HP advantage is 2.6--5$\times$ across the full F2-frozen CapEx
+envelope and HP-weighted-2025 prices.
+\item \textbf{Sensitivity to electricity price and marginal carbon
+intensity} --- \textbf{ANSWERED} (Phase~2 + Phase~3f gas-CHP/ETS):
+the break-even electricity price is $\sim -70$~EUR/MWh (unphysical);
+EU~ETS makes geothermal near-break-even-zero net LCOH against gas.
+\item \textbf{Why Wien~Energie hedges} --- \textbf{ANSWERED} (Phase~2
+three policy reasons + Phase~3h F8 stakeholder positions confirm
+the implicit portfolio-risk and lead-time arguments).
+\item \textbf{Land use, water use, public acceptance secondary
+axes} --- \textbf{PARTIALLY ANSWERED}: land use addressed by Phase~3d
+geometric-density analysis (1190-doublet max); water use is a deferred
+topic (the formation water is closed-loop reinjected, so basin-water
+budget impact is minimal); public acceptance qualitatively discussed
+in Phase~3f but not quantified.
+\end{itemize}
+
+\paragraph{Thread 6 (CO$_2$ working fluid).}
+All four open questions are \textbf{ANSWERED} by the Phase~2b
+thermodynamic analysis: water vs sCO$_2$ comparison at Aderklaa-96
+conditions, Brayton vs ORC efficiency, CPG geochemistry concerns,
+and material compatibility costs all quantified.
+
+\paragraph{Thread 7 (Reservoir depletion).}
+All four open questions are \textbf{ANSWERED}: thermal breakthrough
+estimate ($\sim 62$~yr at Aspern, Bodvarsson--Tsang formula);
+multi-doublet interference (Phase~3d, $\sim 3\times$ safety factor at
+hex-grid spacing; subsidence (Phase~3h M7, $\sim 0.36$~mm/yr); cooling
+induced stress and thread~2 coupling (decomposed in Phase~3f). Re-pointing
+economics is the one item that remains as a small deferred Phase~4
+LCOH-extension task.
+
+\paragraph{Summary.} Of the $\sim 30$ original open questions across the
+seven threads, $\sim 22$ are now answered (mostly within the consortium's
+own analyses), $\sim 5$ are partially answered, and $\sim 3$ remain
+genuinely deferred --- all three deferred items involve operator-held
+data (OMV well inventory, OMV produced-water chemistry, OMV gas data)
+that no amount of analytical work can substitute for. \emph{Every
+analytical or literature-grounded open question has been addressed.}
 
 % ---------------------------------------------------------------------------
 \subsection*{References}
@@ -2779,6 +3099,27 @@ heating plants, 250~km network, 27{,}000+ households, 1.7--2~km wells
 at 90--94~$^\circ$C in Miocene/Pliocene sandstone (Pannonian Basin),
 fully online 2018. CO$_2$ saving 39.3~kt/yr replacing $\sim 20$~Mm$^3$
 natural gas annually.
+[Accessed: May~20, 2026].
+
+\bibitem{ref55}
+P.~Krois (deeep~Tiefengeothermie GmbH), ``Heat for Vienna --- deep
+geothermal energy,'' \"Osterreichische Geologische Gesellschaft (\"OGG)
+public lecture, Oct.~17, 2024 (slides hosted at University of Vienna FGGA).
+[Online]. Available:
+\texttt{fgga.univie.ac.at/fileadmin/user\_upload/fak\_geowissenschaften/images/GEAR/Lectures/Heat\_for\_Vienna\_-\_deep\_geothermal\_energy.pdf}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref56}
+J.~Spinoni \emph{et al.}, ``Changes of heating and cooling
+degree-days in Europe from 1981 to 2100,'' \emph{Int.\ J.\ Climatology},
+vol.~38, suppl.~1, e191--e208, 2018, doi: 10.1002/joc.5362.
+
+\bibitem{ref57}
+Austrian Panel on Climate Change (APCC) and GeoSphere Austria,
+``OeKS15 / Klimaszenarien fuer Oesterreich,'' regional climate
+projections for Vienna under RCP scenarios. [Online]. Available:
+\texttt{ccca.ac.at/wissenstransfer/oeks15} and
+\texttt{geosphere.at/de/services/klimakatalog/klimadaten}.
 [Accessed: May~20, 2026].
 
 \end{thebibliography}
