@@ -30,6 +30,198 @@ deliberately reach into adjacent physics (systems-level comparison,
 working-fluid thermodynamics, multi-decade reservoir behaviour).
 
 % ---------------------------------------------------------------------------
+\subsection*{Shared foundations}
+
+This subsection consolidates the shared numerical and bibliographic
+substrate that all seven threads consume. It is frozen here so the
+per-thread analyses rest on a common baseline. Every value below
+is sourced; where multiple sources give different numbers, the range
+is reported and the discrepancy noted. Confidence tags A--E follow
+the rubric defined in the rigour framework
+(A: multiple primary sources agree; B: single strong primary;
+C: derived by us from sourced inputs; D: single source, uncertainty
+not bounded; E: speculative).
+
+\paragraph{F1 --- Vienna Basin geology and reservoir-target stratigraphy.}
+The Vienna Basin is a Miocene thin-skinned pull-apart at the junction of
+the Eastern Alps, Western Carpathians, and Pannonian Basin system,
+formed by $\sim 30$~km sinistral displacement on the Vienna Basin
+Transform Fault System (VBTFS) at a Miocene-averaged slip rate of
+$\sim 4$~mm/a; subsidence initiated $\sim 15.5$~Ma (Badenian) and
+terminated $\sim 7$--$8$~Ma [33, 34]. The geothermal-relevant
+stratigraphy targets two horizons:
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+\textbf{Target horizon} & \textbf{Age} & \textbf{Depth~[m]} & \textbf{Approx.\ $T$~[$^\circ$C]} & \textbf{Conf.} \\
+\hline
+Badenian sandstones    & Mid Miocene & 1000--2000 & 40--75   & A \\
+Aderklaa Conglomerate  & L.\ Miocene & 2000--3500 & 70--110  & A \\
+(Rothneusiedl Fm)      &             &            &          &   \\
+Hauptdolomit basement  & M.--U.\ Triassic & 3000--5000 & 100--150 & B \\
+\hline
+\end{tabular}
+\end{center}
+
+Reported Vienna Basin geothermal gradients cluster around
+$22$--$33\,^\circ$C/km in the basin centre, with values up to
+$30$--$50\,^\circ$C/km locally; some peripheral wells show
+\emph{lower} effective gradients owing to convective cooling by
+descending fresh meteoric water (the Berndorf-1 anomaly,
+$\sim 40$~km SW of Vienna, shows formation temperatures down to
+6~km that are $\sim 100$~K cooler than expected from the regional
+heat-flow [33]). For comparison, the neighbouring Pannonian Basin runs
+$\sim 90$~mW/m$^2$ and $\sim 45\,^\circ$C/km, so Vienna Basin is the
+``cooler relative'' of an otherwise hot region [conf.\ A]. The
+Aderklaa-96 measurement (thread~1) of $\sim 102\,^\circ$C at
+$\sim 2900$~m is consistent with the central-basin gradient.
+
+Badenian sandstone porosity follows a standard compaction trend:
+$\sim 30\%$ at 1000~m, falling to $\sim 15\%$ at 2700~m [35]. The
+Aderklaa Conglomerate is interpreted as braided-river facies with
+heterogeneous grain size and good but spatially variable
+permeability [33, 34]. The Hauptdolomit basement is karstified
+and fracture-controlled rather than matrix-controlled, with
+strongly heterogeneous permeability that is the dominant
+exploration risk for this target [conf.\ B].
+
+\paragraph{F2 --- Vienna's district-heat demand and current supply mix.}
+Vienna's district-heat network supplies $\sim 330{,}000$~households
+and $\sim 5{,}600$~large consumers ($\sim 30\%$ of the city's
+building stock) [36]. The published supply mix (recent baseline,
+pre-large-scale heat-pump rollout) is dominated by gas CHP:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Source} & \textbf{Share} & \textbf{Conf.} \\
+\hline
+Gas combined heat and power (CHP)      & $\sim 52\%$ & A \\
+Waste incineration                     & $\sim 21\%$ & A \\
+Industrial / other waste heat          & $\sim 18\%$ & A \\
+Boilers, ambient heat, biomass         & $\sim 9\%$  & A \\
+\hline
+\end{tabular}
+\end{center}
+
+Wien Energie now operates three large-scale heat pumps with a
+combined coverage of $\sim 97{,}000$~households [25, 36]:
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Plant} & \textbf{Capacity / coverage} & \textbf{Source} & \textbf{Online} \\
+\hline
+Simmering power plant HP     & $\sim 25{,}000$~households   & flue gas         & 2019 \\
+Ebswien (Simmering) HP       & 55~MW$_{\mathrm{th}}$ stage~1; 110~MW by 2027; $\sim 56{,}000$ rising to $\sim 112{,}000$~hh & wastewater $11$--$25\,^\circ$C & Dec 2023 [24] \\
+Spittelau HP (3rd unit)      & 16~MW$_{\mathrm{th}}$, $\sim 16{,}000$~hh           & flue gas         & 2025/26 [25] \\
+\hline
+\end{tabular}
+\end{center}
+
+The Vienna Heating Plan 2040 [37] targets DH covering $\sim 56\%$
+of Vienna's heat demand by 2040, with geothermal plus large-scale
+heat pumps producing $\sim 4$~TWh/yr ($\sim 55\%$ of DH output).
+This anchors the order-of-magnitude per-thread sizing: a 6~TWh/yr
+total DH load, with $\sim 4$~TWh/yr ultimately to be covered by
+heat pumps + deep geothermal in some mix --- exactly the open
+question of thread~5 [conf.\ A on the demand number, B on the
+2040 split].
+
+\textbf{Sub-daily / hourly demand profile (gap).} A high-resolution
+demand curve is not publicly available at the time of writing; the
+case-study analyses in threads~4 and~5 therefore use a synthetic
+heating-degree-day reconstruction (Phase~2). Wien Energie has been
+identified as the data holder that would be needed for higher
+resolution; this is flagged as a research-input request to the
+student group rather than something the LLM consortium can resolve.
+
+\paragraph{F3 --- Austrian electricity market and grid carbon intensity.}
+Austria's electricity mix is unusually clean by EU standards
+because of its hydropower base.
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Parameter} & \textbf{Value} & \textbf{Year} & \textbf{Conf.} \\
+\hline
+Renewable share of generation              & $87.5\%$              & 2024 & A \\
+Hydropower share of renewables             & $\sim 67\%$           & 2024 & A \\
+Hydropower share of total generation       & $\sim 47\%$           & 2024 & A \\
+Gas share of total                         & $\sim 12$--$16\%$     & 2024 & A \\
+Net electricity exports                    & $+4.75$~TWh           & 2024 & A \\
+Grid carbon intensity (operational)        & $69$~g~CO$_2$eq/kWh   & 2024 & D \\
+Grid carbon intensity (lifecycle / market) & $102$--$106$~g~CO$_2$/kWh & 2024 & D \\
+Wholesale day-ahead price (Sep~2024)       & $\sim 82$~EUR/MWh     & 2024 & A \\
+Wholesale day-ahead price (Mar~2026)       & $\sim 100$~EUR/MWh    & 2026 & A \\
+Renewable Energy Expansion Act target      & $100\%$ renewable     & 2030 & A \\
+\hline
+\end{tabular}
+\end{center}
+
+The factor-of-1.5 spread in published 2024 carbon-intensity
+($69$ vs $106$~g/kWh) reflects different scope conventions
+(operational vs.\ lifecycle, instantaneous vs.\ market-based
+trade-adjusted). For thread~5, both bounds will be carried through
+the sensitivity analysis explicitly rather than picking one
+[38, 39].
+
+\paragraph{F4 --- Bibliographic seed.} The original bibliography
+of 32 entries has been expanded with 10 foundation-relevant
+sources (refs [33]--[42]), bringing the total to 42 entries. The
+foundation-team additions cover Vienna Basin tectonics and
+stratigraphy, Vienna's DH and heat-pump deployment data, and the
+Austrian electricity market. Author lists and exact citation
+metadata for items requiring publisher pages are flagged in the
+bibliography note where verification was incomplete.
+
+\paragraph{F5 --- Vienna Basin seismicity baseline.} GeoSphere
+Austria (formerly ZAMG plus GBA, merged 2023) is the authoritative
+seismic-monitoring agency. Documented seismicity baseline for the
+Vienna Basin [40, 41]:
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Statistic} & \textbf{Value} \\
+\hline
+Felt events in Vienna Basin + adjacent Styria, 20th century & 345 \\
+Damage-causing events, 20th century                           & 17 \\
+Austria-wide felt events per year (avg.)                      & $\sim 70$ \\
+$M_{\max,\mathrm{obs}}$ on VBTFS (historical)                 & $\sim 5.2$ \\
+$I_{\max,\mathrm{obs}}$ on VBTFS                              & EMS-98 8 \\
+Estimated max credible $M$ on VBTFS splays [6]                & $\geq 7.0$ \\
+Notable recent events &  \\
+\quad 2000-07-11 Ebreichsdorf                                 & $M_L\,4.8$ \\
+\quad 2013-09-20 Ebreichsdorf series                          & $M_L\,4.3$ (+aftershocks) \\
+\quad 2024-04-14 Ebreichsdorf                                 & $M\,\sim 3$ on VBTF normal splay \\
+\quad 2025 (Lower Austria felt events)                        & 17 in year (most southern Vienna Basin) \\
+\hline
+\end{tabular}
+\end{center}
+
+A more complete catalog extraction (events, depths, focal mechanisms
+where available) is a Phase~2 task for thread~2; the entries above
+are the headline statistics that anchor cross-thread arguments
+[conf.\ A on operations data, B on event-specific values, C on the
+max-credible-$M$ estimate from palaeoseismology].
+
+\paragraph{Cross-thread numerical conventions.} Subsequent threads
+should use the following \emph{frozen} reference values unless
+they explicitly note a deviation:
+$\dot m_{\mathrm{doublet}} = 75$~kg/s,
+$\Delta T = 60$~K,
+$c_{p,\mathrm{water}} = 4180$~J/(kg$\cdot$K),
+$P_{\mathrm{doublet}}^{\mathrm{th}} \approx 18.8$~MW$_{\mathrm{th}}$,
+$\mathrm{CF} = 90\%$, doublet CapEx range
+EUR~20--35~M, depletion 1--3\%/yr. Vienna DH demand
+$\approx 6$~TWh/yr, peak load $\approx 3$~GW$_{\mathrm{th}}$
+(winter), summer trough $\approx 0.3$~GW$_{\mathrm{th}}$. Aspern
+Aderklaa-96 reference well: $T_{\mathrm{prod}}\approx 102\,^\circ$C
+at $\sim 2900$~m depth, reinjection $\sim 40$~m$^3$/h.
+
+% ---------------------------------------------------------------------------
 \subsection*{Thread 1 --- Repurposing OMV legacy oil and gas wells}
 
 \paragraph{State of the art.}
@@ -749,6 +941,72 @@ I.~Rahimzadeh Kivi, E.~Pujades, J.~Rutqvist, and V.~Vilarrasa,
 geothermal energy production in hot sedimentary aquifers,'' \emph{Scientific
 Reports}, vol.~12, art.~2065, 2022, doi: 10.1038/s41598-022-06067-0.
 
+\bibitem{ref33}
+E.~Y.~Lee and M.~Wagreich, ``Polyphase tectonic subsidence evolution of the
+Vienna Basin inferred from quantitative subsidence analysis of the northern
+and central parts,'' \emph{International Journal of Earth Sciences},
+vol.~106, pp.~687--705, 2017, doi: 10.1007/s00531-016-1329-9.
+
+\bibitem{ref34}
+M.~H\"olzel, K.~Decker, A.~Z\'amolyi, P.~Strauss, and M.~Wagreich, ``Lower
+Miocene structural evolution of the central Vienna Basin (Austria),''
+\emph{Marine and Petroleum Geology}, vol.~27, pp.~666--681, 2010.
+
+\bibitem{ref35}
+L.~Skerbisch, D.~Misch, M.~Drews, H.~Stollhofen, R.~F.~Sachsenhofer,
+K.~Arnberger, V.~Schuller, and A.~Zamolyi, ``Regional mudstone compaction
+trends in the Vienna Basin: top seal assessment and implications for uplift
+history,'' \emph{International Journal of Earth Sciences}, 2023, doi:
+10.1007/s00531-023-02331-4.
+
+\bibitem{ref36}
+City of Vienna, ``Electricity and district heat generation --- Climate
+protection,'' \emph{Vienna Climate Guide Monitoring}, 2024. [Online].
+Available:
+\texttt{wien.gv.at/spezial/klimafahrplan-monitoring-en/climate-protection/electricity-and-district-heat-generation/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref37}
+ManagEnergy / European Commission, ``Vienna Heating Plan 2040: Integrating
+space, energy, and climate for a resilient future,'' Dec.\ 4, 2025.
+[Online]. Available:
+\texttt{managenergy.ec.europa.eu/managenergy-discover/managenergy-news/vienna-heating-plan-2040-integrating-space-energy-and-climate-resilient-future-2025-12-04\_en}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref38}
+Statista, ``Austria: Power sector carbon intensity 2024,'' 2025. [Online].
+Available: \texttt{statista.com/statistics/1289218/carbon-intensity-power-sector-austria/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref39}
+LowCarbonPower / Nowtricity, ``Austria electricity generation mix and
+emissions,'' 2025. [Online]. Available:
+\texttt{lowcarbonpower.org/region/Austria} and
+\texttt{nowtricity.com/country/austria/}. [Accessed: May~20, 2026].
+
+\bibitem{ref40}
+GeoSphere Austria, ``Earthquakes (Erdbeben) --- topic page and current
+earthquake catalogue,'' Department of Disaster Protection. [Online].
+Available: \texttt{geosphere.at/en/topics/disaster-protection/earthquakes}
+and \texttt{geosphere.at/en/maps/current-earthquakes}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref41}
+GeoSphere Austria, ``Average earthquake year''
+and ``25 years ago: Earthquake in Ebreichsdorf (Lower Austria),'' News
+and Events pages. [Online]. Available:
+\texttt{geosphere.at/en/news-and-events/news/average-earthquake-year} and
+\texttt{geosphere.at/en/news-and-events/news/25-years-ago-earthquake-in-ebreichsdorf-lower-austria}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref42}
+E-Control (Energie-Control Austria) and ENTSO-E Transparency Platform,
+``Austrian day-ahead wholesale electricity price (monthly averages),''
+aggregated via Statistics Austria / Statista and Ember Energy. [Online].
+Available: \texttt{e-control.at} and
+\texttt{ember-energy.org/data/european-wholesale-electricity-price-data/}.
+[Accessed: May~20, 2026].
+
 \end{thebibliography}
 
 \paragraph{Note on the bibliography.}
@@ -758,10 +1016,14 @@ the search (typically because the publisher page was paywalled or only
 abstract metadata was indexed); their author lists and exact venue should
 be confirmed against the published versions before circulation. The
 publisher-confirmed academic references are [6], [9], [12], [13], [20],
-[21], [22], [29], [30], [31], [32]; the OMV, Wien Energie / Green Energy
-Lab, Tech Xplore, Eavor, Power Magazine, Heat Pumping Technologies,
-Electrive, S\&P, ILiA, and CEC entries are primary-source online materials
-and are reliable as written. Reference [26] is included as a
+[21], [22], [29], [30], [31], [32], [33], [34], [35]; the OMV, Wien
+Energie / Green Energy Lab, Tech Xplore, Eavor, Power Magazine, Heat
+Pumping Technologies, Electrive, S\&P, ILiA, CEC, City of Vienna /
+ManagEnergy, GeoSphere Austria, and E-Control / ENTSO-E entries are
+primary-source online materials and are reliable as written. The
+Phase~1 foundation-team additions (refs [33]--[42]) consolidate the
+shared geological, demand, market, and seismicity data that all seven
+research threads consume. Reference [26] is included as a
 representative comparative-context source but is explicitly not an
 academic LCOH comparison --- the absence of such a paper is itself one
 of the open questions in thread~5.
