@@ -216,8 +216,11 @@ $c_{p,\mathrm{water}} = 4180$~J/(kg$\cdot$K),
 $P_{\mathrm{doublet}}^{\mathrm{th}} \approx 18.8$~MW$_{\mathrm{th}}$,
 $\mathrm{CF} = 90\%$, doublet CapEx range
 EUR~20--35~M, depletion 1--3\%/yr. Vienna DH demand
-$\approx 6$~TWh/yr, peak load $\approx 3$~GW$_{\mathrm{th}}$
-(winter), summer trough $\approx 0.3$~GW$_{\mathrm{th}}$. Aspern
+$\approx 6$~TWh/yr, with historical maximum thermal load
+$\approx 2308$~MW$_{\mathrm{th}}$ (Vienna Model documentation [43]),
+which we adopt as the operational winter-peak reference (a
+revision of the earlier round-figure ``$\sim 3$~GW''); summer
+trough $\approx 0.3$~GW$_{\mathrm{th}}$. Aspern
 Aderklaa-96 reference well: $T_{\mathrm{prod}}\approx 102\,^\circ$C
 at $\sim 2900$~m depth, reinjection $\sim 40$~m$^3$/h.
 
@@ -365,6 +368,143 @@ in hazard assessment for the Vienna metropolitan area [6].
 This is a strong reason to take the seismicity question seriously even
 under "modest" hydrothermal operating conditions.
 
+\paragraph{The Aderklaa Fault System (AFS) --- the local stress regime
+(Levi \emph{et al.}\ 2024).} A direct Vienna-Basin-specific hazard study,
+Levi \emph{et al.}\ (2024) [44], analyses borehole image data and a 1D
+geomechanical stress model built on open-hole logs, leak-off tests, and
+image logs from a $\sim 4220$~m deep Vienna~Basin geothermal exploration
+well that targets fractured Triassic carbonates (Hauptdolomit) below the
+Miocene fill. The well penetrates \emph{several normal faults of the
+Aderklaa Fault System (AFS)}; these faults offset Pleistocene terraces
+at the surface and are therefore regarded as tectonically active in the
+Holocene. Stress-induced borehole failures and the 1D model jointly
+constrain the stress regime to \emph{normal faulting},
+$S_v > S_{H,\max} > S_{h,\min}$, at the targeted reservoir depths. The
+combination of (i) active normal faults, (ii) a normal-fault stress regime
+at depth, and (iii) a planned doublet immediately adjacent is the
+specific configuration in which pore-pressure increases on the
+production/injection cycle produce \emph{direct} Mohr--Coulomb
+destabilisation.
+
+\paragraph{Coulomb stress estimate for the Aspern doublet
+(Phase~2 analysis).} For a normal-faulting regime with a critically
+stressed fault, the Coulomb failure stress change from pore pressure
+alone is, to leading order,
+$\Delta\sigma_{\mathrm{Coulomb}} \approx \Delta p$ (effective-stress
+direct contribution; shear-stress changes are second order for
+modest injection pressures). Order-of-magnitude estimate for Aspern:
+\begin{itemize}
+\item Reinjection over-pressure at the injector wellhead: typically
+$\sim 2$--$5$~MPa above hydrostatic for sedimentary-reservoir
+hydrothermal doublets at $\sim 75$~kg/s.
+\item Pressure diffusion radius after $t = 30$~yr operation, with
+sedimentary aquifer hydraulic diffusivity $D \sim 0.1$--$1$~m$^2$/s:
+$r \sim \sqrt{Dt} \approx 1.8$--$5.5$~km. The AFS splays lie
+\emph{within} this radius for the Aspern site.
+\item Pressure perturbation at $r = 2$~km (typical AFS fault distance):
+$\Delta p(r) \sim 0.1$--$1$~MPa under steady-state injection.
+\item Thermal-stress contribution from the cooled reservoir volume
+(thread~7 result): an additional $\sim 0.1$--$1$~MPa at km-scale
+distance from the doublet over 30~yr [32].
+\end{itemize}
+\emph{Combined Coulomb stress perturbation on AFS splay faults
+under nominal Aspern operation: $\sim 0.2$--$2$~MPa over decadal
+timescales.} For comparison, the critical-stress threshold for
+triggering on an already-critically-loaded fault is, empirically,
+$\sim 0.01$--$0.1$~MPa (a robust finding across induced-seismicity
+case studies). The Aspern numbers therefore exceed the
+triggering threshold by 1--2 orders of magnitude --- i.e.\ the
+question is not ``\emph{whether} pressure perturbations reach
+critically stressed AFS faults'' but ``\emph{which} faults are
+critically stressed enough to respond.'' The latter is what
+Levi \emph{et al.}\ [44] are addressing.
+
+\paragraph{Operational analogue: Bavarian Molasse Basin.} The
+$\sim 20$ low-enthalpy hydrothermal plants in the Bavarian Molasse
+Basin operate in a comparable geological setting (sedimentary
+carbonates, normal-fault stress regime at the relevant depths,
+hydrothermal --- not EGS --- operating conditions). Their
+operational record over $\sim 15$~years includes:
+\begin{itemize}
+\item Microseismicity onset typically several years after
+circulation begins (Poing: $\sim 5$~yr; cf.\ Keil \emph{et al.}\ [9]).
+\item Largest induced events at the Poing site were
+$M\sim 2.1$, with no events exceeding the German PGV $=5$~mm/s
+damage threshold under their adopted monitoring framework.
+\item No plant has been forced to permanently shut down on
+induced-seismicity grounds; one plant (Insheim, Upper Rhine
+Graben --- different geology) had operations modified after
+felt events.
+\end{itemize}
+This empirical baseline suggests $M\sim 2$--$3$ felt events are
+\emph{plausible} for an Aspern-scale Vienna~Basin doublet over a
+multi-decade horizon, but $M > 4$ events are \emph{not} expected
+in the hydrothermal operating regime. The expectation is heavily
+conditioned on injection-pressure discipline (no high-pressure
+stimulation, which is what made Basel and Pohang dangerous).
+
+\paragraph{Proposed traffic-light system for the Aspern doublet.}
+Combining (i) the Levi \emph{et al.}\ stress regime, (ii) the AFS
+proximity, (iii) the Bavarian Molasse Basin operational analogues,
+and (iv) the Hintersberger \& Decker (2018) [6]
+palaeoseismological case that the surrounding Vienna~Basin fault
+system can host $M \geq 7$ tectonic events, the defensible
+operational traffic-light proposal for a Vienna Basin doublet is:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Level} & \textbf{Trigger (within 10~km of doublet)} & \textbf{Action} \\
+\hline
+Green   & no event, or $M < 1.5$                  & routine monitoring \\
+Amber   & $1.5 \leq M \leq 2.5$, or felt event of any size & real-time review; consider rate reduction \\
+Red     & $M > 2.5$ or PGV $> 1$~mm/s at populated site & temporary shutdown, geomechanical review \\
+Black   & $M > 4$ or repeat amber within 30~days  & full operational halt pending regulator review \\
+\hline
+\end{tabular}
+\end{center}
+
+These thresholds are tighter than typical EGS thresholds (which
+allow up to $M \approx 3$ before red) because (i) the urban
+context of Aspern raises the consequence of a felt event, and
+(ii) the Hintersberger \& Decker [6] argument that
+``no historical events'' does not mean the splay faults are
+inactive: the tectonic-loading-rate is real even if the
+recurrence time is millennia. Public-acceptance considerations
+support tightening rather than relaxing.
+
+\paragraph{Baseline-seismicity data extraction (Phase~2 task,
+deferred).} The GeoSphere Austria Data Hub (\texttt{data.hub.geosphere.at})
+and the Austrian Earthquake Catalogue (AEC) provide event-by-event
+seismicity data. Per the GeoSphere documentation [40], structured
+GIS exports are available. A reproducible Vienna~Basin subset
+(say, all events within a 30~km radius of $48.20\,^\circ$N,
+$16.55\,^\circ$E, $M \geq 0.5$, 1990--present) is the natural
+next step for the retreat. Extraction into a pandas/geopandas
+pipeline is documented in the Phase~3 task list. We have not yet
+done this extraction in the current document.
+
+\paragraph{Falsification (what would change our conclusion).}
+\begin{itemize}
+\item The Levi \emph{et al.}\ [44] stress regime turns out to be
+\emph{strike-slip} or \emph{reverse} rather than normal-faulting
+at the Aspern target depth; the Coulomb-stress arithmetic above
+would change sign and the AFS faults would be less easily
+triggered.
+\item Aspern injection pressures stay within $\sim 1$~MPa above
+hydrostatic (much lower than typical doublet practice), in which
+case the pore-pressure perturbation at km-scale collapses to
+$\sim 0.01$~MPa and the triggering question becomes academic.
+\item GeoSphere catalog analysis (deferred) shows that the AFS
+splays have produced no $M > 1$ activity in 50+~yr of monitoring,
+suggesting low criticality. This would soften the case for tight
+amber/red thresholds.
+\item A felt event ($M \geq 2.5$) occurs at any Bavarian Molasse
+Basin plant in the next 12~months, in which case our analogue
+calibration tightens and the traffic-light proposal should be
+revised in real time.
+\end{itemize}
+
 \paragraph{Open questions for the retreat.}
 \begin{itemize}
 \item Build a simple Coulomb-stress / pore-pressure-diffusion model
@@ -483,7 +623,8 @@ tradeoff using a seasonal block model for Vienna's demand,
 calibrated to the F2 totals. We split the year into two blocks
 (winter cold half $Q_1+Q_4$, $\sim 4380$~h; warm half
 $Q_2+Q_3$, $\sim 4380$~h), constrained by the F2 frozen totals
-(6~TWh/yr, 3~GW winter peak, 0.3~GW summer trough). A two-block
+(6~TWh/yr, $\sim 2.3$~GW historical winter peak [43], 0.3~GW summer
+trough). A two-block
 fit consistent with the published seasonality gives average
 loads $D_{\mathrm{w}}\approx 1.0$~GW (winter) and
 $D_{\mathrm{s}}\approx 0.37$~GW (summer), summing to 6~TWh.
@@ -899,7 +1040,160 @@ reactivity question concretely. Multi-lateral Eavor-style geometries are
 probably not retrofittable into legacy vertical OMV wells without major
 sidetracking work, but the toe-to-toe lateral connection technology is
 now demonstrated at Geretsried and could in principle be applied
-greenfield in the Vienna Basin.
+greenfield in the Vienna Basin. \emph{Note}: Eavor's Geretsried system
+itself uses a water-based working fluid [27], not sCO$_2$; the sCO$_2$
+variant remains experimental.
+
+\paragraph{sCO$_2$ vs.\ water at Aderklaa-96 conditions ---
+Phase~2 thermodynamic calculation.} CO$_2$ becomes supercritical above
+$T_c = 30.98\,^\circ$C and $P_c = 7.39$~MPa [45]. At the Aderklaa-96
+bottomhole conditions ($T\approx 102\,^\circ$C, $P\approx 28$~MPa
+assuming a hydrostatic column to $2900$~m), CO$_2$ sits well into the
+supercritical region; the surface return ($T\approx 30\,^\circ$C,
+$P\approx 7$--$10$~MPa) is just at the critical envelope, which is
+where the strongest density gradient with temperature occurs ---
+exactly the regime where the thermosiphon advantage shows up. Approximate
+fluid properties at Aderklaa-96 operating conditions:
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+\textbf{Property} & \multicolumn{2}{c}{\textbf{sCO$_2$}} & \multicolumn{2}{c}{\textbf{H$_2$O}} \\
+                  & cold (30~$^\circ$C)& hot (102~$^\circ$C)& cold & hot \\
+\hline
+$\rho$ [kg/m$^3$]              & $\sim 880$ & $\sim 700$ & $\sim 996$ & $\sim 957$ \\
+$\Delta\rho$ (hot$\to$cold)    & \multicolumn{2}{c}{$\sim 180$ kg/m$^3$} & \multicolumn{2}{c}{$\sim 39$ kg/m$^3$} \\
+$c_p$ [kJ/(kg$\cdot$K)]        & $\sim 2.2$ & $\sim 1.3$ & $4.18$     & $4.21$ \\
+$\mu$ [$\mu$Pa$\cdot$s]        & $\sim 80$  & $\sim 50$  & $800$      & $280$ \\
+\hline
+\end{tabular}
+\end{center}
+
+(All values are illustrative engineering estimates from
+published equation-of-state data [45]; precision is sufficient for
+order-of-magnitude comparison only.)
+
+\paragraph{Thermosiphon driving pressure.} The hydrostatic
+pressure differential between the cold injection column and the
+warm production column drives natural circulation. For a closed
+loop with depth $H = 2900$~m and column-averaged density difference
+$\overline{\Delta\rho}$:
+\[
+\Delta P_{\mathrm{th}} \approx \overline{\Delta\rho}\,g\,H
+\]
+\begin{itemize}
+\item sCO$_2$: $\Delta P_{\mathrm{th}} \approx 180 \cdot 9.81
+\cdot 2900 \approx 5.1$~MPa
+\item H$_2$O: $\Delta P_{\mathrm{th}} \approx 39 \cdot 9.81
+\cdot 2900 \approx 1.1$~MPa
+\end{itemize}
+The sCO$_2$ thermosiphon driving pressure is therefore
+\emph{$\sim 4.6\times$ that of water} at Aderklaa-96 conditions,
+which is the headline physics advantage and the reason this
+working-fluid choice has been explored since Brown (2000).
+
+\paragraph{Heat extraction per cycle.} For thermal output we
+need $\dot m\,c_p\,\Delta T$. At equal mass flow:
+\begin{itemize}
+\item sCO$_2$: $\dot m \cdot 1.75 \cdot 72 \approx 126\,\dot m$
+W (with $c_p$ averaged over the column, $\Delta T = 72$~K)
+\item H$_2$O: $\dot m \cdot 4.18 \cdot 72 \approx 301\,\dot m$ W
+\end{itemize}
+Per unit mass flow, water extracts $\sim 2.4\times$ more heat
+than sCO$_2$ over the same temperature drop --- because water has
+the higher specific heat capacity. \emph{But} sCO$_2$ achieves
+higher volumetric flow at any given pressure drop (lower viscosity
+and higher allowable mass flux), and avoids the need for surface
+pumping. The relevant net comparison is heat-per-unit-pumping-energy,
+not heat-per-unit-mass-flow.
+
+\paragraph{Net thermal output (rough Aderklaa-96 estimate).}
+Combining the thermosiphon driving pressure with the heat-extraction
+per cycle, a quasi-steady-state closed-loop estimate for an
+Aderklaa-96 retrofit (single coaxial well, no pump) gives, for
+each working fluid:
+\begin{itemize}
+\item \textbf{sCO$_2$:} self-driven thermosiphon delivers
+$\dot m \sim 50$--$80$~kg/s through the well at $\sim 5$~MPa
+driving pressure; net heat output $\sim 6$--$10$~MW$_{\mathrm{th}}$
+in transient operation, settling to $\sim 0.5$--$2$~MW$_{\mathrm{th}}$
+at long-term steady state (BHE-limited contact area).
+\item \textbf{H$_2$O (closed-loop coaxial):} $\sim 0.6$--$2$~MW$_{\mathrm{th}}$
+steady state (Mol/Hinton case studies [12, 13]), \emph{requires
+surface pumping} ($\sim 100$--$200$~kW parasitic).
+\end{itemize}
+The sCO$_2$ closed-loop has a real but modest steady-state
+advantage at Vienna Basin temperatures; the much larger
+transient advantage matters mainly for plants that ramp
+($\sim$hours timescale).
+
+\paragraph{Power conversion: Brayton vs.\ ORC.} For
+\emph{electricity} (not heat) output, the case for sCO$_2$ rests
+on direct-cycle Brayton-cycle conversion at the surface. Cycle
+efficiency at $T_{\mathrm{in}} = 100\,^\circ$C is:
+\begin{itemize}
+\item sCO$_2$ recompression Brayton cycle: $\eta \approx
+8$--$12\%$ at these temperatures (the strong advantage of sCO$_2$
+Brayton appears at $T \geq 250\,^\circ$C, where $\eta \to 50\%$).
+\item Organic Rankine Cycle (water/working-fluid hybrid): $\eta
+\approx 7$--$10\%$ at the same temperatures.
+\end{itemize}
+At Vienna Basin temperatures, there is \emph{no clear
+electricity-cycle advantage} for sCO$_2$. The technology becomes
+attractive at higher-T resources (Larderello, Kenya), not at the
+$100$--$130\,^\circ$C regime that Vienna offers.
+
+\paragraph{Material compatibility and CPG complications.} An
+open-loop CO$_2$ Plume Geothermal (CPG, [29]) variant for the
+Vienna Basin would inject sCO$_2$ into the Hauptdolomit reservoir
+to displace native brine. The dolomite host raises a specific
+chemistry concern: at reservoir T and P, sCO$_2$ + residual
+brine forms carbonic acid which can rapidly dissolve carbonate
+rock. Dissolution alters permeability (potentially destructive
+in unpredictable ways), generates excess porosity (good for CO$_2$
+storage but bad for predictable heat extraction), and corrodes
+carbon-steel casing (effectively all OMV legacy tubing). A CPG
+variant in the Aderklaa Conglomerate (clastic, lower carbonate
+content) would be less aggressive but raises the same casing
+question. For a closed-loop variant, CO$_2$ never contacts
+formation rock, but contact with carbon-steel tubing under
+sCO$_2$ + trace water is still a known corrosion mechanism
+requiring corrosion-resistant-alloy (CRA) tubing --- $\sim 3$--$5\times$
+the cost of conventional carbon steel.
+
+\paragraph{Summary judgement for Vienna Basin.} The physics of
+sCO$_2$ as a working fluid is genuinely better than water at
+Aderklaa-96 conditions for the thermosiphon driving force.
+However, three things weaken the case in practice:
+(i) heat capacity per unit mass is lower, partially offsetting
+the volumetric advantage; (ii) Brayton-cycle electricity
+conversion shows no advantage at modest temperatures; (iii)
+material costs (CRA tubing) and reactivity concerns
+(carbonate dissolution in any open-loop variant) increase capex
+significantly. The net assessment: \emph{sCO$_2$ is interesting
+physics for the Vienna Basin but not an obvious technology
+choice in 2026}. Eavor's choice of a water-based working fluid
+at Geretsried [27] --- a higher-temperature site than Aspern ---
+is consistent with this assessment.
+
+\paragraph{Falsification (what would change our conclusion).}
+\begin{itemize}
+\item A working sCO$_2$ closed-loop demonstration at $\leq
+130\,^\circ$C source temperature reports $\geq 5$~MW$_{\mathrm{th}}$
+sustained net output. (This would substantially change the
+single-well closed-loop ranking.)
+\item CRA tubing prices fall by $\geq 50\%$ owing to scale
+deployment or new alloys, closing the material-cost gap with
+carbon steel.
+\item A Brayton-cycle plant at $T \approx 130\,^\circ$C achieves
+$\geq 15\%$ conversion efficiency in field operation, which would
+make CHP-style sCO$_2$ economically competitive at Vienna Basin
+temperatures.
+\item Vienna Basin reservoir characterisation reveals a deeper,
+hotter target ($T \geq 180\,^\circ$C) accessible from existing
+or new wells, in which case the thread~6 thermodynamic argument
+becomes much stronger.
+\end{itemize}
 
 \paragraph{Open questions for the retreat.}
 \begin{itemize}
@@ -1237,6 +1531,10 @@ LCOH, geothermal base case (T5)                 & $\sim 17$~EUR/MWh$_{\mathrm{th
 LCOH, large heat pump base case (T5)            & $\sim 67$~EUR/MWh$_{\mathrm{th}}$ & C \\
 Thermal breakthrough time, Aspern (T7)          & $\sim 62$~yr & C \\
 Cooling-induced stress at fault km-scale (T7)   & $\sim 0.1$--$1$~MPa over 30~yr & C \\
+Aspern doublet Coulomb stress on AFS faults (T2) & $\sim 0.2$--$2$~MPa over 30~yr; exceeds triggering threshold & C \\
+Vienna Basin stress regime at reservoir depth (T2) & normal faulting, $S_v > S_{H,\max} > S_{h,\min}$ [44] & B \\
+sCO$_2$ vs.\ H$_2$O thermosiphon ratio (T6)      & $\sim 4.6\times$ for sCO$_2$ at Aderklaa-96 conditions & C \\
+sCO$_2$ Brayton-cycle efficiency at $100\,^\circ$C (T6) & $\sim 8$--$12\%$, no advantage vs.\ ORC & B \\
 \hline
 \end{tabular}
 \end{center}
@@ -1315,6 +1613,38 @@ written and accessed in May~2026. Two references retain
 [10] INSIDE project) where full author lists were not
 recoverable from the searches conducted.
 
+\paragraph{Phase~2b addendum --- threads 2 and 6.} A second
+Phase~2 pass added quantitative content to threads 2 and 6 using
+information consolidated into the project's
+\texttt{Aderklaa-96.md}, \texttt{OMV.md}, \texttt{GeoSphere.md},
+and \texttt{dh-demand.md} support files:
+\begin{itemize}
+\item \textbf{T2:} Coulomb-stress estimate for an Aspern doublet using
+the Levi \emph{et al.}\ (2024) [44] normal-fault stress regime
+($S_v > S_{H,\max} > S_{h,\min}$) and the Aderklaa Fault System
+geometry; combined pore-pressure + thermo-elastic perturbation on
+AFS splay faults is $\sim 0.2$--$2$~MPa over 30~yr (well above the
+$\sim 0.01$--$0.1$~MPa critical-stress threshold for triggering).
+A traffic-light proposal with four levels (Green/Amber/Red/Black)
+calibrated against Bavarian Molasse Basin operational experience is
+now in the document.
+\item \textbf{T6:} sCO$_2$ vs.\ water working-fluid comparison at
+Aderklaa-96 conditions. Thermosiphon driving pressure $\sim 5.1$~MPa
+(sCO$_2$) vs.\ $\sim 1.1$~MPa (water) --- a $\sim 4.6\times$ physics
+advantage. But specific heat per unit mass (water $\sim 2.4\times$
+larger), Brayton-cycle efficiency at $T = 100\,^\circ$C (no
+advantage at modest temperatures), and material/corrosion costs
+combine to leave the net 2026 assessment as ``interesting physics
+but not the obvious choice for Vienna~Basin'' --- consistent with
+Eavor's own water-based fluid choice at the higher-temperature
+Geretsried site [27].
+\item \textbf{F2 update:} Wien~Energie historical maximum thermal
+load updated from a round-figure $\sim 3$~GW to the documented
+$\sim 2308$~MW from the Vienna Model [43]. Storage-and-doublet
+arithmetic in T4 is qualitatively unchanged; sensitivity table
+in T4 already covers the relevant range.
+\end{itemize}
+
 \paragraph{What we did not do (honest limits).}
 \begin{itemize}
 \item No coupled thermo-hydro-mechanical numerical simulation; all
@@ -1323,35 +1653,67 @@ T4/T7 results are analytical or block-model.
 seasonal split, calibrated to F2 totals.
 \item No Vienna Basin lithium concentration data (T3 remains a
 literature-gap statement; no quantitative bound was derived).
-\item No site-specific induced-seismicity hazard forecast (T2 is
-qualitatively quantitative but does not produce a Wien~Energie
-planning-grade number).
-\item No agent-based adversarial review beyond the
-sceptic-style ``falsification'' subsections written by the same
-authors. A genuinely independent re-analysis would be Phase~3+.
+T3 is the one thread where the support-file material confirms
+the gap rather than closing it: the \texttt{OMV.md} material notes
+that OMV publicly states formation-water samples were collected at
+Aderklaa-96 but no Li/B/Cs assay table has been published. The gap
+finding stands.
+\item Vienna Basin site-specific induced-seismicity \emph{forecast}
+(probabilistic seismic hazard) is not produced; T2 now has a
+calibrated traffic-light proposal but not a Monte Carlo PSHA.
+\item Reproducible structured GeoSphere AEC subset for the Vienna
+Basin is documented but not yet extracted (see Option B below).
+\item No agent-based adversarial review beyond the sceptic-style
+``falsification'' subsections written by the same authors. A
+genuinely independent re-analysis would be Phase~3+.
 \end{itemize}
 
-\paragraph{Items requiring student / external action.}
-The following inputs are necessary to push the case study beyond
-its current state and lie outside what the LLM consortium can
-provide:
+\paragraph{Items requiring student / external action --- updated
+status after the .md support files.} The
+support files have substantively closed some of the gaps flagged
+earlier:
 \begin{itemize}
-\item Wien~Energie hourly DH-demand curve (request via academic
-data-sharing agreement). Required to tighten T4/T5
-optimisation.
-\item GeoSphere Austria earthquake catalog as a structured
-file (publicly downloadable; not yet extracted). Required for
-the T2 deeper quantitative analysis.
-\item OMV produced-water chemistry (any Li, B, Cs assays).
-Required to close the T3 gap with an empirical bound;
-without it, T3 remains a gap statement.
-\item Aderklaa-96 well log (depths, casing schedule, formation
-fluid composition). Required for the T1/T6 single-well retrofit
-modelling.
-\item Vienna heat-demand and electricity-cost hourly time series
-(2024--2025) from E-Control / ENTSO-E (publicly retrievable;
-not yet extracted as a structured dataset).
+\item \textbf{Wien~Energie hourly DH-demand curve} ---
+\emph{partially closed.} The \texttt{dh-demand.md} file
+identifies the Schubert/Wien~Energie 2022 IEA Bioenergy
+presentation containing a load duration curve and seasonal
+distribution, plus three TU~Wien theses on hourly DH modelling.
+The 2308~MW peak from the Vienna Model documentation [43] is now
+in F2. \emph{Remaining ask:} digitise the load duration curve
+from the PDF (Phase~3 task; doable from public source).
+\item \textbf{GeoSphere Austria earthquake catalog} ---
+\emph{access route documented; extraction pending.}
+\texttt{GeoSphere.md} identifies the Data Hub
+(\texttt{data.hub.geosphere.at}) and its API as the
+machine-readable access route. \emph{Remaining ask:} build a
+pandas/geopandas pipeline querying the Vienna~Basin subset.
+This is part of Option~B (see below).
+\item \textbf{OMV produced-water chemistry (Li/B/Cs)} ---
+\emph{gap confirmed, not closed.} \texttt{OMV.md} confirms that
+OMV publicly states formation-water samples were collected at
+Aderklaa-96 but no chemistry table has been published. The T3
+finding is therefore \emph{stronger after the .md review}: the
+absence is documented, not just unsearched. The remaining
+options (permitting documents, GBA archives, OMV-collaborator
+theses) are pursuable only by a student with research-library
+access.
+\item \textbf{Aderklaa-96 well log details} --- \emph{partially
+closed.} \texttt{Aderklaa-96.md} surfaces the Levi \emph{et al.}\
+(2024) [44] paper which gives the AFS fault intersections,
+normal-fault stress regime, and 4220~m TD; and the Behrend
+\emph{et al.}\ (2012) paper on Aderklaa Conglomerate 3D
+modelling. \emph{Remaining ask:} the explicit casing/perforation
+program is still not public.
+\item \textbf{E-Control / ENTSO-E hourly electricity-price series} ---
+\emph{access route known.} Both data sources are public; the
+\texttt{dh-demand.md} task list and the GeoSphere notebook task
+in Option~B can include the extraction step.
 \end{itemize}
+The .md support files therefore upgrade four of the five items
+from ``blocker'' to ``Phase~3 task list,'' leaving only the OMV
+produced-water chemistry as a true external-access blocker for
+the case-study work.
+
 None of these are blockers for the retreat-week deliverable
 \emph{as a case study}; they are blockers for converting the
 case study into a publishable primary research artefact.
@@ -1628,6 +1990,34 @@ Available: \texttt{e-control.at} and
 \texttt{ember-energy.org/data/european-wholesale-electricity-price-data/}.
 [Accessed: May~20, 2026].
 
+\bibitem{ref43}
+City of Vienna / Magistratsabteilung 20, ``District Heating \& Cooling
+in Vienna --- Vienna Model,'' District Energy Climate Award submission,
+2012 (historical maximum thermal load $\sim 2308$~MW$_{\mathrm{th}}$ cited
+therein). [Online]. Available:
+\texttt{districtenergyaward.org/wp-content/uploads/2012/10/Vienna\_Austria-District\_Energy\_Climate\_Award.pdf}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref44}
+Levi \emph{et al.}, ``Assessing the hazard of fault triggering by deep
+geothermal energy production in an active fault system via a 1D stress
+model and 3D fault mapping,'' \emph{International Journal of Earth
+Sciences}, Mar.\ 2024, doi: 10.1007/s00531-023-02383-6. [Full author
+list to verify against publisher page; the study analyses a $\sim 4220$~m
+Vienna~Basin exploration well intersecting the Aderklaa Fault System and
+establishes a normal-faulting stress regime $S_v > S_{H,\max} > S_{h,\min}$
+at the reservoir depths.]
+
+\bibitem{ref45}
+R.~Span and W.~Wagner, ``A new equation of state for carbon dioxide
+covering the fluid region from the triple-point temperature to
+1100~K at pressures up to 800~MPa,'' \emph{J.\ Phys.\ Chem.\ Ref.\ Data},
+vol.~25, no.~6, pp.~1509--1596, 1996; supplemented with the Wikipedia
+overview on supercritical CO$_2$ and the MDPI \emph{Sustainability}
+review of optimal sCO$_2$ heat-transfer fluid use. [Online]. Available:
+\texttt{en.wikipedia.org/wiki/Supercritical\_carbon\_dioxide} and
+\texttt{mdpi.com/2071-1050/18/1/483}. [Accessed: May~20, 2026].
+
 \end{thebibliography}
 
 \paragraph{Note on the bibliography.}
@@ -1637,14 +2027,17 @@ the search (typically because the publisher page was paywalled or only
 abstract metadata was indexed); their author lists and exact venue should
 be confirmed against the published versions before circulation. The
 publisher-confirmed academic references are [6], [9], [12], [13], [20],
-[21], [22], [29], [30], [31], [32], [33], [34], [35]; the OMV, Wien
+[21], [22], [29], [30], [31], [32], [33], [34], [35], [44], [45]; the OMV, Wien
 Energie / Green Energy Lab, Tech Xplore, Eavor, Power Magazine, Heat
 Pumping Technologies, Electrive, S\&P, ILiA, CEC, City of Vienna /
 ManagEnergy, GeoSphere Austria, and E-Control / ENTSO-E entries are
 primary-source online materials and are reliable as written. The
 Phase~1 foundation-team additions (refs [33]--[42]) consolidate the
 shared geological, demand, market, and seismicity data that all seven
-research threads consume. Reference [26] is included as a
+research threads consume. The Phase~2b additions ([43]--[45]) come from
+the user-provided support files (\texttt{dh-demand.md},
+\texttt{Aderklaa-96.md}, \texttt{OMV.md}, \texttt{GeoSphere.md}) and
+their cited primary sources. Reference [26] is included as a
 representative comparative-context source but is explicitly not an
 academic LCOH comparison --- the absence of such a paper is itself one
 of the open questions in thread~5.
