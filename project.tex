@@ -473,16 +473,75 @@ inactive: the tectonic-loading-rate is real even if the
 recurrence time is millennia. Public-acceptance considerations
 support tightening rather than relaxing.
 
-\paragraph{Baseline-seismicity data extraction (Phase~2 task,
-deferred).} The GeoSphere Austria Data Hub (\texttt{data.hub.geosphere.at})
-and the Austrian Earthquake Catalogue (AEC) provide event-by-event
-seismicity data. Per the GeoSphere documentation [40], structured
-GIS exports are available. A reproducible Vienna~Basin subset
-(say, all events within a 30~km radius of $48.20\,^\circ$N,
-$16.55\,^\circ$E, $M \geq 0.5$, 1990--present) is the natural
-next step for the retreat. Extraction into a pandas/geopandas
-pipeline is documented in the Phase~3 task list. We have not yet
-done this extraction in the current document.
+\paragraph{Baseline-seismicity data extraction (Phase~3b ---
+DONE, in the support repo).} A reproducible Vienna~Basin
+earthquake catalog has now been extracted by the script
+\texttt{scripts/geosphere\_extract.py}, combining three open public
+sources:
+
+\begin{itemize}
+\item \textbf{EMSC SeismicPortal FDSN} (European Mediterranean
+Seismological Centre, [46]): the European composite catalog
+ingesting national networks (BUD, ZAMG/GeoSphere Austria, INGV).
+Long-term coverage 1990--present at $M\geq 1.5$.
+\item \textbf{USGS FDSN} (United States Geological Survey, [47]):
+global authoritative catalog used as cross-check at $M\geq 2.5$.
+\item \textbf{GeoSphere Austria current-earthquakes JSON}
+(\texttt{geosphere.at/data/earthquakes}, [40]): rolling 14-day
+window at very fine resolution ($M$ down to $\sim -1$).
+\end{itemize}
+
+After dedup (60~s, 10~km), the Vienna Basin bbox
+([$47.7\,^\circ$, $48.5\,^\circ$]N $\times$ [$16.0\,^\circ$,
+$17.0\,^\circ$]E) contains \textbf{160 events} in 1990--2026.
+Headline statistics:
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Quantity} & \textbf{Value} \\
+\hline
+Total deduped events (1990--2026)               & 160 \\
+Annual rate, $M\geq 1.5$                         & 4.3 /yr \\
+Annual rate, $M\geq 2.0$                         & 3.6 /yr \\
+Annual rate, $M\geq 3.0$                         & 1.35 /yr \\
+Annual rate, $M\geq 4.0$                         & 0.42 /yr \\
+Gutenberg--Richter $b$-value ($M_c=2.5$)         & $\sim 0.65$ \\
+Gutenberg--Richter $a$ (intercept)               & $\sim 3.59$ \\
+Largest event in bbox (1990--2026)               & Moosbrunn 2000-07-11 $M\,5.3$ \\
+Distance Moosbrunn--Aspern                       & $\sim 24$~km \\
+Events within 15~km of Aspern                    & 3 ($M\geq 2$) \\
+Events within 30~km of Aspern                    & 35 (27 of $M\geq 2$) \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Interpretation.} The $b$-value of $\sim 0.65$ sits at the
+lower end of the natural-tectonic range (0.7--1.1), consistent
+with a relatively high-stress active basin --- not anomalously
+high as would be expected from a fluid-driven swarm. The
+\emph{Aspern site itself sits in a quiet sub-volume} of the basin
+(only 3 events within 15~km in 36~yr at $M\geq 2$); the busy zone
+is the Ebreichsdorf cluster and the Wiener Neustadt area, $\sim
+25$--$60$~km to the south. The 2000-07-11 Moosbrunn $M\,5.3$ ---
+the largest event in the bbox during the instrumental era ---
+is the natural reference event for hazard discussion: it is on a
+VBTF splay, demonstrably possible without geothermal forcing,
+and its epicentre is in commuting distance of Aspern. Crucially,
+the $M\sim 5$ events that have occurred during the instrumental
+era are well below the $M\geq 7$ palaeoseismological upper bound
+[6] --- the catalog confirms that historical seismicity has not
+``tested'' the high end of what the VBTFS can in principle host.
+
+\textbf{Implications for the traffic-light proposal.} At the
+observed baseline of $\sim 1.35$~$M\geq 3$ events/yr in the
+bbox, the proposed Amber threshold ($1.5 \leq M \leq 2.5$ within
+10~km) would trigger on the order of \emph{$\sim 1$--$3$ Amber
+event detections per year} just from background tectonics; this
+is the appropriate operational tempo and is not over-tight.
+The Red threshold ($M > 2.5$ within 10~km) would be a
+\emph{rare} background trigger ($\sim 0.1$/yr at this rate),
+making post-Red induced-seismicity attribution practical.
 
 \paragraph{Falsification (what would change our conclusion).}
 \begin{itemize}
@@ -1535,6 +1594,9 @@ Thermal breakthrough time, Aspern (T7)          & $\sim 62$~yr & C \\
 Cooling-induced stress at fault km-scale (T7)   & $\sim 0.1$--$1$~MPa over 30~yr & C \\
 Aspern doublet Coulomb stress on AFS faults (T2) & $\sim 0.2$--$2$~MPa over 30~yr; exceeds triggering threshold & C \\
 Vienna Basin stress regime at reservoir depth (T2) & normal faulting, $S_v > S_{H,\max} > S_{h,\min}$ [44] & B \\
+\textbf{Vienna Basin baseline catalog (T2)}     & 160 events (1990--2026), $b\approx 0.65$, rate $1.35$/yr at $M\geq 3$ & A \\
+Largest event in bbox (T2)                       & Moosbrunn 2000-07-11 $M\,5.3$ at 24~km from Aspern & A \\
+Aspern proximity quiet zone (T2)                 & 3 of 160 events within 15~km in 36~yr & A \\
 sCO$_2$ vs.\ H$_2$O thermosiphon ratio (T6)      & $\sim 4.6\times$ for sCO$_2$ at Aderklaa-96 conditions & C \\
 sCO$_2$ Brayton-cycle efficiency at $100\,^\circ$C (T6) & $\sim 8$--$12\%$, no advantage vs.\ ORC & B \\
 \hline
@@ -1743,12 +1805,13 @@ The 2308~MW peak from the Vienna Model documentation [43] is now
 in F2. \emph{Remaining ask:} digitise the load duration curve
 from the PDF (Phase~3 task; doable from public source).
 \item \textbf{GeoSphere Austria earthquake catalog} ---
-\emph{access route documented; extraction pending.}
-\texttt{GeoSphere.md} identifies the Data Hub
-(\texttt{data.hub.geosphere.at}) and its API as the
-machine-readable access route. \emph{Remaining ask:} build a
-pandas/geopandas pipeline querying the Vienna~Basin subset.
-This is part of Option~B (see below).
+\emph{CLOSED in Phase~3b.} The script
+\texttt{scripts/geosphere\_extract.py} fetches and dedupes events
+from EMSC ([46]), USGS ([47]), and the GeoSphere
+14-day rolling JSON ([40]); 160 events in the Vienna Basin bbox
+1990--2026; full statistics and CSV/GeoJSON outputs in
+\texttt{data/vienna\_basin\_catalog.\{csv,geojson\}} and
+\texttt{data/vienna\_basin\_seismicity.txt}.
 \item \textbf{OMV produced-water chemistry (Li/B/Cs)} ---
 \emph{gap confirmed, not closed.} \texttt{OMV.md} confirms that
 OMV publicly states formation-water samples were collected at
@@ -1771,9 +1834,11 @@ program is still not public.
 in Option~B can include the extraction step.
 \end{itemize}
 The .md support files therefore upgrade four of the five items
-from ``blocker'' to ``Phase~3 task list,'' leaving only the OMV
-produced-water chemistry as a true external-access blocker for
-the case-study work.
+from ``blocker'' to ``Phase~3 task list,'' and Phase~3b has now
+\emph{closed} the GeoSphere catalog item (EMSC + USGS + GeoSphere
+14-day, 160 events, b-value, and Aspern-proximity statistics).
+The only remaining true external-access blocker is the OMV
+produced-water chemistry.
 
 None of these are blockers for the retreat-week deliverable
 \emph{as a case study}; they are blockers for converting the
@@ -2079,6 +2144,20 @@ review of optimal sCO$_2$ heat-transfer fluid use. [Online]. Available:
 \texttt{en.wikipedia.org/wiki/Supercritical\_carbon\_dioxide} and
 \texttt{mdpi.com/2071-1050/18/1/483}. [Accessed: May~20, 2026].
 
+\bibitem{ref46}
+European-Mediterranean Seismological Centre (EMSC), ``SeismicPortal
+FDSN-WS event query service,'' real-time European composite earthquake
+catalog. [Online]. Available:
+\texttt{seismicportal.eu/fdsnws/event/1/}.
+[Accessed: May~20, 2026].
+
+\bibitem{ref47}
+U.S.\ Geological Survey, ``ANSS Comprehensive Earthquake Catalog
+(ComCat), FDSN event web service,'' global authoritative earthquake
+catalog. [Online]. Available:
+\texttt{earthquake.usgs.gov/fdsnws/event/1/}.
+[Accessed: May~20, 2026].
+
 \end{thebibliography}
 
 \paragraph{Note on the bibliography.}
@@ -2098,7 +2177,9 @@ shared geological, demand, market, and seismicity data that all seven
 research threads consume. The Phase~2b additions ([43]--[45]) come from
 the user-provided support files (\texttt{dh-demand.md},
 \texttt{Aderklaa-96.md}, \texttt{OMV.md}, \texttt{GeoSphere.md}) and
-their cited primary sources. Reference [26] is included as a
+their cited primary sources. The Phase~3b additions ([46], [47]) are
+open public FDSN-WS endpoints (EMSC, USGS) consumed by the
+\texttt{scripts/geosphere\_extract.py} pipeline. Reference [26] is included as a
 representative comparative-context source but is explicitly not an
 academic LCOH comparison --- the absence of such a paper is itself one
 of the open questions in thread~5.

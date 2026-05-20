@@ -1,0 +1,3365 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.03,
+          47.87,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp00045pk",
+        "datetime_utc": "1990-02-20T14:56:59.730000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.5,
+        "magnitude_type": "ml",
+        "region": "1 km W of Waldegg, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.133,
+          47.704,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0004kfy",
+        "datetime_utc": "1991-01-10T13:47:02.990000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.5,
+        "magnitude_type": "ml",
+        "region": "1 km WNW of Seebenstein, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.44,
+          47.87,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0004m7n",
+        "datetime_utc": "1991-01-27T19:53:17.760000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "Austria-Hungary border region",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.209,
+          47.929,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0004r4x",
+        "datetime_utc": "1991-05-02T10:15:17.790000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.8,
+        "magnitude_type": "mb",
+        "region": "0 km WNW of Leobersdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.317,
+          47.91,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0004r5s",
+        "datetime_utc": "1991-05-02T22:27:45.550000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.1,
+        "magnitude_type": "ml",
+        "region": "4 km SSE of Tattendorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.344,
+          47.935,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0005559",
+        "datetime_utc": "1992-03-31T22:57:04.920000+00:00",
+        "depth_km": 10,
+        "magnitude": 3,
+        "magnitude_type": "ml",
+        "region": "3 km ESE of Tattendorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.239,
+          47.844,
+          12.8
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0005gjj",
+        "datetime_utc": "1992-11-08T22:40:13.670000+00:00",
+        "depth_km": 12.8,
+        "magnitude": 3.4,
+        "magnitude_type": "ml",
+        "region": "0 km SSE of Theresienfeld, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.379,
+          47.857,
+          12.9
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0005gjk",
+        "datetime_utc": "1992-11-08T22:41:56.020000+00:00",
+        "depth_km": 12.9,
+        "magnitude": 2.8,
+        "magnitude_type": "m",
+        "region": "0 km S of Neufeld an der Leitha, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.07,
+          47.739,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0005j91",
+        "datetime_utc": "1992-12-14T01:10:52.610000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.4,
+        "magnitude_type": "ml",
+        "region": "2 km NNW of Neunkirchen, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.174,
+          47.774,
+          0
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0005pgc",
+        "datetime_utc": "1993-03-14T13:35:32.590000+00:00",
+        "depth_km": 0,
+        "magnitude": 2.8,
+        "magnitude_type": "ml",
+        "region": "4 km SSE of Weikersdorf am Steinfelde, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.277,
+          48.18,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0006nbw",
+        "datetime_utc": "1994-11-10T01:03:01.080000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.1,
+        "magnitude_type": "ml",
+        "region": "1 km WSW of Hietzing, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.166,
+          47.716,
+          12.2
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0006pm0",
+        "datetime_utc": "1994-12-03T12:28:48.800000+00:00",
+        "depth_km": 12.2,
+        "magnitude": 4.6,
+        "magnitude_type": "ml",
+        "region": "1 km W of Pitten, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.382,
+          47.957,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0007app",
+        "datetime_utc": "1996-01-09T01:07:21.530000+00:00",
+        "depth_km": 10,
+        "magnitude": 4.5,
+        "magnitude_type": "ml",
+        "region": "1 km WNW of Weigelsdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.322,
+          47.722,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0007esk",
+        "datetime_utc": "1996-03-14T20:29:11.180000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "2 km WNW of Forchtenstein, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.633,
+          48.112,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000822d",
+        "datetime_utc": "1997-05-10T19:29:15.340000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.6,
+        "magnitude_type": "ml",
+        "region": "2 km ESE of Fischamend-Markt, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.399,
+          47.864,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000852d",
+        "datetime_utc": "1997-07-19T22:33:37.970000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "1 km E of Neufeld an der Leitha, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.159,
+          47.74,
+          5
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000873t",
+        "datetime_utc": "1997-09-04T01:45:39.260000+00:00",
+        "depth_km": 5,
+        "magnitude": 3.1,
+        "magnitude_type": "ml",
+        "region": "1 km NW of Schwarzau am Steinfeld, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.194,
+          47.706,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0008a1m",
+        "datetime_utc": "1997-11-03T21:44:53.610000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "1 km SE of Pitten, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.19,
+          47.735,
+          5
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0008a1s",
+        "datetime_utc": "1997-11-03T23:17:03.560000+00:00",
+        "depth_km": 5,
+        "magnitude": 2.6,
+        "magnitude_type": "ml",
+        "region": "1 km ENE of Schwarzau am Steinfeld, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.221,
+          47.725,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0008a1z",
+        "datetime_utc": "1997-11-04T02:22:19.390000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.5,
+        "magnitude_type": "ml",
+        "region": "0 km ESE of Bad Erlach, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.047,
+          47.729,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0008yhg",
+        "datetime_utc": "1998-11-21T04:38:01.510000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.5,
+        "magnitude_type": "ml",
+        "region": "1 km NNE of Ternitz, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1368,
+          47.7375,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "19990502_0000001",
+        "datetime_utc": "1999-05-02T00:27:40.0Z",
+        "depth_km": 5.0,
+        "magnitude": 2.3,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.411,
+          47.848,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009c4n",
+        "datetime_utc": "1999-07-26T05:50:34.210000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.1,
+        "magnitude_type": "ml",
+        "region": "1 km NNW of Steinbrunn, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2989,
+          47.9067,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "19990726_0000003",
+        "datetime_utc": "1999-07-26T05:50:34.4Z",
+        "depth_km": 10.0,
+        "magnitude": 3.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.419,
+          48.013,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009w6r",
+        "datetime_utc": "2000-07-11T02:49:47.600000+00:00",
+        "depth_km": 10,
+        "magnitude": 5.3,
+        "magnitude_type": "ml",
+        "region": "2 km W of Moosbrunn, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.499,
+          47.935,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009w78",
+        "datetime_utc": "2000-07-11T06:47:16.340000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.7,
+        "magnitude_type": "ml",
+        "region": "1 km E of Leithaprodersdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.36,
+          47.965,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009w84",
+        "datetime_utc": "2000-07-11T10:56:03.900000+00:00",
+        "depth_km": 10,
+        "magnitude": 5,
+        "magnitude_type": "ml",
+        "region": "3 km ESE of Oberwaltersdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.502,
+          47.93,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009wau",
+        "datetime_utc": "2000-07-12T07:55:57.280000+00:00",
+        "depth_km": 10,
+        "magnitude": 3,
+        "magnitude_type": "ml",
+        "region": "1 km ESE of Leithaprodersdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.494,
+          47.951,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009wcb",
+        "datetime_utc": "2000-07-12T21:19:54.010000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.7,
+        "magnitude_type": "ml",
+        "region": "2 km WSW of Seibersdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.497,
+          47.918,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp0009wkh",
+        "datetime_utc": "2000-07-16T02:28:06.480000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "1 km W of Loretto, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.397,
+          47.883,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000ab88",
+        "datetime_utc": "2001-03-11T19:06:55.310000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.5,
+        "magnitude_type": "ml",
+        "region": "1 km S of Landegg, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.354,
+          47.876,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000ag70",
+        "datetime_utc": "2001-06-07T03:27:07.270000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.6,
+        "magnitude_type": "ml",
+        "region": "1 km W of Ebenfurth, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1736,
+          47.7292,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20010627_0000001",
+        "datetime_utc": "2001-06-27T00:17:07.4Z",
+        "depth_km": 2.0,
+        "magnitude": 2.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.183,
+          47.712,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000ahj0",
+        "datetime_utc": "2001-06-27T00:25:11.040000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.6,
+        "magnitude_type": "ml",
+        "region": "0 km S of Pitten, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1173,
+          47.7234,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20010701_0000002",
+        "datetime_utc": "2001-07-01T01:48:58.7Z",
+        "depth_km": 2.0,
+        "magnitude": 4.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.553,
+          48.0603,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20011121_0000005",
+        "datetime_utc": "2001-11-21T17:10:19.6Z",
+        "depth_km": 2.0,
+        "magnitude": 3.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.383,
+          47.935,
+          5
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000c2s1",
+        "datetime_utc": "2003-07-17T20:52:55.730000+00:00",
+        "depth_km": 5,
+        "magnitude": 2.6,
+        "magnitude_type": "ml",
+        "region": "2 km SW of Weigelsdorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.6087,
+          48.0583,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20040426_0000018",
+        "datetime_utc": "2004-04-26T20:58:17.7Z",
+        "depth_km": 5.0,
+        "magnitude": 4.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.265,
+          48.024,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000d43g",
+        "datetime_utc": "2004-09-11T18:28:06.330000+00:00",
+        "depth_km": 10,
+        "magnitude": 2.8,
+        "magnitude_type": "ml",
+        "region": "0 km N of Pfaffst\u00e4tten, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2604,
+          47.8459,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20050725_0000030",
+        "datetime_utc": "2005-07-25T03:06:57.2Z",
+        "depth_km": 2.0,
+        "magnitude": 4.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2952,
+          47.8749,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20060630_0000066",
+        "datetime_utc": "2006-06-30T17:55:07.6Z",
+        "depth_km": 5.0,
+        "magnitude": 3.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2284,
+          47.8946,
+          12.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20060701_0000066",
+        "datetime_utc": "2006-07-01T11:43:12.1Z",
+        "depth_km": 12.0,
+        "magnitude": 2.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2089,
+          47.726,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070205_0000096",
+        "datetime_utc": "2007-02-05T11:30:58.2Z",
+        "depth_km": 5.0,
+        "magnitude": 2.4,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0091,
+          47.8223,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070226_0000083",
+        "datetime_utc": "2007-02-26T04:19:34.4Z",
+        "depth_km": 2.0,
+        "magnitude": 2.3,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1446,
+          47.8231,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070709_0000084",
+        "datetime_utc": "2007-07-09T10:19:51.6Z",
+        "depth_km": 2.0,
+        "magnitude": 3.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1915,
+          47.8639,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070720_0000109",
+        "datetime_utc": "2007-07-20T06:20:23.3Z",
+        "depth_km": 2.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2123,
+          47.8461,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070720_0000080",
+        "datetime_utc": "2007-07-20T07:41:58.8Z",
+        "depth_km": 5.0,
+        "magnitude": 1.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2227,
+          47.7697,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070808_0000264",
+        "datetime_utc": "2007-08-08T13:12:58.7Z",
+        "depth_km": 0.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0904,
+          47.86,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070809_0000248",
+        "datetime_utc": "2007-08-09T15:15:17.2Z",
+        "depth_km": 0.0,
+        "magnitude": 1.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1103,
+          47.8554,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070820_0000218",
+        "datetime_utc": "2007-08-20T11:49:32.2Z",
+        "depth_km": 0.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.6104,
+          47.7277,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070904_0000115",
+        "datetime_utc": "2007-09-04T22:02:10.8Z",
+        "depth_km": 2.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "HUNGARY",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2148,
+          47.9015,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20070928_0000041",
+        "datetime_utc": "2007-09-28T00:37:09.8Z",
+        "depth_km": 10.0,
+        "magnitude": 3.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1182,
+          48.1149,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20071115_0000059",
+        "datetime_utc": "2007-11-15T15:32:39.4Z",
+        "depth_km": 10.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2353,
+          48.0866,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080108_0000206",
+        "datetime_utc": "2008-01-08T08:57:23.4Z",
+        "depth_km": 0.0,
+        "magnitude": 1.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA                                 ",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.644,
+          47.9763,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080115_0000263",
+        "datetime_utc": "2008-01-15T08:22:48.8Z",
+        "depth_km": 0.0,
+        "magnitude": 1.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA                                 ",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0507,
+          47.7717,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080130_0000094",
+        "datetime_utc": "2008-01-30T14:54:21.8Z",
+        "depth_km": 10.0,
+        "magnitude": 3.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA                                 ",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2855,
+          48.0151,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080205_0000067",
+        "datetime_utc": "2008-02-05T11:45:32.8Z",
+        "depth_km": 5.0,
+        "magnitude": 3.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0938,
+          47.7266,
+          13.7
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080406_0000132",
+        "datetime_utc": "2008-04-06T11:01:48.2Z",
+        "depth_km": 13.7,
+        "magnitude": 1.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5819,
+          48.0135,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080415_0000249",
+        "datetime_utc": "2008-04-15T07:25:17.6Z",
+        "depth_km": 0.0,
+        "magnitude": 1.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.7741,
+          48.2893,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080428_0000133",
+        "datetime_utc": "2008-04-28T00:52:38.1Z",
+        "depth_km": 2.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0725,
+          47.7996,
+          12.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080502_0000067",
+        "datetime_utc": "2008-05-02T23:21:09.4Z",
+        "depth_km": 12.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2473,
+          48.1047,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080607_0000118",
+        "datetime_utc": "2008-06-07T15:21:11.4Z",
+        "depth_km": 15.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.6323,
+          47.9647,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20080609_0000398",
+        "datetime_utc": "2008-06-09T07:38:03.2Z",
+        "depth_km": 0.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2519,
+          47.9,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20081014_0000090",
+        "datetime_utc": "2008-10-14T05:21:22.0Z",
+        "depth_km": 5.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2853,
+          47.9053,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20081014_0000252",
+        "datetime_utc": "2008-10-14T07:08:53.4Z",
+        "depth_km": 5.0,
+        "magnitude": 2.4,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2329,
+          47.7124,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20081117_0000161",
+        "datetime_utc": "2008-11-17T12:02:08.2Z",
+        "depth_km": 2.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.08,
+          47.826,
+          10
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "usp000gq30",
+        "datetime_utc": "2008-12-07T02:47:40.780000+00:00",
+        "depth_km": 10,
+        "magnitude": 3.9,
+        "magnitude_type": "ml",
+        "region": "2 km WNW of Winzendorf, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2657,
+          47.7818,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20081207_0000110",
+        "datetime_utc": "2008-12-07T05:03:26.9Z",
+        "depth_km": 5.0,
+        "magnitude": 1.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5634,
+          48.1211,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090114_0000041",
+        "datetime_utc": "2009-01-14T00:59:37.8Z",
+        "depth_km": 15.0,
+        "magnitude": 2.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.6356,
+          48.0683,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090114_0000094",
+        "datetime_utc": "2009-01-14T01:06:22.3Z",
+        "depth_km": 10.0,
+        "magnitude": 1.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5627,
+          48.0927,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090114_0000082",
+        "datetime_utc": "2009-01-14T01:38:36.2Z",
+        "depth_km": 2.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.6799,
+          48.0603,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090114_0000117",
+        "datetime_utc": "2009-01-14T02:51:58.2Z",
+        "depth_km": 10.0,
+        "magnitude": 1.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.6222,
+          48.0784,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090114_0000110",
+        "datetime_utc": "2009-01-14T05:11:41.3Z",
+        "depth_km": 10.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5405,
+          48.0961,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090118_0000072",
+        "datetime_utc": "2009-01-18T16:53:44.7Z",
+        "depth_km": 2.0,
+        "magnitude": 2.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1742,
+          47.8172,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090125_0000103",
+        "datetime_utc": "2009-01-25T13:57:38.8Z",
+        "depth_km": 10.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1517,
+          47.8248,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090125_0000097",
+        "datetime_utc": "2009-01-25T14:04:34.5Z",
+        "depth_km": 10.0,
+        "magnitude": 2.3,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1607,
+          47.8081,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090125_0000079",
+        "datetime_utc": "2009-01-25T16:39:31.6Z",
+        "depth_km": 10.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3235,
+          47.8979,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090727_0000152",
+        "datetime_utc": "2009-07-27T08:20:07.6Z",
+        "depth_km": 2.0,
+        "magnitude": 2.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3217,
+          47.8991,
+          8.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090727_0000158",
+        "datetime_utc": "2009-07-27T09:39:12.5Z",
+        "depth_km": 8.0,
+        "magnitude": 2.4,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2947,
+          47.9056,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090727_0000069",
+        "datetime_utc": "2009-07-27T12:12:50.3Z",
+        "depth_km": 2.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2919,
+          47.9155,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20090811_0000099",
+        "datetime_utc": "2009-08-11T00:08:14.1Z",
+        "depth_km": 15.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3552,
+          47.8732,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20091020_0000232",
+        "datetime_utc": "2009-10-20T00:14:14.0Z",
+        "depth_km": 2.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2657,
+          47.9185,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20091109_0000158",
+        "datetime_utc": "2009-11-09T19:09:20.4Z",
+        "depth_km": 2.0,
+        "magnitude": 1.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3403,
+          47.9138,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20091119_0000315",
+        "datetime_utc": "2009-11-19T06:28:11.3Z",
+        "depth_km": 10.0,
+        "magnitude": 2.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3213,
+          47.9232,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20091119_0000058",
+        "datetime_utc": "2009-11-19T08:00:17.8Z",
+        "depth_km": 2.0,
+        "magnitude": 3.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5987,
+          48.0129,
+          8.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20091125_0000309",
+        "datetime_utc": "2009-11-25T18:03:13.8Z",
+        "depth_km": 8.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3257,
+          47.8936,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100120_0000429",
+        "datetime_utc": "2010-01-20T22:17:32.0Z",
+        "depth_km": 2.0,
+        "magnitude": 1.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0965,
+          47.7045,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100205_0000266",
+        "datetime_utc": "2010-02-05T01:50:01.0Z",
+        "depth_km": 2.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0895,
+          47.8646,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100222_0000269",
+        "datetime_utc": "2010-02-22T09:40:24.7Z",
+        "depth_km": 15.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0872,
+          47.9133,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100611_0000431",
+        "datetime_utc": "2010-06-11T18:47:45.8Z",
+        "depth_km": 10.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.397,
+          47.9848,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100624_0000213",
+        "datetime_utc": "2010-06-24T17:47:53.8Z",
+        "depth_km": 5.0,
+        "magnitude": 2.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2861,
+          47.8565,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100718_0000399",
+        "datetime_utc": "2010-07-18T08:28:48.5Z",
+        "depth_km": 2.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2907,
+          47.9221,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20100911_0000337",
+        "datetime_utc": "2010-09-11T05:12:42.5Z",
+        "depth_km": 10.0,
+        "magnitude": 2.4,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.8318,
+          48.317,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101209_0000200",
+        "datetime_utc": "2010-12-09T21:38:02.7Z",
+        "depth_km": 2.0,
+        "magnitude": 1.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.7724,
+          48.3311,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101209_0000391",
+        "datetime_utc": "2010-12-09T21:45:55.1Z",
+        "depth_km": 2.0,
+        "magnitude": 2.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.8596,
+          48.3448,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101210_0000327",
+        "datetime_utc": "2010-12-10T08:32:40.3Z",
+        "depth_km": 2.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.9259,
+          48.3199,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101210_0000234",
+        "datetime_utc": "2010-12-10T09:17:44.9Z",
+        "depth_km": 2.0,
+        "magnitude": 1.5,
+        "magnitude_type": "ML",
+        "region": "SLOVAKIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5988,
+          48.379,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101216_0000151",
+        "datetime_utc": "2010-12-16T22:36:12.7Z",
+        "depth_km": 5.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.4552,
+          47.9875,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101218_0000329",
+        "datetime_utc": "2010-12-18T06:19:52.0Z",
+        "depth_km": 2.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.4751,
+          47.9632,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20101218_0000227",
+        "datetime_utc": "2010-12-18T06:26:37.3Z",
+        "depth_km": 10.0,
+        "magnitude": 2.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1132,
+          47.756,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110210_0000405",
+        "datetime_utc": "2011-02-10T20:12:31.6Z",
+        "depth_km": 10.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1421,
+          47.7936,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110222_0000271",
+        "datetime_utc": "2011-02-22T00:31:30.4Z",
+        "depth_km": 15.0,
+        "magnitude": 1.5,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2484,
+          47.859,
+          3.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110308_0000197",
+        "datetime_utc": "2011-03-08T15:29:21.9Z",
+        "depth_km": 3.0,
+        "magnitude": 1.6,
+        "magnitude_type": "mb",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1175,
+          47.9698,
+          16.3
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110616_0000313",
+        "datetime_utc": "2011-06-16T21:35:29.2Z",
+        "depth_km": 16.3,
+        "magnitude": 1.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.4565,
+          47.9524,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110723_0000417",
+        "datetime_utc": "2011-07-23T03:10:17.9Z",
+        "depth_km": 15.0,
+        "magnitude": 1.6,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2938,
+          48.0197,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110811_0000227",
+        "datetime_utc": "2011-08-11T00:56:55.0Z",
+        "depth_km": 10.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1582,
+          47.7923,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110815_0000063",
+        "datetime_utc": "2011-08-15T14:22:44.8Z",
+        "depth_km": 2.0,
+        "magnitude": 3.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3272,
+          47.7436,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110820_0000585",
+        "datetime_utc": "2011-08-20T21:10:09.1Z",
+        "depth_km": 2.0,
+        "magnitude": 1.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1142,
+          47.7113,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110916_0000318",
+        "datetime_utc": "2011-09-16T20:28:31.8Z",
+        "depth_km": 2.0,
+        "magnitude": 2.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2358,
+          48.0784,
+          0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20110928_0000445",
+        "datetime_utc": "2011-09-28T06:03:59.6Z",
+        "depth_km": 0.0,
+        "magnitude": 2.4,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3498,
+          47.7593,
+          19.2
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111010_0000221",
+        "datetime_utc": "2011-10-10T07:52:07.4Z",
+        "depth_km": 19.2,
+        "magnitude": 1.8,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2741,
+          47.8495,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111017_0000293",
+        "datetime_utc": "2011-10-17T06:54:33.2Z",
+        "depth_km": 2.0,
+        "magnitude": 2.4,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2593,
+          47.7735,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111022_0000276",
+        "datetime_utc": "2011-10-22T01:19:23.4Z",
+        "depth_km": 5.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1821,
+          47.7389,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111031_0000175",
+        "datetime_utc": "2011-10-31T14:54:16.2Z",
+        "depth_km": 2.0,
+        "magnitude": 3.2,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1262,
+          47.8025,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111122_0000408",
+        "datetime_utc": "2011-11-22T16:16:49.6Z",
+        "depth_km": 10.0,
+        "magnitude": 1.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3472,
+          47.7416,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111124_0000361",
+        "datetime_utc": "2011-11-24T10:14:11.9Z",
+        "depth_km": 2.0,
+        "magnitude": 2.3,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1571,
+          47.7895,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111206_0000414",
+        "datetime_utc": "2011-12-06T22:48:06.1Z",
+        "depth_km": 2.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1431,
+          47.8406,
+          8.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111207_0000463",
+        "datetime_utc": "2011-12-07T17:53:08.0Z",
+        "depth_km": 8.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2102,
+          47.7508,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111213_0000505",
+        "datetime_utc": "2011-12-13T03:01:50.8Z",
+        "depth_km": 2.0,
+        "magnitude": 2.1,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3437,
+          47.744,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20111231_0000563",
+        "datetime_utc": "2011-12-31T22:43:40.6Z",
+        "depth_km": 10.0,
+        "magnitude": 1.7,
+        "magnitude_type": "ML",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.51,
+          48.39,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20120804_0000036",
+        "datetime_utc": "2012-08-04T12:39:07.0Z",
+        "depth_km": 10.0,
+        "magnitude": 2.6,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.16,
+          47.83,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20121115_0000116",
+        "datetime_utc": "2012-11-15T03:17:33.8Z",
+        "depth_km": 2.0,
+        "magnitude": 2.3,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.15,
+          47.76,
+          15.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20130125_0000015",
+        "datetime_utc": "2013-01-25T07:14:31.8Z",
+        "depth_km": 15.0,
+        "magnitude": 3.5,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.51,
+          47.94,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20130920_0000008",
+        "datetime_utc": "2013-09-20T02:06:33.5Z",
+        "depth_km": 5.0,
+        "magnitude": 4.2,
+        "magnitude_type": "mw",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.41,
+          47.99,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20131002_0000057",
+        "datetime_utc": "2013-10-02T17:17:35.9Z",
+        "depth_km": 5.0,
+        "magnitude": 3.6,
+        "magnitude_type": "mw",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.45,
+          47.95,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20131002_0000068",
+        "datetime_utc": "2013-10-02T19:42:44.1Z",
+        "depth_km": 5.0,
+        "magnitude": 2.7,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.13,
+          47.89,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20131006_0000085",
+        "datetime_utc": "2013-10-06T10:53:52.9Z",
+        "depth_km": 2.0,
+        "magnitude": 2.7,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.31,
+          47.99,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20131023_0000087",
+        "datetime_utc": "2013-10-23T19:34:54.9Z",
+        "depth_km": 10.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.31,
+          47.77,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20131211_0000054",
+        "datetime_utc": "2013-12-11T17:14:10.6Z",
+        "depth_km": 2.0,
+        "magnitude": 3.1,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.28,
+          48.08,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20140331_0000100",
+        "datetime_utc": "2014-03-31T02:08:42.8Z",
+        "depth_km": 2.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.34,
+          47.94,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20140413_0000064",
+        "datetime_utc": "2014-04-13T01:29:58.5Z",
+        "depth_km": 5.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.31,
+          47.9,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20140608_0000069",
+        "datetime_utc": "2014-06-08T21:57:48.1Z",
+        "depth_km": 2.0,
+        "magnitude": 3.1,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1428,
+          48.0884,
+          3.46
+        ]
+      },
+      "properties": {
+        "source": "USGS",
+        "event_id": "us20005ljz",
+        "datetime_utc": "2016-04-25T10:28:22.840000+00:00",
+        "depth_km": 3.46,
+        "magnitude": 4.2,
+        "magnitude_type": "ml",
+        "region": "3 km NNE of Heiligenkreuz, Austria",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.04,
+          48.14,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20160510_0000104",
+        "datetime_utc": "2016-05-10T05:52:01.7Z",
+        "depth_km": 10.0,
+        "magnitude": 2.7,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.14,
+          47.71,
+          3.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20160812_0000138",
+        "datetime_utc": "2016-08-12T23:39:34.0Z",
+        "depth_km": 3.0,
+        "magnitude": 2.2,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.04,
+          47.87,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20161229_0000093",
+        "datetime_utc": "2016-12-29T13:29:42.7Z",
+        "depth_km": 10.0,
+        "magnitude": 2.3,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.22,
+          47.86,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20170729_0000128",
+        "datetime_utc": "2017-07-29T23:22:14.6Z",
+        "depth_km": 10.0,
+        "magnitude": 2.2,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.13,
+          48.07,
+          11.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20171108_0000084",
+        "datetime_utc": "2017-11-08T18:36:27.1Z",
+        "depth_km": 11.0,
+        "magnitude": 3.0,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.12,
+          47.71,
+          7.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20171110_0000096",
+        "datetime_utc": "2017-11-10T16:40:43.2Z",
+        "depth_km": 7.0,
+        "magnitude": 3.5,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.31,
+          48.27,
+          147.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20201120_0000025",
+        "datetime_utc": "2020-11-20T03:38:31.7Z",
+        "depth_km": 147.0,
+        "magnitude": 2.4,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.18,
+          47.78,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210330_0000148",
+        "datetime_utc": "2021-03-30T16:25:00.7Z",
+        "depth_km": 10.0,
+        "magnitude": 4.2,
+        "magnitude_type": "mb",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.22,
+          47.79,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210404_0000123",
+        "datetime_utc": "2021-04-04T18:34:19.5Z",
+        "depth_km": 10.0,
+        "magnitude": 2.5,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.13,
+          47.77,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210419_0000199",
+        "datetime_utc": "2021-04-19T22:57:11.1Z",
+        "depth_km": 5.0,
+        "magnitude": 4.3,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.15,
+          47.83,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210419_0000225",
+        "datetime_utc": "2021-04-19T23:05:36.9Z",
+        "depth_km": 10.0,
+        "magnitude": 2.0,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.23,
+          47.83,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210419_0000226",
+        "datetime_utc": "2021-04-19T23:11:25.1Z",
+        "depth_km": 10.0,
+        "magnitude": 2.1,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.07,
+          47.78,
+          5.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210420_0000034",
+        "datetime_utc": "2021-04-20T05:16:10.3Z",
+        "depth_km": 5.0,
+        "magnitude": 2.9,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          47.76,
+          2.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210423_0000176",
+        "datetime_utc": "2021-04-23T16:30:31.1Z",
+        "depth_km": 2.0,
+        "magnitude": 3.4,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.25,
+          47.81,
+          7.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210424_0000075",
+        "datetime_utc": "2021-04-24T09:30:52.0Z",
+        "depth_km": 7.0,
+        "magnitude": 3.2,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.75,
+          47.91,
+          4.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20210521_0000162",
+        "datetime_utc": "2021-05-21T15:11:48.3Z",
+        "depth_km": 4.0,
+        "magnitude": 2.4,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.06,
+          47.72,
+          3.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20220114_0000276",
+        "datetime_utc": "2022-01-14T23:03:06.5Z",
+        "depth_km": 3.0,
+        "magnitude": 2.8,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.86,
+          48.37,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20221002_0000050",
+        "datetime_utc": "2022-10-02T05:52:55.9Z",
+        "depth_km": 10.0,
+        "magnitude": 3.1,
+        "magnitude_type": "m",
+        "region": "SLOVAKIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.37,
+          47.97,
+          3.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20230106_0000030",
+        "datetime_utc": "2023-01-06T04:32:50.2Z",
+        "depth_km": 3.0,
+        "magnitude": 2.8,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.02,
+          47.74,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20230330_0000207",
+        "datetime_utc": "2023-03-30T20:26:13.3Z",
+        "depth_km": 10.0,
+        "magnitude": 4.0,
+        "magnitude_type": "mb",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.004,
+          47.715,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20231011_0000184",
+        "datetime_utc": "2023-10-11T21:04:17.14Z",
+        "depth_km": 10.0,
+        "magnitude": 2.5,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.15,
+          47.83,
+          4.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20240414_0000170",
+        "datetime_utc": "2024-04-14T15:14:15.31Z",
+        "depth_km": 4.0,
+        "magnitude": 3.2,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0906,
+          47.9173,
+          17.8
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20250713_0000132",
+        "datetime_utc": "2025-07-13T11:13:00.74Z",
+        "depth_km": 17.8,
+        "magnitude": 2.8,
+        "magnitude_type": "ml",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.82,
+          47.85,
+          10.0
+        ]
+      },
+      "properties": {
+        "source": "EMSC",
+        "event_id": "20260424_0000024",
+        "datetime_utc": "2026-04-24T02:11:30.2Z",
+        "depth_km": 10.0,
+        "magnitude": 2.7,
+        "magnitude_type": "m",
+        "region": "AUSTRIA",
+        "is_verified": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1137,
+          47.7813,
+          5.1532
+        ]
+      },
+      "properties": {
+        "source": "GeoSphere",
+        "event_id": "53262365",
+        "datetime_utc": "2026-05-11T16:15:13.814410",
+        "depth_km": 5.1532,
+        "magnitude": 0.9,
+        "magnitude_type": "ml",
+        "region": "Neunkirchen",
+        "is_verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1115,
+          47.7796,
+          5.155
+        ]
+      },
+      "properties": {
+        "source": "GeoSphere",
+        "event_id": "53262366",
+        "datetime_utc": "2026-05-11T16:54:58.178500",
+        "depth_km": 5.155,
+        "magnitude": 1.0,
+        "magnitude_type": "ml",
+        "region": "Neunkirchen",
+        "is_verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2987,
+          47.9433,
+          7.8842
+        ]
+      },
+      "properties": {
+        "source": "GeoSphere",
+        "event_id": "53263282",
+        "datetime_utc": "2026-05-17T17:35:56.165740",
+        "depth_km": 7.8842,
+        "magnitude": 0.5,
+        "magnitude_type": "ml",
+        "region": "Sollenau",
+        "is_verified": false
+      }
+    }
+  ]
+}
