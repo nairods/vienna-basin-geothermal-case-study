@@ -50,19 +50,6 @@ no third-party packages are required for the analytical models.
 └── tool_data.json                     # Embedded interactive-tool dataset
 ```
 
-## Reproducing the numbers in `project.tex`
-
-```bash
-python3 notebooks/t5_lcoh.py        # reproduces thread 5 LCOH table
-python3 notebooks/t4_storage.py     # reproduces thread 4 doublet+storage table
-python3 notebooks/t7_breakthrough.py # reproduces thread 7 breakthrough table
-python3 scripts/geosphere_extract.py # documents the T2 catalog route + seed events
-```
-
-Each script ends with a verification block that asserts the script's
-computed values match the headline numbers cited in `project.tex` within
-2% tolerance. Any mismatch is reported with the `[MISMATCH]` tag.
-
 ## What this repository does and does not do
 
 **Does:**
