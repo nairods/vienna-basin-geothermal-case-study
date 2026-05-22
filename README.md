@@ -69,8 +69,7 @@ When the scripts were first run against the `project.tex` draft, the
 verification blocks caught several numerical and labelling inconsistencies
 in the manuscript (T5 sensitivity values, T4 storage volumes at non-base
 parameters, T7 porosity-row ordering). These have been corrected in
-`project.tex` as a result. This is exactly the value of the
-reproducibility loop.
+`project.tex` as a result. 
 
 ## Python version
 
