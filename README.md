@@ -40,7 +40,7 @@ no third-party packages are required for the analytical models.
 │   ├── geosphere_extract.py          # Vienna Basin seismic catalog extraction
 │   └── seismicity_clusters.py        # DBSCAN clustering of seismic events
 │
-├── tool/                              # Interactive companion tool
+├── docs/                              # Interactive companion tool
 │   ├── README.md                     # Tool-specific documentation
 │   └── index.html                    # Offline interactive case-study dashboard
 │
