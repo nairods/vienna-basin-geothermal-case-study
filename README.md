@@ -4,6 +4,8 @@ This directory accompanies `project.tex` and lets a reader verify every
 quantitative claim in it by running short Python scripts. Stdlib only;
 no third-party packages are required for the analytical models.
 
+[Launch the Vienna Basin Geothermal Dashboard](https://nairods.github.io/vienna-basin-geothermal-case-study/)
+
 ## Layout
 
 ```
@@ -18,6 +20,10 @@ no third-party packages are required for the analytical models.
 │   ├── vienna_basin_seed_events.geojson
 │   ├── vienna_basin_seismicity.txt   # Gutenberg–Richter + catalog statistics
 │   └── vienna_basin_xy.npz           # Cached projected seismic coordinates
+│
+├── docs/                              # Interactive companion tool
+│   ├── README.md                     # Tool-specific documentation
+│   └── index.html                    # Offline interactive case-study dashboard
 │
 ├── figures/                           # Reproducible manuscript figures
 │   ├── fig_halo.pdf                  # Thermal halo / interference figure
@@ -39,10 +45,6 @@ no third-party packages are required for the analytical models.
 │   ├── austria_price_stats.py        # Austrian wholesale electricity price analysis
 │   ├── geosphere_extract.py          # Vienna Basin seismic catalog extraction
 │   └── seismicity_clusters.py        # DBSCAN clustering of seismic events
-│
-├── docs/                              # Interactive companion tool
-│   ├── README.md                     # Tool-specific documentation
-│   └── index.html                    # Offline interactive case-study dashboard
 │
 ├── README.md                          # Repository overview and reproducibility guide
 ├── project.tex                        # Main case-study manuscript (primary artefact)
