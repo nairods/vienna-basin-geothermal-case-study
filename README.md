@@ -7,19 +7,40 @@ no third-party packages are required for the analytical models.
 ## Layout
 
 ```
-project.tex                    -- the case-study document (this is the main artefact)
+data/                                -- created on demand by scripts
+  austria_wholesale_hourly.csv       --
+  vienna_basin_catalog.csv           --
+  vienna_basin_catalog.geojson       --
+  vienna_basin_catalog_clustered.csv --
+  vienna_basin_seed_events.csv       --
+  vienna_basin_seed_events.geojson   --
+  vienna_basin_seismicity.txt        --
+  vienna_basin_xy.npz                --
+figures/
+  fig_halo.pdf                       --
+  fig_lcoh.pdf                       --
+  fig_ldc.pdf                        --
+  fig_seismicity.pdf                 --
 notebooks/
-  t5_lcoh.py                   -- thread 5 levelised-cost-of-heat
-  t4_storage.py                -- thread 4 doublet-vs-storage energy balance
-  t7_breakthrough.py           -- thread 7 thermal-breakthrough estimate
+  figures.py                         -- figure generation
+  h2_montecarlo_dryell.py            -- 
+  m7_subsidence.py                   -- 
+  t4_storage.py                      -- thread 4 doublet-vs-storage energy balance
+  t4_storage_ldc.py                  -- thread 4 
+  t5_lcoh.py                         -- thread 5 levelised-cost-of-heat
+  t7_breakthrough.py                 -- thread 7 thermal-breakthrough estimate
+  t7_multidoublet.py                 -- thread 7 
 scripts/
-  geosphere_extract.py         -- GeoSphere Austria AEC extraction skeleton (T2)
-data/                          -- created on demand by scripts
-requirements.txt               -- optional packages (figures, geopandas)
-dh-demand.md                   -- support file on Vienna DH demand reconstruction
-Aderklaa-96.md                 -- support file on the OMV/Wien Energie test well
-OMV.md                         -- support file on OMV produced-water chemistry
-GeoSphere.md                   -- support file on AEC catalog access
+  austria_price_stats.py             -- 
+  geosphere_extract.py               -- GeoSphere Austria AEC extraction skeleton (T2)
+  seismicity_clusters.py             --
+tool/
+  README.md                          --
+  index.html                         --
+README.md                            --
+project.tex                          -- the case-study document (this is the main artefact)
+requirements.txt                     -- optional packages (figures, geopandas)
+tool_data.json                       -- 
 ```
 
 ## Reproducing the numbers in `project.tex`
