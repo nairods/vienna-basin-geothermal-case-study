@@ -7,40 +7,47 @@ no third-party packages are required for the analytical models.
 ## Layout
 
 ```
-data/                                -- created on demand by scripts
-  austria_wholesale_hourly.csv       --
-  vienna_basin_catalog.csv           --
-  vienna_basin_catalog.geojson       --
-  vienna_basin_catalog_clustered.csv --
-  vienna_basin_seed_events.csv       --
-  vienna_basin_seed_events.geojson   --
-  vienna_basin_seismicity.txt        --
-  vienna_basin_xy.npz                --
-figures/
-  fig_halo.pdf                       --
-  fig_lcoh.pdf                       --
-  fig_ldc.pdf                        --
-  fig_seismicity.pdf                 --
-notebooks/
-  figures.py                         -- figure generation
-  h2_montecarlo_dryell.py            -- 
-  m7_subsidence.py                   -- 
-  t4_storage.py                      -- thread 4 doublet-vs-storage energy balance
-  t4_storage_ldc.py                  -- thread 4 
-  t5_lcoh.py                         -- thread 5 levelised-cost-of-heat
-  t7_breakthrough.py                 -- thread 7 thermal-breakthrough estimate
-  t7_multidoublet.py                 -- thread 7 
-scripts/
-  austria_price_stats.py             -- 
-  geosphere_extract.py               -- GeoSphere Austria AEC extraction skeleton (T2)
-  seismicity_clusters.py             --
-tool/
-  README.md                          --
-  index.html                         --
-README.md                            --
-project.tex                          -- the case-study document (this is the main artefact)
-requirements.txt                     -- optional packages (figures, geopandas)
-tool_data.json                       -- 
+.
+├── data/                              # Generated datasets (created on demand)
+│   ├── austria_wholesale_hourly.csv  # Austrian hourly wholesale electricity prices (Ember)
+│   ├── vienna_basin_catalog.csv      # Merged seismicity catalog (EMSC + USGS + GeoSphere)
+│   ├── vienna_basin_catalog.geojson  # GeoJSON version of seismicity catalog
+│   ├── vienna_basin_catalog_clustered.csv
+│   │                                  # Cluster-labelled earthquake catalog (DBSCAN)
+│   ├── vienna_basin_seed_events.csv  # Aspern-proximal seismic seed events
+│   ├── vienna_basin_seed_events.geojson
+│   ├── vienna_basin_seismicity.txt   # Gutenberg–Richter + catalog statistics
+│   └── vienna_basin_xy.npz           # Cached projected seismic coordinates
+│
+├── figures/                           # Reproducible manuscript figures
+│   ├── fig_halo.pdf                  # Thermal halo / interference figure
+│   ├── fig_lcoh.pdf                  # Geothermal vs heat-pump LCOH comparison
+│   ├── fig_ldc.pdf                   # Vienna district-heating load-duration curve
+│   └── fig_seismicity.pdf            # Vienna Basin seismicity map
+│
+├── notebooks/                         # Core reproducibility scripts
+│   ├── figures.py                    # Generate publication figures
+│   ├── h2_montecarlo_dryell.py       # Dry-well drilling-risk Monte Carlo analysis
+│   ├── m7_subsidence.py              # Surface subsidence estimate
+│   ├── t4_storage.py                 # T4: seasonal storage vs doublet-count balance
+│   ├── t4_storage_ldc.py             # T4: storage sizing using Vienna load-duration curve
+│   ├── t5_lcoh.py                    # T5: levelised cost of heat (LCOH)
+│   ├── t7_breakthrough.py            # T7: analytical thermal breakthrough estimate
+│   └── t7_multidoublet.py            # T7: multi-doublet thermal interference
+│
+├── scripts/                           # Data acquisition & preprocessing
+│   ├── austria_price_stats.py        # Austrian wholesale electricity price analysis
+│   ├── geosphere_extract.py          # Vienna Basin seismic catalog extraction
+│   └── seismicity_clusters.py        # DBSCAN clustering of seismic events
+│
+├── tool/                              # Interactive companion tool
+│   ├── README.md                     # Tool-specific documentation
+│   └── index.html                    # Offline interactive case-study dashboard
+│
+├── README.md                          # Repository overview and reproducibility guide
+├── project.tex                        # Main case-study manuscript (primary artefact)
+├── requirements.txt                   # Optional dependencies (figures, geospatial tools)
+└── tool_data.json                     # Embedded interactive-tool dataset
 ```
 
 ## Reproducing the numbers in `project.tex`
