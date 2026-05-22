@@ -4,6 +4,8 @@ Single-file HTML companion to `project.tex`. Open `index.html` in any
 modern browser; no server, no installation, no internet required (after
 the first load — Plotly.js is fetched from CDN).
 
+[Launch the Vienna Basin Geothermal Dashboard](https://nairods.github.io/vienna-basin-geothermal-case-study/)
+
 ## What it does
 
 Seven tabs, each driven by interactive sliders or filters:
